@@ -11,20 +11,30 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "readySetBool.h"
 
-int adder(int x, int y) {
-	while (y != 0) {
-		int carry = x & y;    // Encuentra los bits de acarreo
-		x = x ^ y;            // Suma sin acarreo
-		y = carry << 1;       // Desplaza el acarreo a la izquierda
+void print_binary(unsigned int n) {
+	// Número de bits en un entero (usualmente 32 bits en una máquina moderna)
+	int num_bits = sizeof(n) * 8;
+
+	// Iterar sobre cada bit, de izquierda a derecha
+	for (int i = num_bits - 1; i >= 0; i--) {
+		// Imprimir el bit más significativo primero
+		if ((n >> i) & 1) {
+			printf("1");
+		} else {
+			printf("0");
+		}
 	}
-	return x;
+	printf("\n");
 }
 
 int main () {
-  printf("%d\n", adder(40, 2));
-  printf("%d\n", adder(0, 0));
-  printf("%d\n", adder(255555, 25555));
-  printf("%d\n", adder(9, 1));
-  printf("%d\n", adder(99, 99));
+	printf("%d\n", adder(40, 2));
+	printf("%d\n", adder(0, 0));
+	printf("%d\n", adder(255555, 25555));
+	printf("%d\n", adder(9, 1));
+	printf("%d\n", adder(99, 99));
+	printf("%d\n", multiplier(7, 3));
+	printf("%d\n", gray_code(7));
 }

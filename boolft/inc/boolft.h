@@ -10,4 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	adder(int x, int y);
+#ifndef BOOLFT_H
+#define BOOLFT_H
+
+unsigned int	adder(unsigned int a, unsigned int b);
+unsigned int	multiplier(unsigned int a, unsigned int b);
+int				gray_code(int gray);
+#endif

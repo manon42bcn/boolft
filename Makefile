@@ -1,35 +1,57 @@
-SRCS		=	adder.c
-SRCS_DIR	=	srcs
-OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
-OBJS_SUBS	= 	obj/
-CC			=	gcc
-RM			=	@rm -rf
-CFLAGS 		=	-Wall -Wextra -Werror -Iinc
-NAME		=	boolft.a
-HEADER		=	inc/boolft.h
-OBJS_DIR	=	obj
+NAME			= 	BoolTests
 
-all: $(NAME) $(HEADER)
+SRC_DIR			= 	srcs
+OBJ_DIR			= 	objs
+OBJ_SUBS		= 	objs
+LIBS_DIR		=	boolft
+LIBS_HEADERS	=	$(LIBS_DIR)/inc/boolft.h
+LIBS_LIBS		=	$(LIBS_DIR)/libboolft.a
+SRCS_FILES		= 	main.c
+HEAD_FILES		=	inc/readySetBool.h
+SRCS 			=	$(addprefix $(SRC_DIR)/,$(SRCS_FILES))
+OBJS			=	$(addprefix $(OBJ_DIR)/,$(SRCS_FILES:.c=.o))
+CFLAGS			=	-Wall -Wextra -Werror
+LIBRARIES		=	$(LIBS_LIBS)
+INCLUDES		=	-I./boolft -Iinc
+LIB_LINKS		=	-L./$(LIBS_DIR) -lboolft
+RM				=	rm -rf
+CC				=	gcc
+MAKE 			=	make --no-print-directory
 
-$(NAME): $(OBJS_SUBS) $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+all: library $(OBJ_SUBS) $(NAME)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
-	$(CC) -Iinc $(CFLAGS) -g -c $< -o $@
+$(NAME): $(OBJS) $(HEAD_FILES) $(LIBRARIES)
+	$(CC) $(OBJS) $(CFLAGS) $(LIB_LINKS) -g -o $(NAME)
+	@echo "$(MAGENTA)Executable $@ compiled$(DEF_COLOR)"
 
-$(OBJS_SUBS):
-	-@mkdir $(OBJS_SUBS)
+library:
+	@echo "$(YELLOW)Building LIBRARIES$(DEF_COLOR)"
+	@echo "$(YELLOW)------------------$(DEF_COLOR)"
+	@echo "$(YELLOW)Building BOOLFT$(DEF_COLOR)" ; echo
+	@$(MAKE) -C $(LIBS_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEAD_FILES) $(LIBS_HEADERS)
+	$(CC) $(CFLAGS) $(INCLUDES) -g -c $< -o $@
+	@echo "$(GREEN)$(patsubst $(SRCS_DIR)/%,%, $<)" | awk '{printf "%-50s\tcompiled ✓$(DEF_COLOR)\n", $$0;}'
+
+$(OBJ_SUBS):
+	@-mkdir $(OBJ_SUBS)
 
 clean:
-	$(RM) $(OBJS)
+	@$(MAKE) -C $(LIBS_DIR) clean
+	@$(RM) $(OBJS)
+	@echo "$(RED)All temporary objects removed successfully${DEF_COLOR}"
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) $(OBJS_SUBS)
+	@$(MAKE) -C $(LIBS_DIR) fclean
+	@$(RM) $(NAME)
+	@$(RM) $(OBJ_SUBS)
+	@echo "$(RED)Executable have been fully cleaned${DEF_COLOR}"
 
-bonus: CFLAGS += -DBONUS
-bonus: all
+#memory: $(OBJ_SUBS) $(OBJS) $(HEAD_FILES)
+#	@$(MAKE) CFLAGS+=-fsanitize=address re
+#	@echo "$(RED)Executable have been fully cleaned${DEF_COLOR}"
 
-re:	fclean $(NAME)
+re:	fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
