@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include "readySetBool.h"
+#include "../boolft/inc/boolft.h"
 
 void print_binary(unsigned int n) {
 	// Número de bits en un entero (usualmente 32 bits en una máquina moderna)
@@ -30,11 +31,12 @@ void print_binary(unsigned int n) {
 }
 
 int main () {
-	printf("%d\n", adder(40, 2));
-	printf("%d\n", adder(0, 0));
-	printf("%d\n", adder(255555, 25555));
-	printf("%d\n", adder(9, 1));
-	printf("%d\n", adder(99, 99));
-	printf("%d\n", multiplier(7, 3));
-	printf("%d\n", gray_code(7));
+	// printf("%d\n", adder(40, 2));
+	// printf("%d\n", adder(0, 0));
+	// printf("%d\n", adder(255555, 25555));
+	// printf("%d\n", adder(9, 1));
+	// printf("%d\n", adder(99, 99));
+	// printf("%d\n", multiplier(7, 3));
+	// printf("%d\n", gray_code(7));
+	tree_try();
 }

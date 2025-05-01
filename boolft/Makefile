@@ -1,4 +1,5 @@
 SRCS		=	adder.c \
+				booltree.c \
 				gray_code.c \
 				multiplier.c
 SRCS_DIR	=	srcs
