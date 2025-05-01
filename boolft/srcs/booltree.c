@@ -62,10 +62,7 @@ void print_tree(t_node *head, int space, char branch) {
 		return;
 	int level = 4;
 	space += level;
-
 	print_tree(head->right, space, '/');
-
-	// Imprime la rama
 	printf("\n");
 	for (int i = level; i < space; i++)
 		printf(" ");
@@ -75,10 +72,11 @@ void print_tree(t_node *head, int space, char branch) {
 	} else {
 		printf("%c\n", head->symbol);
 	}
-
 	print_tree(head->left, space, '\\');
 }
 
+char	logic_diccionary(char c) {
+}
 
 void	tree_try(void) {
 	// char*	func = "101|&";
@@ -105,3 +103,4 @@ void	tree_try(void) {
 	print_tree(head, 0, ' ');
 	clean_tree(head);
 }
+
