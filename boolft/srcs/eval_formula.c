@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 17:23:14 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/02 18:52:42 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:54:35 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ void	clear_stack(t_stack** tail) {
  * - This function is safe to call on an empty stack (NULL pointer).
  *
  * @see insert_element(), pop_element(), clear_stack(), t_stack
+ * @todo this method can be removed when its clear that the position method
+ * can be used without doubt
  */
 int	count_stack(t_stack** tail) {
 	int i = 0;
