@@ -1,6 +1,6 @@
 SRCS		=	adder.c \
-				booloperators.c \
-				booltree.c \
+				bool_operators.c \
+				eval_formula.c \
 				gray_code.c \
 				multiplier.c
 SRCS_DIR	=	srcs

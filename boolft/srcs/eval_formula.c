@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   eval_formula.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/02 17:23:14 by mporras-          #+#    #+#             */
+/*   Updated: 2025/05/02 18:52:42 by mporras-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "boolft.h"
 
 /**
@@ -156,8 +168,27 @@ int not_solvable(t_stack** tail, int error) {
 	return (error);
 }
 
+/**
+ * @brief Evaluates a logical formula in Reverse Polish Notation (RPN).
+ *
+ * This function parses and evaluates a logical formula provided as a string
+ * in Reverse Polish Notation (postfix notation). It uses a stack to compute
+ * the result by pushing operands ('1' for true, '0' for false) onto the stack
+ * and applying logical operators using the operate() function.
+ *
+ * @param[in] formula Null-terminated string representing the logical formula
+ *                    in RPN, using '1' and '0' for boolean values and supported
+ *                    operator symbols (e.g., '!', '&', '|', '^', '>', '=').
+ *
+ * @return The result of the formula evaluation (typically 0 for false, 1 for true),
+ *         or an error code if the formula is invalid or an allocation error occurs.
+ *
+ * @retval ALLOC_ERROR If a memory allocation error occurs during stack operations.
+ * @retval NOT_SOLVABLE If the formula is invalid or cannot be evaluated.
+ *
+ * @note The stack is expected to be empty or contain a single result at the end of evaluation.
+ */
 int	eval_formula(char* formula) {
-	t_stack*	head = NULL;
 	t_stack*	tail = NULL;
 
 	for (size_t i = 0; formula[i]; i++) {
@@ -165,20 +196,15 @@ int	eval_formula(char* formula) {
 			tail = insert_element(TRUE ? formula[i] == '1': FALSE, &tail);
 			if (!tail)
 				return (not_solvable(&tail, ALLOC_ERROR));
-			if (!head) {
-				head = tail;
-			}
 		} else {
 			t_stack* partial = operate(formula[i], &tail);
 			if (!partial)
 				return (not_solvable(&tail, NOT_SOLVABLE));
 		}
 	}
-	int result = count_stack(&tail);
-	printf("%d counting .. %d pos\n", result, tail->pos);
-	if (result != 1)
+	if (!tail || tail->pos != 1)
 		return (not_solvable(&tail, NOT_SOLVABLE));
-	result = tail->value;
+	int result = tail->value;
 	clear_stack(&tail);
 	return (result);
 }
