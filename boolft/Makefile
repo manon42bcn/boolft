@@ -2,7 +2,8 @@ SRCS		=	adder.c \
 				bool_operators.c \
 				eval_formula.c \
 				gray_code.c \
-				multiplier.c
+				multiplier.c \
+				print_truth_table.c
 SRCS_DIR	=	srcs
 OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 OBJS_SUBS	= 	obj/

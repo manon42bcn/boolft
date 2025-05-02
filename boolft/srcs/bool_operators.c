@@ -196,7 +196,7 @@ static t_stack* biconditional_operator(t_stack** tail) {
  *         or UNRECOGNIZED_SYMBOL if the character is not a supported operator.
  *
  */
-static int	get_index_operator(char c) {
+int	get_index_operator(char c) {
 	static char operators[] = {'!', '&', '|', '^', '>', '=', '\0'};
 	for (int i = 0; operators[i]; i++) {
 		if (c == operators[i])

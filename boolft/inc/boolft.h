@@ -24,6 +24,7 @@
 #define ALLOC_ERROR			-3
 
 #define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
+#define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
 
 typedef int eval;
 typedef unsigned char t_bool;
@@ -48,25 +49,27 @@ typedef struct s_stack {
 	int				pos;
 } t_stack;
 
+typedef struct s_var {
+	char	var;
+	int		idx;
+	t_bool	value;
+} t_var;
+
 typedef t_bool (*t_op)();
 
-typedef struct s_super {
-	t_stack*	head;
-	t_stack*	tail;
-	t_op		insert;
-	t_op		pop;
-} t_super;
 
 typedef t_stack* (*t_operator)(t_stack**);
 
 unsigned int	adder(unsigned int a, unsigned int b);
 unsigned int	multiplier(unsigned int a, unsigned int b);
 int				gray_code(int gray);
+int				eval_formula(char* formula);
+void			print_truth_table(char *function);
 // Stack prototypes
 t_stack*		insert_element(t_bool value, t_stack** parent);
 t_bool			pop_element(t_stack** tail);
+int				get_index_operator(char c);
 t_stack*		operate(char c, t_stack **tail);
 
-int				eval_formula(char* formula);
 
 #endif
