@@ -54,3 +54,4 @@ dkms.conf
 # Local rubbish
 .idea/
 .DS_Store
+BoolTests

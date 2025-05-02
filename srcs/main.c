@@ -38,5 +38,27 @@ int main () {
 	// printf("%d\n", adder(99, 99));
 	// printf("%d\n", multiplier(7, 3));
 	// printf("%d\n", gray_code(7));
-	tree_try();
+	// printf("%s \n", BOOL_TO_STRING(eval_formula("1!")));
+	// printf("%s \n", BOOL_TO_STRING(eval_formula("0!")));
+	printf("1! = %s\n", BOOL_TO_STRING(eval_formula("1!")));
+	printf("0! = %s\n", BOOL_TO_STRING(eval_formula("0!")));
+	printf("10& = %s\n", BOOL_TO_STRING(eval_formula("10&")));
+	printf("01| = %s\n", BOOL_TO_STRING(eval_formula("01|")));
+	printf("10^ = %s\n", BOOL_TO_STRING(eval_formula("10^")));
+	printf("11> = %s\n", BOOL_TO_STRING(eval_formula("11>")));
+	printf("10= = %s\n", BOOL_TO_STRING(eval_formula("10=")));
+	printf("101|& = %s\n", BOOL_TO_STRING(eval_formula("101|&")));
+	printf("10!& = %s\n", BOOL_TO_STRING(eval_formula("10!&")));
+	printf("11&! = %s\n", BOOL_TO_STRING(eval_formula("11&!")));
+	printf("011|! = %s\n", BOOL_TO_STRING(eval_formula("011|!")));
+	printf("10>! = %s\n", BOOL_TO_STRING(eval_formula("10>!")));
+	printf("10|1& = %s\n", BOOL_TO_STRING(eval_formula("10|1&")));
+	printf("101&| = %s\n", BOOL_TO_STRING(eval_formula("101&|")));
+	printf("101|!& = %s\n", BOOL_TO_STRING(eval_formula("101|!&")));
+	printf("10!| = %s\n", BOOL_TO_STRING(eval_formula("10!|")));
+	printf("110&> = %s\n", BOOL_TO_STRING(eval_formula("110&>")));
+	printf("110|= = %s\n", BOOL_TO_STRING(eval_formula("110|=")));
+	printf("101&^ = %s\n", BOOL_TO_STRING(eval_formula("101&^")));
+	printf("110|!& = %s\n", BOOL_TO_STRING(eval_formula("110|!&")));
+	printf("1|!& = %s\n", BOOL_TO_STRING(eval_formula("1|!&")));
 }

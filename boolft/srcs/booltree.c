@@ -1,106 +1,184 @@
 #include "boolft.h"
 
-t_node*	create_node(char symbol, int value, t_node_mode type) {
-	t_node*	node = (t_node*)calloc(1, sizeof(t_node));
-	if (!node)
+/**
+ * @brief Inserts a new element into a doubly linked stack.
+ *
+ * This function allocates memory for a new stack element, initializes its value,
+ * and links it into an existing doubly linked stack structure. The new element is
+ * inserted after the current parent element, and all pointers are updated accordingly.
+ *
+ * @param value The boolean value to be stored in the new stack element.
+ * @param parent A double pointer to the current top (or parent) of the stack. If the stack is empty,
+ *
+ * @return A pointer to the newly created stack element on success, or NULL if memory allocation fails.
+ *
+ * @note
+ *
+ * If *parent is NULL, the new element becomes the first element in the stack.
+ * This function does not update the external reference to the stack's head or tail; it only
+ * returns the pointer to the newly created element.
+ *
+ * @see t_stack, t_bool
+ */
+t_stack* insert_element(t_bool value, t_stack** parent) {
+	t_stack*	element = (t_stack*)calloc(1, sizeof(t_stack));
+	if (!element)
 		return (NULL);
-	node->symbol = symbol;
-	node->eval = value;
-	node->mode = type;
-	node->left = NULL;
-	node->right = NULL;
-	return (node);
-}
-
-void	clean_tree(t_node* head) {
-	if (head->left) {
-		clean_tree(head->left);
-		head->left = NULL;
-	}
-	if (head->right) {
-		clean_tree(head->right);
-		head->right = NULL;
-	}
-	free(head);
-}
-
-t_bool	set_position(t_node* parent, t_node* current) {
-	if (!parent || !current)
-		return (FALSE);
-	if (current->mode == LOGIC_SYMBOL) {
-		if (parent->right == NULL) {
-			parent->right = current;
-			return (TRUE);
-		} else {
-			return (set_position(parent->right, current));
-		}
+	element->prev = *parent;
+	if (*parent) {
+		(*parent)->next = element;
+		element->pos = (*parent)->pos++;
 	} else {
-		if (parent->left == NULL) {
-			parent->left = current;
-			return (TRUE);
-		}
-		if (parent->right == NULL) {
-			parent->right = current;
-			return (TRUE);
-		}
-		if (parent->right->mode == LOGIC_SYMBOL) {
-			return (set_position(parent->right, current));
-		}
+		element->pos = 1;
 	}
-	return (TRUE);
+	element->next = NULL;
+	element->value = value;
+	return (element);
 }
 
-t_node_mode	get_mode (char symbol) {
-	if (symbol == '1' || symbol == '0') {
-		return (LOGIC_VALUE);
+/**
+ * @brief Removes and returns the value from the top of a doubly linked stack.
+ *
+ * This function performs three critical operations:
+ * 1. Retrieves the boolean value from the current top of the stack
+ * 2. Updates stack pointers to maintain structural integrity
+ * 3. Safely deallocates the memory of the removed element
+ *
+ * @param tail Double pointer to the current top (tail) of the stack. After popping,
+ *             *tail will point to the previous element in the stack (or NULL if empty).
+ *
+ * @return The boolean value that was stored in the removed stack element.
+ *
+ * @warning
+ * - **Critical:** The caller must ensure *tail is not NULL before calling this function.
+ *   Attempting to pop from an empty stack will result in undefined behavior.
+ * - This function permanently modifies the stack structure by removing its top element.
+ *
+ * @note
+ * - The stack is modified in place through the tail pointer parameter
+ * - Memory management: This function handles deallocation of the removed element
+ * - After execution, the previous element (if any) becomes the new stack top
+ *
+ * @see insert_element(), t_stack, t_bool
+ */
+t_bool	pop_element(t_stack** tail) {
+	t_bool	rst = (*tail)->value;
+	t_stack	*node = *tail;
+	if ((*tail)->prev)
+		(*tail)->prev->next = NULL;
+	*tail = (*tail)->prev;
+	free(node);
+	return (rst);
+}
+
+/**
+ * @brief Completely deallocates a doubly linked stack from memory.
+ *
+ * This function safely destroys an entire stack structure by:
+ * 1. Iterating backwards through the stack from the tail element
+ * 2. Systematically freeing each node's memory
+ * 3. Setting the original tail pointer to NULL
+ *
+ * @param tail Double pointer to the stack's topmost element (tail). After execution,
+ *             *tail will be NULL to prevent dangling pointer references.
+ *
+ * @note
+ * - Handles both empty stacks (no-op) and populated stacks
+ * - Time complexity: O(n) where n = number of stack elements
+ *
+ * @see insert_element(), pop_element(), t_stack
+*/
+void	clear_stack(t_stack** tail) {
+	t_stack* prev = NULL;
+	while (*tail) {
+		prev = (*tail)->prev;
+		free(*tail);
+		*tail = prev;
 	}
-	return (LOGIC_SYMBOL);
 }
 
-void print_tree(t_node *head, int space, char branch) {
-	if (head == NULL)
-		return;
-	int level = 4;
-	space += level;
-	print_tree(head->right, space, '/');
-	printf("\n");
-	for (int i = level; i < space; i++)
-		printf(" ");
-	if (branch != ' ') {
-		printf("%c", branch);
-		printf("-> %c\n", head->symbol);
-	} else {
-		printf("%c\n", head->symbol);
+/**
+ * @brief Counts the number of elements in a doubly linked stack.
+ *
+ * This function traverses the stack starting from the given tail element,
+ * moving backwards through each node via the `prev` pointer, and increments
+ * a counter for each element encountered. The process continues until the
+ * beginning of the stack (NULL pointer) is reached.
+ *
+ * @param tail Double pointer to the stack's topmost element (tail). If the stack is empty,
+ *             this should be NULL.
+ *
+ * @return The total number of elements present in the stack.
+ *         Returns 0 if the stack is empty.
+ *
+ * @note
+ * - The function does not modify the stack or its elements.
+ * - Time complexity is O(n), where n is the number of elements in the stack.
+ * - This function is safe to call on an empty stack (NULL pointer).
+ *
+ * @see insert_element(), pop_element(), clear_stack(), t_stack
+ */
+int	count_stack(t_stack** tail) {
+	int i = 0;
+	t_stack* elem = *tail;
+	while (elem) {
+		i++;
+		elem = elem->prev;
 	}
-	print_tree(head->left, space, '\\');
+	return (i);
 }
 
-char	logic_diccionary(char c) {
+/**
+ * @brief Clears the stack and returns a specified error code.
+ *
+ * This utility function is intended for error-handling scenarios where an unrecoverable
+ * condition has been detected during stack operations or logical evaluation. It ensures
+ * that any dynamically allocated memory associated with the stack is properly freed,
+ * preventing memory leaks before propagating the error code up the call stack.
+ *
+ * @param tail Double pointer to the stack's topmost element (tail). This allows the function
+ *             to clear the entire stack using @ref clear_stack and set the caller's stack
+ *             pointer to NULL.
+ * @param error The integer error code to be returned. This value typically represents the
+ *              specific error condition encountered by the calling function.
+ *
+ * @return The same error code provided as input, allowing for streamlined error propagation.
+ *
+ * @note
+ * - This function is designed to be called when an operation cannot be completed due to
+ *   a fatal error (e.g., invalid input, memory allocation failure, or logical inconsistency).
+ * - After this function is called, the stack is guaranteed to be empty and the pointer set to NULL.
+ *
+ * @see clear_stack(), t_stack, macros: UNRECOGNIZED_SYMBOL, NOT_SOLVABLE, ALLOC_ERROR
+ */
+int not_solvable(t_stack** tail, int error) {
+	clear_stack(tail);
+	return (error);
 }
 
-void	tree_try(void) {
-	// char*	func = "101|&";
-	char*	func = "1011||=";
-	size_t	len = strlen(func);
-	t_node*	head = NULL;
-	t_node* new = NULL;
+int	eval_formula(char* formula) {
+	t_stack*	head = NULL;
+	t_stack*	tail = NULL;
 
-	while (len-- > 0) {
-		printf("%c", func[len]);
-		if (!head) {
-			if (func[len] == '1' || func[len] == '0')
-				return;
-			else {
-				head = create_node(func[len], 0, LOGIC_SYMBOL);
+	for (size_t i = 0; formula[i]; i++) {
+		if (formula[i] == '1' || formula[i] == '0') {
+			tail = insert_element(TRUE ? formula[i] == '1': FALSE, &tail);
+			if (!tail)
+				return (not_solvable(&tail, ALLOC_ERROR));
+			if (!head) {
+				head = tail;
 			}
 		} else {
-			new = create_node(func[len], 0, get_mode(func[len]));
-			set_position(head, new);
+			t_stack* partial = operate(formula[i], &tail);
+			if (!partial)
+				return (not_solvable(&tail, NOT_SOLVABLE));
 		}
 	}
-	printf("\n");
-	printf("final\n");
-	print_tree(head, 0, ' ');
-	clean_tree(head);
+	int result = count_stack(&tail);
+	printf("%d counting .. %d pos\n", result, tail->pos);
+	if (result != 1)
+		return (not_solvable(&tail, NOT_SOLVABLE));
+	result = tail->value;
+	clear_stack(&tail);
+	return (result);
 }
-

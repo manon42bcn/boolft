@@ -1,4 +1,5 @@
 SRCS		=	adder.c \
+				booloperators.c \
 				booltree.c \
 				gray_code.c \
 				multiplier.c
