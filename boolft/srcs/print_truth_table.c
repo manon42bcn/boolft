@@ -12,8 +12,16 @@ int		first_true(t_var *operands) {
 	return (-1);
 }
 
-t_bool	last_case(t_var *operands) {
-	for (int i = 0; operands[i].var; i++) {
+int		first_false(t_var *operands, int start) {
+	for (int i = start; operands[i].var; i++) {
+		if (operands[i].value == FALSE)
+			return (i);
+	}
+	return (-1);
+}
+
+t_bool	last_case(t_var *operands, int start) {
+	for (int i = start; operands[i].var; i++) {
 		if (operands[i].value == FALSE)
 			return (FALSE);
 	}
@@ -35,7 +43,6 @@ void	print_line(t_var *variables, char* func) {
 }
 
 void	next_case(t_var *operands, t_var *variables, int total, int index) {
-	printf("indes %d\n", index);
 	for (int i = 0; i < total; i++) {
 		variables[operands[i].var - 65].value = FALSE;
 		operands[i].value = FALSE;
@@ -44,18 +51,22 @@ void	next_case(t_var *operands, t_var *variables, int total, int index) {
 	operands[index].value = TRUE;
 }
 
-void	update_case(t_var *operands, t_var *variables, int total) {
+
+// TODO: check method to work properly with index each change should start left to right...
+int	update_case(t_var *operands, t_var *variables, int total, int index) {
 	int first = first_true(variables);
-	if (first == total - 1) {
-		printf("%d fist \n", first);
-		next_case(operands, variables, total, first - 1);
+	if (last_case(operands, index)) {
+		next_case(operands, variables, total, index - 1);
+		return (index - 1);
 	} else {
-		variables[operands[first + 1].var - 65].value = TRUE;
-		operands[first + 1].value = TRUE;
+		first = first_false(operands, index);
+		variables[operands[first].var - 65].value = TRUE;
+		operands[first].value = TRUE;
+		return (index);
 	}
 }
 
-void	print_table(t_var *operands, t_var *variables, int total, char *original, int index) {
+void	print_table(t_var *operands, t_var *variables, int total, char *original) {
 	if (first_true(operands) == -1) {
 		for (int i = 0; original[i]; i++) {
 			if (original[i] >= 'A' && original[i] <= 'Z') {
@@ -70,12 +81,12 @@ void	print_table(t_var *operands, t_var *variables, int total, char *original, i
 		}
 		printf("| --- |\n");
 		print_line(variables, original);
-		printf("index next case %d\n", index - 1);
-		next_case(operands, variables, total, index - 1);
+		next_case(operands, variables, total, total - 1);
 		print_line(variables, original);
+		int index = total - 1;
 		int i = 0;
-		while (i < 3) {
-			update_case(operands, variables, total);
+		while (!last_case(operands, 0)) {
+			index = update_case(operands, variables, total, index);
 			print_line(variables, original);
 			i++;
 		}
@@ -115,7 +126,7 @@ void	print_truth_table(char *function) {
 			printf("%c -> var char\n", operands[i].var);
 	}
 	printf("Total %d\n", first_true(&operands[0]));
-	print_table(&operands[0], &variables[0], total, function, total - 1);
+	print_table(&operands[0], &variables[0], total, function);
 	// char* original = strdup(function);
 	// printf("%s %d\n", original, 90 - 65);
 	// free(original);
