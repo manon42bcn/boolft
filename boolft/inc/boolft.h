@@ -19,12 +19,15 @@
 
 #define TRUE				1
 #define FALSE				0
+#define CASE_IDX			0
+#define TOTAL_CASES			1
 #define UNRECOGNIZED_SYMBOL	-1
 #define NOT_SOLVABLE		-2
 #define ALLOC_ERROR			-3
 
 #define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
 #define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
+#define SWITCH_BOOL(x) ((x) ? FALSE : TRUE)
 
 typedef int eval;
 typedef unsigned char t_bool;

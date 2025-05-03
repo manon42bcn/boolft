@@ -14,10 +14,10 @@
 #include "readySetBool.h"
 #include "../boolft/inc/boolft.h"
 
-void print_binary(unsigned int n) {
+void print_binary(int n) {
 	// Número de bits en un entero (usualmente 32 bits en una máquina moderna)
-	int num_bits = sizeof(n) * 8;
-
+	int num_bits = sizeof(int) * 8;
+	int count = 0;
 	// Iterar sobre cada bit, de izquierda a derecha
 	for (int i = num_bits - 1; i >= 0; i--) {
 		// Imprimir el bit más significativo primero
@@ -26,12 +26,25 @@ void print_binary(unsigned int n) {
 		} else {
 			printf("0");
 		}
+		count++;
+	}
+	printf("\n");
+	printf("TOTAL %d\n", count);
+}
+
+void	testo(int total) {
+	for (int i = 0; i < 3; i++) {
+		printf("%d ", (total >> i) & 1);
+		// index--;
 	}
 	printf("\n");
 }
 
 int main () {
-	print_truth_table("AB&C|");
+	// print_binary(2);
+	// testo(8);
+	// testo(9);
+	print_truth_table("AB&A|");
 	// printf("%d\n", adder(40, 2));
 	// printf("%d\n", adder(0, 0));
 	// printf("%d\n", adder(255555, 25555));
