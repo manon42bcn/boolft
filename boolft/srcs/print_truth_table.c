@@ -21,7 +21,7 @@ void	table_error(const char *msg) {
  * 1. Header row with variable names (A-Z) and result column (=)
  * 2. Separator line with dashes to visually separate headers from data
  *
- * @param[in] function The original formula string containing variables
+ * @param[in] operands Array of the operands included at function
  *
  * @note Formatting details:
  * - Variables are displayed as "|  X  " where X is the uppercase letter
@@ -29,27 +29,23 @@ void	table_error(const char *msg) {
  * - Separator line uses "| --- " for variables and "| --- |" for result
  * - Maintains consistent column width matching print_line() output
  *
- * @example For formula "AB&":
+ * @example For formula "AB&A":
  * Output:
  * |  A  |  B  |  =  |
  * | --- | --- | --- |
  */
-void	print_header(const char *function) {
-	for (int i = 0; function[i]; i++) {
-		if (function[i] >= 'A' && function[i] <= 'Z') {
-			printf("|  %c  ", function[i]);
-		}
+void	print_header(const t_var *operands) {
+	for (int i = 0; operands[i].var; i++) {
+		printf("|  %c  ", operands[i].var);
 	}
 	printf("|  =  |\n");
-	for (int i = 0; function[i]; i++) {
-		if (function[i] >= 'A' && function[i] <= 'Z') {
-			printf("| --- ");
-		}
+	for (int i = 0; operands[i].var; i++) {
+		printf("| --- ");
 	}
 	printf("| --- |\n");
 }
 
-/**
+ /**
  * @brief Prints a single row of the truth table with variable values and formula result.
  *
  * This function:
@@ -58,6 +54,7 @@ void	print_header(const char *function) {
  * 3. Evaluates and displays the formula result
  *
  * @param[in] variables Array of variables with current case values
+ * @param[in] operands Array of the operands included at function
  * @param[in] func Original formula string (for value substitution)
  * @param[in] cases_info Case counter array [current_case, total_cases]
  *
@@ -68,18 +65,24 @@ void	print_header(const char *function) {
  * - Evaluates the formula with current variable values using eval_formula()
  *
  */
-void	print_line(const t_var *variables, const char* func, const int *cases_info) {
+void	print_line(const t_var *variables, const t_var *operands, const char* func, const int *cases_info) {
 	char *to_eval = strdup(func);
+		if (!to_eval) {
+			table_error("ALLOCATION ERROR\n");
+			exit (1);
+		}
 	if (cases_info[CASE_IDX] == 0)
-		print_header(func);
+		print_header(operands);
 	for (int i = 0; to_eval[i]; i++) {
 		if (to_eval[i] >= 'A' && to_eval[i] <= 'Z') {
 			int idx = to_eval[i] - 65;
-			printf("|  %d  ", variables[idx].value);
 			to_eval[i] = BOOL_TO_CHAR(variables[idx].value);
 		}
 	}
 	const int	result = eval_formula(to_eval);
+	for (int i = 0; operands[i].var; i++) {
+		printf("|  %d  ", operands[i].value);
+	}
 	printf("|  %d  |\n", result);
 	free(to_eval);
 }
@@ -137,11 +140,11 @@ void	print_table(t_var *operands, t_var *variables, const int total, const char 
 	int	cases_info[2] = {-1, (1 << total) - 1};
 	while (cases_info[CASE_IDX] < cases_info[TOTAL_CASES]) {
 		update_case(operands, variables, total, &cases_info[0]);
-		print_line(variables, original, &cases_info[0]);
+		print_line(variables, operands, original, &cases_info[0]);
 	}
 }
 
- /**
+/**
  * @brief Validates the syntax and evaluability of a logical formula.
  *
  * This function performs two key validations:
@@ -166,6 +169,10 @@ void	print_table(t_var *operands, t_var *variables, const int total, const char 
  */
 t_bool	check_function(const char *function) {
 	char *to_eval = strdup(function);
+	if (!to_eval) {
+		table_error("ALLOCATION ERROR\n");
+		exit (1);
+	}
 	for (int i = 0; to_eval[i]; i++) {
 		if (to_eval[i] >= 'A' && to_eval[i] <= 'Z') {
 			to_eval[i] = '0';
@@ -186,7 +193,7 @@ t_bool	check_function(const char *function) {
 	return (TRUE);
 }
 
-/**
+ /**
  * @brief Generates and prints the truth table for a logical formula.
  *
  * This function validates and processes a logical formula to:
