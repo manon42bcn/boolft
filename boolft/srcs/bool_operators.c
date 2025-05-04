@@ -233,7 +233,9 @@ t_stack*	operate(char c, t_stack **tail) {
 		&or_operator, &xor_operator,
 		&conditional_operator, &biconditional_operator};
 	int indx = get_index_operator(c);
-	if (indx == UNRECOGNIZED_SYMBOL)
+	if (indx == UNRECOGNIZED_SYMBOL) {
+		printf("TODO remove\n");
 		return (NULL);
+	}
 	return (operators[indx](tail));
 }

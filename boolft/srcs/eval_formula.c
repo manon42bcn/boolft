@@ -199,12 +199,17 @@ int	eval_formula(char* formula) {
 				return (not_solvable(&tail, ALLOC_ERROR));
 		} else {
 			t_stack* partial = operate(formula[i], &tail);
-			if (!partial)
+			if (!partial) {
+				printf("Este error...\n");
 				return (not_solvable(&tail, NOT_SOLVABLE));
+			}
+
 		}
 	}
-	if (!tail || tail->pos != 1)
+	if (!tail || tail->pos != 1) {
+		printf("Otro? error...\n");
 		return (not_solvable(&tail, NOT_SOLVABLE));
+	}
 	int result = tail->value;
 	clear_stack(&tail);
 	return (result);
