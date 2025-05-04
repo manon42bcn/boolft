@@ -1,0 +1,83 @@
+FEATURE>>>FUNCTION EVAL CASES
+case>>>Formula 0|1=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0|1="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula 1&1=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1&1="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula 0!=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0!="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula 10|1&!=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10|1&!="
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula 111&&=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "111&&="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula 01|!=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01|!="
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula 101|&!1|=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "101|&!1|="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula 0=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0="
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula 1!=
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!="
+expected>>>
+false
+<<<expected
+<<<case
+
+<<<eof

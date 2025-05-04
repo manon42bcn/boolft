@@ -1,5 +1,13 @@
 #include "readySetBool.h"
 
+void	eval_function_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		ft_putstr_fd("Function eval needs 2 arguments: --function funcString", STDERR_FILENO);
+		exit (1);
+	}
+	printf("%s\n", BOOL_TO_STRING(eval_formula(argv[2])));
+}
+
 void	gray_code_entrypoint(int argc, char *argv[]) {
 	if (argc != 3) {
 		ft_putstr_fd("Gray code needs 2 arguments: --graycode nNatural", STDERR_FILENO);

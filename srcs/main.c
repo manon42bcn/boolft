@@ -33,7 +33,9 @@ void print_binary(int n) {
 }
 
 int		get_flag(char *flag) {
-	static char* available[] = {"--adder", "--multiplier", "--graycode", NULL};
+	static char* available[] = {
+							"--adder", "--multiplier",
+							"--graycode", "--function", NULL};
 	for (int i = 0; available[i]; i++) {
 		if (ft_match_cmp(flag, available[i])) {
 			return (i);
@@ -43,7 +45,9 @@ int		get_flag(char *flag) {
 }
 
 void	entrypoint(int argc, char *argv[]) {
-	static t_entry entrypoint[] = {&adder_entrypoint, &multiplier_entrypoint, &gray_code_entrypoint};
+	static t_entry entrypoint[] = {
+					&adder_entrypoint, &multiplier_entrypoint,
+					&gray_code_entrypoint, &eval_function_entrypoint};
 	int index = get_flag(argv[1]);
 	if (index == -1) {
 		ft_putstr_fd("Flag not found\n", STDERR_FILENO);
