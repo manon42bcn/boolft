@@ -7,7 +7,7 @@ SRCS		=	adder.c \
 SRCS_DIR	=	srcs
 OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 OBJS_SUBS	= 	obj/
-CC			=	gcc
+CC			=	@gcc
 RM			=	@rm -rf
 CFLAGS 		=	-Wall -Wextra -Werror -Iinc
 NAME		=	libboolft.a
@@ -17,7 +17,8 @@ OBJS_DIR	=	obj
 all: $(NAME) $(HEADER)
 
 $(NAME): $(OBJS_SUBS) $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "$(NAME) compiled"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
 	$(CC) -Iinc $(CFLAGS) -g -c $< -o $@

@@ -1,0 +1,49 @@
+FEATURE>>>SMOKE - MAKE AND BASIC ERROR CONTROL
+case>>>Make fclean
+bin>>>make
+fd>>>1
+input>>>fclean
+expected>>>
+All temporary objects removed successfully
+Executable have been fully cleaned
+<<<expected
+<<<case
+case>>>Make library
+bin>>>make
+fd>>>1
+input>>>-C boolft/
+expected>>>
+libboolft.a compiled
+<<<expected
+<<<case
+case>>>Make library -no relink-
+bin>>>make
+input>>>-C boolft/
+expected>>>
+make: Nothing to be done for `all'.
+<<<expected
+<<<case
+case>>>fclean Library
+bin>>>make
+fd>>>1
+input>>>fclean
+expected>>>
+All temporary objects removed successfully
+Executable have been fully cleaned
+<<<expected
+<<<case
+case>>>Build Test Version Executable
+bin>>>make
+fd>>>1
+input>>>[EMPTY]
+expected>>>
+Building LIBRARIES
+------------------
+Building BOOLFT
+
+libboolft.a compiled
+gcc -Wall -Wextra -Werror -I./boolft -Iinc -g -c srcs/main.c -o objs/main.o
+srcs/main.c
+Executable BoolTests compiled
+<<<expected
+<<<case

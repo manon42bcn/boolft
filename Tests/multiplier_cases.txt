@@ -1,0 +1,486 @@
+FEATURE>>>MULTIPLIER CASES
+case>>>Empty Arguments
+bin>>>./BoolTests
+input>>>--multiplier
+fd>>>2
+expected>>>
+Multiplier needs 3 arguments: --multiplier nNatural nNatural
+<<<expected
+<<<case
+
+case>>>Error not natural input (2)
+bin>>>./BoolTests
+input>>>--multiplier -5 -8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Error not natural input (1th)
+bin>>>./BoolTests
+input>>>--multiplier -5 8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Error not natural input (2nd)
+bin>>>./BoolTests
+input>>>--multiplier 5 -8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Cases 32084 18316
+bin>>>./BoolTests
+input>>>--multiplier 32084 18316
+expected>>>
+587650544
+<<<expected
+<<<case
+
+case>>>Cases 35976 26248
+bin>>>./BoolTests
+input>>>--multiplier 35976 26248
+expected>>>
+944298048
+<<<expected
+<<<case
+
+case>>>Cases 73626 26154
+bin>>>./BoolTests
+input>>>--multiplier 73626 26154
+expected>>>
+1925614404
+<<<expected
+<<<case
+
+case>>>Cases 100 900
+bin>>>./BoolTests
+input>>>--multiplier 100 900
+expected>>>
+90000
+<<<expected
+<<<case
+
+case>>>Case 661 99
+bin>>>./BoolTests
+input>>>--multiplier 661 99
+expected>>>
+65439
+<<<expected
+<<<case
+
+case>>>Case 215 836
+bin>>>./BoolTests
+input>>>--multiplier 215 836
+expected>>>
+179740
+<<<expected
+<<<case
+
+case>>>Case 142 308
+bin>>>./BoolTests
+input>>>--multiplier 142 308
+expected>>>
+43736
+<<<expected
+<<<case
+
+case>>>Case 542 259
+bin>>>./BoolTests
+input>>>--multiplier 542 259
+expected>>>
+140378
+<<<expected
+<<<case
+
+case>>>Case 887 314
+bin>>>./BoolTests
+input>>>--multiplier 887 314
+expected>>>
+278518
+<<<expected
+<<<case
+
+case>>>Case 215 11
+bin>>>./BoolTests
+input>>>--multiplier 215 11
+expected>>>
+2365
+<<<expected
+<<<case
+
+case>>>Case 567 501
+bin>>>./BoolTests
+input>>>--multiplier 567 501
+expected>>>
+284067
+<<<expected
+<<<case
+
+case>>>Case 912 372
+bin>>>./BoolTests
+input>>>--multiplier 912 372
+expected>>>
+339264
+<<<expected
+<<<case
+
+case>>>Case 276 220
+bin>>>./BoolTests
+input>>>--multiplier 276 220
+expected>>>
+60720
+<<<expected
+<<<case
+
+case>>>Case 533 404
+bin>>>./BoolTests
+input>>>--multiplier 533 404
+expected>>>
+215332
+<<<expected
+<<<case
+
+case>>>Case 922 75
+bin>>>./BoolTests
+input>>>--multiplier 922 75
+expected>>>
+69150
+<<<expected
+<<<case
+
+case>>>Case 727 314
+bin>>>./BoolTests
+input>>>--multiplier 727 314
+expected>>>
+228278
+<<<expected
+<<<case
+
+case>>>Case 927 982
+bin>>>./BoolTests
+input>>>--multiplier 927 982
+expected>>>
+910314
+<<<expected
+<<<case
+
+case>>>Case 621 93
+bin>>>./BoolTests
+input>>>--multiplier 621 93
+expected>>>
+57753
+<<<expected
+<<<case
+
+case>>>Case 847 632
+bin>>>./BoolTests
+input>>>--multiplier 847 632
+expected>>>
+535304
+<<<expected
+<<<case
+
+case>>>Case 92952 60
+bin>>>./BoolTests
+input>>>--multiplier 92952 60
+expected>>>
+5577120
+<<<expected
+<<<case
+
+case>>>Case 87420 44
+bin>>>./BoolTests
+input>>>--multiplier 87420 44
+expected>>>
+3846480
+<<<expected
+<<<case
+
+case>>>Case 80167 72
+bin>>>./BoolTests
+input>>>--multiplier 80167 72
+expected>>>
+5772024
+<<<expected
+<<<case
+
+case>>>Case 14978 18
+bin>>>./BoolTests
+input>>>--multiplier 14978 18
+expected>>>
+269604
+<<<expected
+<<<case
+
+case>>>Case 55437 4
+bin>>>./BoolTests
+input>>>--multiplier 55437 4
+expected>>>
+221748
+<<<expected
+<<<case
+
+case>>>Case 44972 34
+bin>>>./BoolTests
+input>>>--multiplier 44972 34
+expected>>>
+1529048
+<<<expected
+<<<case
+
+case>>>Case 81439 77
+bin>>>./BoolTests
+input>>>--multiplier 81439 77
+expected>>>
+6270803
+<<<expected
+<<<case
+
+case>>>Case 78717 36
+bin>>>./BoolTests
+input>>>--multiplier 78717 36
+expected>>>
+2833812
+<<<expected
+<<<case
+
+case>>>Case 62 542
+bin>>>./BoolTests
+input>>>--multiplier 62 542
+expected>>>
+33604
+<<<expected
+<<<case
+
+case>>>Case 557 829
+bin>>>./BoolTests
+input>>>--multiplier 557 829
+expected>>>
+461753
+<<<expected
+<<<case
+
+case>>>Case 46 78
+bin>>>./BoolTests
+input>>>--multiplier 46 78
+expected>>>
+3588
+<<<expected
+<<<case
+
+case>>>Case 661 49
+bin>>>./BoolTests
+input>>>--multiplier 661 49
+expected>>>
+32389
+<<<expected
+<<<case
+
+case>>>Case 153 91
+bin>>>./BoolTests
+input>>>--multiplier 153 91
+expected>>>
+13923
+<<<expected
+<<<case
+
+case>>>Case 7289 8603
+bin>>>./BoolTests
+input>>>--multiplier 7289 8603
+expected>>>
+62707267
+<<<expected
+<<<case
+
+case>>>Case 3835 7349
+bin>>>./BoolTests
+input>>>--multiplier 3835 7349
+expected>>>
+28183415
+<<<expected
+<<<case
+
+case>>>Case 9159 9394
+bin>>>./BoolTests
+input>>>--multiplier 9159 9394
+expected>>>
+86039646
+<<<expected
+<<<case
+
+case>>>Case 9237 3615
+bin>>>./BoolTests
+input>>>--multiplier 9237 3615
+expected>>>
+33391755
+<<<expected
+<<<case
+
+case>>>Case 3440 4203
+bin>>>./BoolTests
+input>>>--multiplier 3440 4203
+expected>>>
+14458320
+<<<expected
+<<<case
+
+case>>>Case 5991 9196
+bin>>>./BoolTests
+input>>>--multiplier 5991 9196
+expected>>>
+55093236
+<<<expected
+<<<case
+
+case>>>Case 1360 9840
+bin>>>./BoolTests
+input>>>--multiplier 1360 9840
+expected>>>
+13382400
+<<<expected
+<<<case
+
+case>>>Case 9523 8993
+bin>>>./BoolTests
+input>>>--multiplier 9523 8993
+expected>>>
+85640339
+<<<expected
+<<<case
+
+case>>>Case 7686 8106
+bin>>>./BoolTests
+input>>>--multiplier 7686 8106
+expected>>>
+62302716
+<<<expected
+<<<case
+
+case>>>Case 8175 4851
+bin>>>./BoolTests
+input>>>--multiplier 8175 4851
+expected>>>
+39656925
+<<<expected
+<<<case
+
+case>>>Case 8847 3108
+bin>>>./BoolTests
+input>>>--multiplier 8847 3108
+expected>>>
+27496476
+<<<expected
+<<<case
+
+case>>>Case 6099 7083
+bin>>>./BoolTests
+input>>>--multiplier 6099 7083
+expected>>>
+43199217
+<<<expected
+<<<case
+
+case>>>Case 9058 9200
+bin>>>./BoolTests
+input>>>--multiplier 9058 9200
+expected>>>
+83333600
+<<<expected
+<<<case
+
+case>>>Case 6092 4492
+bin>>>./BoolTests
+input>>>--multiplier 6092 4492
+expected>>>
+27365264
+<<<expected
+<<<case
+
+case>>>Case 2696 7111
+bin>>>./BoolTests
+input>>>--multiplier 2696 7111
+expected>>>
+19171256
+<<<expected
+<<<case
+
+case>>>Case 6929 3828
+bin>>>./BoolTests
+input>>>--multiplier 6929 3828
+expected>>>
+26524212
+<<<expected
+<<<case
+
+case>>>Case 3468 6323
+bin>>>./BoolTests
+input>>>--multiplier 3468 6323
+expected>>>
+21928164
+<<<expected
+<<<case
+
+case>>>Case 1741 7043
+bin>>>./BoolTests
+input>>>--multiplier 1741 7043
+expected>>>
+12261863
+<<<expected
+<<<case
+
+case>>>Case 1268 4081
+bin>>>./BoolTests
+input>>>--multiplier 1268 4081
+expected>>>
+5174708
+<<<expected
+<<<case
+
+case>>>Case 1734 8513
+bin>>>./BoolTests
+input>>>--multiplier 1734 8513
+expected>>>
+14761542
+<<<expected
+<<<case
+
+case>>>ZERO Cases 1734 0
+bin>>>./BoolTests
+input>>>--multiplier 1734 0
+expected>>>
+0
+<<<expected
+<<<case
+
+case>>>ZERO Cases 0 0
+bin>>>./BoolTests
+input>>>--multiplier 0 0
+expected>>>
+0
+<<<expected
+<<<case
+
+case>>>ZERO Cases 2147483647 0
+bin>>>./BoolTests
+input>>>--multiplier 2147483647 0
+expected>>>
+0
+<<<expected
+<<<case
+
+case>>>Limit Cases 2147483647 1
+bin>>>./BoolTests
+input>>>--multiplier 2147483647 1
+expected>>>
+2147483647
+<<<expected
+<<<case
+
+<<<eof

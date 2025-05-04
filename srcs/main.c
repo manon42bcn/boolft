@@ -32,48 +32,32 @@ void print_binary(int n) {
 	printf("TOTAL %d\n", count);
 }
 
-void	testo(int total) {
-	for (int i = 0; i < 3; i++) {
-		printf("%d ", (total >> i) & 1);
-		// index--;
+int		get_flag(char *flag) {
+	static char* available[] = {"--adder", "--multiplier", "--graycode", NULL};
+	for (int i = 0; available[i]; i++) {
+		if (ft_match_cmp(flag, available[i])) {
+			return (i);
+		}
 	}
-	printf("\n");
+	return (-1);
 }
 
-int main () {
-	// print_binary(2);
-	// testo(8);
-	// testo(9);
-	print_truth_table("AB&A|");
-	// printf("%d\n", adder(40, 2));
-	// printf("%d\n", adder(0, 0));
-	// printf("%d\n", adder(255555, 25555));
-	// printf("%d\n", adder(9, 1));
-	// printf("%d\n", adder(99, 99));
-	// printf("%d\n", multiplier(7, 3));
-	// printf("%d\n", gray_code(7));
-	// printf("%s \n", BOOL_TO_STRING(eval_formula("1!")));
-	// printf("%s \n", BOOL_TO_STRING(eval_formula("0!")));
-	// printf("1! = %s\n", BOOL_TO_STRING(eval_formula("1!")));
-	// printf("0! = %s\n", BOOL_TO_STRING(eval_formula("0!")));
-	// printf("10& = %s\n", BOOL_TO_STRING(eval_formula("10&")));
-	// printf("01| = %s\n", BOOL_TO_STRING(eval_formula("01|")));
-	// printf("10^ = %s\n", BOOL_TO_STRING(eval_formula("10^")));
-	// printf("11> = %s\n", BOOL_TO_STRING(eval_formula("11>")));
-	// printf("10= = %s\n", BOOL_TO_STRING(eval_formula("10=")));
-	// printf("101|& = %s\n", BOOL_TO_STRING(eval_formula("101|&")));
-	// printf("10!& = %s\n", BOOL_TO_STRING(eval_formula("10!&")));
-	// printf("11&! = %s\n", BOOL_TO_STRING(eval_formula("11&!")));
-	// printf("011|! = %s\n", BOOL_TO_STRING(eval_formula("011|!")));
-	// printf("10>! = %s\n", BOOL_TO_STRING(eval_formula("10>!")));
-	// printf("10|1& = %s\n", BOOL_TO_STRING(eval_formula("10|1&")));
-	// printf("101&| = %s\n", BOOL_TO_STRING(eval_formula("101&|")));
-	// printf("101|!& = %s\n", BOOL_TO_STRING(eval_formula("101|!&")));
-	// printf("10!| = %s\n", BOOL_TO_STRING(eval_formula("10!|")));
-	// printf("110&> = %s\n", BOOL_TO_STRING(eval_formula("110&>")));
-	// printf("110|= = %s\n", BOOL_TO_STRING(eval_formula("110|=")));
-	// printf("101&^ = %s\n", BOOL_TO_STRING(eval_formula("101&^")));
-	// printf("110|!& = %s\n", BOOL_TO_STRING(eval_formula("110|!&")));
-	// printf("1|!& = %s\n", BOOL_TO_STRING(eval_formula("1|!&")));
+void	entrypoint(int argc, char *argv[]) {
+	static t_entry entrypoint[] = {&adder_entrypoint, &multiplier_entrypoint, &gray_code_entrypoint};
+	int index = get_flag(argv[1]);
+	if (index == -1) {
+		ft_putstr_fd("Flag not found\n", STDERR_FILENO);
+		exit(1);
+	}
+	entrypoint[index](argc, argv);
+}
+
+int main (int argc, char *argv[]) {
+	if (argc < 2) {
+		ft_putstr_fd("Not enough arguments to run\n", STDERR_FILENO);
+		exit (1);
+	}
+	entrypoint(argc, argv);
+	// print_truth_table("AB&A|");
 	return (0);
 }

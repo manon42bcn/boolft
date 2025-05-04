@@ -33,6 +33,5 @@
  * @see https://en.wikipedia.org/wiki/Gray_code
  */
 int gray_code(int n) {
-	unsigned int un = (unsigned int)n;
-	return ((int)(un ^ (un >> 1)));
+	return ((int)(n ^ (n >> 1)));
 }

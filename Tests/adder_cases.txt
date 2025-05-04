@@ -1,0 +1,486 @@
+FEATURE>>>ADDER CASES
+case>>>Empty Arguments
+bin>>>./BoolTests
+input>>>--adder
+fd>>>2
+expected>>>
+Adder needs 3 arguments: --adder nNatural nNatural
+<<<expected
+<<<case
+
+case>>>Error not natural input (2)
+bin>>>./BoolTests
+input>>>--adder -5 -8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Error not natural input (1th)
+bin>>>./BoolTests
+input>>>--adder -5 8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Error not natural input (2nd)
+bin>>>./BoolTests
+input>>>--adder 5 -8
+fd>>>2
+expected>>>
+Only natural numbers are valid as input
+<<<expected
+<<<case
+
+case>>>Zero Cases (2)
+bin>>>./BoolTests
+input>>>--adder 0 0
+expected>>>
+0
+<<<expected
+<<<case
+
+case>>>Zero Cases (1th)
+bin>>>./BoolTests
+input>>>--adder 0 42
+expected>>>
+42
+<<<expected
+<<<case
+
+case>>>Zero Cases (2nd)
+bin>>>./BoolTests
+input>>>--adder 42 0
+expected>>>
+42
+<<<expected
+<<<case
+
+case>>>Small cases 1 1
+bin>>>./BoolTests
+input>>>--adder 1 1
+expected>>>
+2
+<<<expected
+<<<case
+
+case>>>Small cases 40 2
+bin>>>./BoolTests
+input>>>--adder 40 2
+expected>>>
+42
+<<<expected
+<<<case
+
+case>>>Small cases 2 digits to 3 (99 + 1)
+bin>>>./BoolTests
+input>>>--adder 99 1
+expected>>>
+100
+<<<expected
+<<<case
+
+case>>>Small cases 2 digits to 3 (75 75)
+bin>>>./BoolTests
+input>>>--adder 75 75
+expected>>>
+150
+<<<expected
+<<<case
+
+case>>>Small cases 2 digits to 3 (75 35)
+bin>>>./BoolTests
+input>>>--adder 75 35
+expected>>>
+110
+<<<expected
+<<<case
+
+case>>>Small cases 2 digits to 3 (8 99)
+bin>>>./BoolTests
+input>>>--adder 8 99
+expected>>>
+107
+<<<expected
+<<<case
+
+case>>>Small cases 2 digits to 3 (99 99)
+bin>>>./BoolTests
+input>>>--adder 99 99
+expected>>>
+198
+<<<expected
+<<<case
+
+case>>>Small cases 3 digits to 4 (999 1)
+bin>>>./BoolTests
+input>>>--adder 999 1
+expected>>>
+1000
+<<<expected
+<<<case
+
+case>>>Small cases 3 digits to 4 (775 843)
+bin>>>./BoolTests
+input>>>--adder 775 843
+expected>>>
+1618
+<<<expected
+<<<case
+
+case>>>Small cases 3 digits to 4 (756 601)
+bin>>>./BoolTests
+input>>>--adder 756 601
+expected>>>
+1357
+<<<expected
+<<<case
+
+case>>>Cases 4 digits to 5 (9999 1)
+bin>>>./BoolTests
+input>>>--adder 9999 1
+expected>>>
+10000
+<<<expected
+<<<case
+
+case>>>Cases 45 35
+bin>>>./BoolTests
+input>>>--adder 45 35
+expected>>>
+80
+<<<expected
+<<<case
+
+case>>>Cases 15412 24
+bin>>>./BoolTests
+input>>>--adder 15412 24
+expected>>>
+15436
+<<<expected
+<<<case
+
+case>>>Cases 4001 84458
+bin>>>./BoolTests
+input>>>--adder 4001 84458
+expected>>>
+88459
+<<<expected
+<<<case
+
+case>>>Cases 3222 31353
+bin>>>./BoolTests
+input>>>--adder 3222 31353
+expected>>>
+34575
+<<<expected
+<<<case
+
+case>>>Cases 11110 7267
+bin>>>./BoolTests
+input>>>--adder 11110 7267
+expected>>>
+18377
+<<<expected
+<<<case
+
+case>>>Cases 66032 6175
+bin>>>./BoolTests
+input>>>--adder 66032 6175
+expected>>>
+72207
+<<<expected
+<<<case
+
+case>>>Cases 60314 4392
+bin>>>./BoolTests
+input>>>--adder 60314 4392
+expected>>>
+64706
+<<<expected
+<<<case
+
+case>>>Cases 895 8
+bin>>>./BoolTests
+input>>>--adder 895 8
+expected>>>
+903
+<<<expected
+<<<case
+
+case>>>Cases 5 118
+bin>>>./BoolTests
+input>>>--adder 5 118
+expected>>>
+123
+<<<expected
+<<<case
+
+case>>>Cases 7 4
+bin>>>./BoolTests
+input>>>--adder 7 4
+expected>>>
+11
+<<<expected
+<<<case
+
+case>>>Cases 1 35
+bin>>>./BoolTests
+input>>>--adder 1 35
+expected>>>
+36
+<<<expected
+<<<case
+
+case>>>Cases 97021 4
+bin>>>./BoolTests
+input>>>--adder 97021 4
+expected>>>
+97025
+<<<expected
+<<<case
+
+case>>>Cases 2942 5
+bin>>>./BoolTests
+input>>>--adder 2942 5
+expected>>>
+2947
+<<<expected
+<<<case
+
+case>>>Cases 8 36
+bin>>>./BoolTests
+input>>>--adder 8 36
+expected>>>
+44
+<<<expected
+<<<case
+
+case>>>Cases 15 18837
+bin>>>./BoolTests
+input>>>--adder 15 18837
+expected>>>
+18852
+<<<expected
+<<<case
+
+case>>>Cases 140 12
+bin>>>./BoolTests
+input>>>--adder 140 12
+expected>>>
+152
+<<<expected
+<<<case
+
+case>>>Cases 56 6
+bin>>>./BoolTests
+input>>>--adder 56 6
+expected>>>
+62
+<<<expected
+<<<case
+
+case>>>Cases 7878 22
+bin>>>./BoolTests
+input>>>--adder 7878 22
+expected>>>
+7900
+<<<expected
+<<<case
+
+case>>>Cases 12110 7031
+bin>>>./BoolTests
+input>>>--adder 12110 7031
+expected>>>
+19141
+<<<expected
+<<<case
+
+case>>>Cases 65 736
+bin>>>./BoolTests
+input>>>--adder 65 736
+expected>>>
+801
+<<<expected
+<<<case
+
+case>>>Cases 99999 1
+bin>>>./BoolTests
+input>>>--adder 99999 1
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Cases 12345 54321
+bin>>>./BoolTests
+input>>>--adder 12345 54321
+expected>>>
+66666
+<<<expected
+<<<case
+
+case>>>Cases 0 0
+bin>>>./BoolTests
+input>>>--adder 0 0
+expected>>>
+0
+<<<expected
+<<<case
+
+case>>>Cases 1000 9000
+bin>>>./BoolTests
+input>>>--adder 1000 9000
+expected>>>
+10000
+<<<expected
+<<<case
+
+case>>>Cases 50000 50000
+bin>>>./BoolTests
+input>>>--adder 50000 50000
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Cases 999 999
+bin>>>./BoolTests
+input>>>--adder 999 999
+expected>>>
+1998
+<<<expected
+<<<case
+
+case>>>Cases 123 456
+bin>>>./BoolTests
+input>>>--adder 123 456
+expected>>>
+579
+<<<expected
+<<<case
+
+case>>>Cases 321 12345
+bin>>>./BoolTests
+input>>>--adder 321 12345
+expected>>>
+12666
+<<<expected
+<<<case
+
+case>>>Cases 10000 10000
+bin>>>./BoolTests
+input>>>--adder 10000 10000
+expected>>>
+20000
+<<<expected
+<<<case
+
+case>>>Cases 1 99999
+bin>>>./BoolTests
+input>>>--adder 1 99999
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Cases 87654 12345
+bin>>>./BoolTests
+input>>>--adder 87654 12345
+expected>>>
+99999
+<<<expected
+<<<case
+
+case>>>Cases 22222 33333
+bin>>>./BoolTests
+input>>>--adder 22222 33333
+expected>>>
+55555
+<<<expected
+<<<case
+
+case>>>Cases 40000 60000
+bin>>>./BoolTests
+input>>>--adder 40000 60000
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Cases 8008 8080
+bin>>>./BoolTests
+input>>>--adder 8008 8080
+expected>>>
+16088
+<<<expected
+<<<case
+
+case>>>Cases 9998 2
+bin>>>./BoolTests
+input>>>--adder 9998 2
+expected>>>
+10000
+<<<expected
+<<<case
+
+case>>>Cases 1234 4321
+bin>>>./BoolTests
+input>>>--adder 1234 4321
+expected>>>
+5555
+<<<expected
+<<<case
+
+case>>>Cases 45678 54321
+bin>>>./BoolTests
+input>>>--adder 45678 54321
+expected>>>
+99999
+<<<expected
+<<<case
+
+case>>>Cases 100 900
+bin>>>./BoolTests
+input>>>--adder 100 900
+expected>>>
+1000
+<<<expected
+<<<case
+
+case>>>Cases 11111 88889
+bin>>>./BoolTests
+input>>>--adder 11111 88889
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Cases 33333 66667
+bin>>>./BoolTests
+input>>>--adder 33333 66667
+expected>>>
+100000
+<<<expected
+<<<case
+
+case>>>Limit Case 2147483647 0
+bin>>>./BoolTests
+input>>>--adder 2147483647 0
+expected>>>
+2147483647
+<<<expected
+<<<case
+
+case>>>Limit Case 2147483646 1
+bin>>>./BoolTests
+input>>>--adder 2147483646 1
+expected>>>
+2147483647
+<<<expected
+<<<case
+
+<<<eof

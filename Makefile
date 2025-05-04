@@ -6,7 +6,9 @@ OBJ_SUBS		= 	objs
 LIBS_DIR		=	boolft
 LIBS_HEADERS	=	$(LIBS_DIR)/inc/boolft.h
 LIBS_LIBS		=	$(LIBS_DIR)/libboolft.a
-SRCS_FILES		= 	main.c
+SRCS_FILES		= 	main.c \
+					utils.c \
+					entrypoints.c
 HEAD_FILES		=	inc/readySetBool.h
 SRCS 			=	$(addprefix $(SRC_DIR)/,$(SRCS_FILES))
 OBJS			=	$(addprefix $(OBJ_DIR)/,$(SRCS_FILES:.c=.o))
@@ -21,8 +23,8 @@ MAKE 			=	make --no-print-directory
 all: library $(OBJ_SUBS) $(NAME)
 
 $(NAME): $(OBJS) $(HEAD_FILES) $(LIBRARIES)
-	$(CC) $(OBJS) $(CFLAGS) $(LIB_LINKS) -g -o $(NAME)
-	@echo "$(MAGENTA)Executable $@ compiled$(DEF_COLOR)"
+	@$(CC) $(OBJS) $(CFLAGS) $(LIB_LINKS) -g -o $(NAME)
+	@echo "Executable $@ compiled"
 
 library:
 	@echo "$(YELLOW)Building LIBRARIES$(DEF_COLOR)"
@@ -32,7 +34,7 @@ library:
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEAD_FILES) $(LIBS_HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -g -c $< -o $@
-	@echo "$(GREEN)$(patsubst $(SRCS_DIR)/%,%, $<)" | awk '{printf "%-50s\tcompiled ✓$(DEF_COLOR)\n", $$0;}'
+	@echo "$(patsubst $(SRCS_DIR)/%,%, $<)"
 
 $(OBJ_SUBS):
 	@-mkdir $(OBJ_SUBS)
