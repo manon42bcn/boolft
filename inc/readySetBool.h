@@ -4,6 +4,7 @@
 typedef void (*t_entry)(int argc, char* argv[]);
 void	ft_putstr_fd(char *s, int fd);
 t_bool	ft_match_cmp(char *s1, char *s2);
+char	*ft_strtrim_clean(char *s1, char const *set);
 // Entrypoints
 void	gray_code_entrypoint(int argc, char *argv[]);
 void	multiplier_entrypoint(int argc, char *argv[]);

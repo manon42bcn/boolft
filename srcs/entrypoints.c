@@ -5,7 +5,14 @@ void	eval_function_entrypoint(int argc, char *argv[]) {
 		ft_putstr_fd("Function eval needs 2 arguments: --function funcString", STDERR_FILENO);
 		exit (1);
 	}
-	printf("%s\n", BOOL_TO_STRING(eval_formula(argv[2])));
+	char *toeval = ft_strtrim_clean(argv[2], "\"");
+	if (!toeval) {
+		ft_putstr_fd("Trim: Alloc error\n", STDERR_FILENO);
+		exit(1);
+	}
+	// printf("%s\n", BOOL_TO_STRING(eval_formula(toeval)));
+	printf("%d\n", eval_formula(toeval));
+	free(toeval);
 }
 
 void	gray_code_entrypoint(int argc, char *argv[]) {

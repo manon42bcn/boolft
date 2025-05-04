@@ -61,6 +61,7 @@ int main (int argc, char *argv[]) {
 		ft_putstr_fd("Not enough arguments to run\n", STDERR_FILENO);
 		exit (1);
 	}
+	// printf("%s\n", argv[1]);
 	entrypoint(argc, argv);
 	// print_truth_table("AB&A|");
 	return (0);

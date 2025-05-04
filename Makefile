@@ -8,7 +8,8 @@ LIBS_HEADERS	=	$(LIBS_DIR)/inc/boolft.h
 LIBS_LIBS		=	$(LIBS_DIR)/libboolft.a
 SRCS_FILES		= 	main.c \
 					utils.c \
-					entrypoints.c
+					entrypoints.c \
+					ft_strtrim.c
 HEAD_FILES		=	inc/readySetBool.h
 SRCS 			=	$(addprefix $(SRC_DIR)/,$(SRCS_FILES))
 OBJS			=	$(addprefix $(OBJ_DIR)/,$(SRCS_FILES:.c=.o))

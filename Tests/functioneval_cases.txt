@@ -1,5 +1,5 @@
 FEATURE>>>FUNCTION EVAL CASES
-case>>>Formula 0|1=
+case>>>Formula "0|1="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "0|1="
@@ -8,7 +8,7 @@ true
 <<<expected
 <<<case
 
-case>>>Formula 1&1=
+case>>>Formula "1&1="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "1&1="
@@ -17,7 +17,7 @@ true
 <<<expected
 <<<case
 
-case>>>Formula 0!=
+case>>>Formula "0!="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "0!="
@@ -26,7 +26,7 @@ true
 <<<expected
 <<<case
 
-case>>>Formula 10|1&!=
+case>>>Formula "10|1&!="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "10|1&!="
@@ -35,7 +35,7 @@ false
 <<<expected
 <<<case
 
-case>>>Formula 111&&=
+case>>>Formula "111&&="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "111&&="
@@ -44,7 +44,7 @@ true
 <<<expected
 <<<case
 
-case>>>Formula 01|!=
+case>>>Formula "01|!="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "01|!="
@@ -53,7 +53,7 @@ false
 <<<expected
 <<<case
 
-case>>>Formula 101|&!1|=
+case>>>Formula "101|&!1|="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "101|&!1|="
@@ -62,7 +62,7 @@ true
 <<<expected
 <<<case
 
-case>>>Formula 0=
+case>>>Formula "0="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "0="
@@ -71,7 +71,7 @@ false
 <<<expected
 <<<case
 
-case>>>Formula 1!=
+case>>>Formula "1!="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "1!="

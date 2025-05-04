@@ -192,7 +192,6 @@ int not_solvable(t_stack** tail, int error) {
  */
 int	eval_formula(char* formula) {
 	t_stack*	tail = NULL;
-
 	for (size_t i = 0; formula[i]; i++) {
 		if (formula[i] == '1' || formula[i] == '0') {
 			tail = insert_element(TRUE ? formula[i] == '1': FALSE, &tail);
