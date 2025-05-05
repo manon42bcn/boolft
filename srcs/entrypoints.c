@@ -6,11 +6,19 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:39:49 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/05 11:19:20 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/05 11:30:30 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.h"
+
+void	truth_table_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		ft_putstr_fd("Truth Table eval needs 2 arguments: --truth-table funcString", STDERR_FILENO);
+		exit (1);
+	}
+	print_truth_table(argv[2]);
+}
 
 void	eval_function_entrypoint(int argc, char *argv[]) {
 	if (argc != 3) {

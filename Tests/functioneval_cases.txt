@@ -1,11 +1,20 @@
 FEATURE>>>FUNCTION EVAL CASES
 
-case>>>Error Case "10@="
+case>>>Args Error Case
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "10@="
+input>>>--function
 expected>>>
-ERROR
+Function eval needs 2 arguments: --function funcString
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--function 1! 1!
+expected>>>
+Function eval needs 2 arguments: --function funcString
 <<<expected
 <<<case
 
@@ -103,15 +112,6 @@ case>>>Error Case "&11="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "&11="
-expected>>>
-ERROR
-<<<expected
-<<<case
-
-case>>>Error Case "11=="
-bin>>>./BoolTests
-fd>>>3
-input>>>--function "11=="
 expected>>>
 ERROR
 <<<expected
