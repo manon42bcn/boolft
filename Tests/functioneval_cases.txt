@@ -1,80 +1,540 @@
 FEATURE>>>FUNCTION EVAL CASES
-case>>>Formula "0|1="
+
+case>>>Error Case "10@="
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "0|1="
+input>>>--function "10@="
 expected>>>
-true
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "1&1="
+case>>>Error Case "15="
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "1&1="
+input>>>--function "15="
 expected>>>
-true
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "0!="
+case>>>Error Case "-11="
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "0!="
+input>>>--function "-11="
 expected>>>
-true
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "10|1&!="
+case>>>Error Case "!"
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "10|1&!="
+input>>>--function "!"
 expected>>>
-false
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "111&&="
+case>>>Error Case ">"
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "111&&="
+input>>>--function ">"
 expected>>>
-true
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "01|!="
+case>>>Error Case "|"
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "01|!="
+input>>>--function "|"
 expected>>>
-false
+ERROR
 <<<expected
 <<<case
 
-case>>>Formula "101|&!1|="
+case>>>Error Case "="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "^"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "^"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "&"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "     "
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "     "
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "10&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10&="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "&11="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "&11="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "11=="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "11=="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "101|&!1|="
 bin>>>./BoolTests
 fd>>>3
 input>>>--function "101|&!1|="
 expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "0="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "1!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "10=*"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10=*"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "1!5="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!5="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "1.1="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1.1="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "11=1!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "11=1!"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "10&=    !"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10&=    !"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "1^1="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1^1="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "11=00="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "11=00="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "101|&!1|=a"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "101|&!1|=a"
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "0!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0!="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Error Case "111!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "111!="
+expected>>>
+ERROR
+<<<expected
+<<<case
+
+case>>>Formula "1"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1"
+expected>>>
 true
 <<<expected
 <<<case
 
-case>>>Formula "0="
+case>>>Formula "0"
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "0="
+input>>>--function "0"
 expected>>>
 false
 <<<expected
 <<<case
 
-case>>>Formula "1!="
+case>>>Formula "1!"
 bin>>>./BoolTests
 fd>>>3
-input>>>--function "1!="
+input>>>--function "1!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "10&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "10|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "11>"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "11>"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "10>"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10>"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "00>"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "00>"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01>"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01>"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "10|1&!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "10|1&!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "1111&&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1111&&="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "010|!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "010|!="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&1=1^"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&1=1^"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "01^1&1=1^!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&1=1^!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&1="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&1="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=>"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=>"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=>!0=0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=>!0=0|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=>!0=0|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=>!0=0|!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "0!!1!!^1&11=>!0=0|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0!!1!!^1&11=>!0=0|!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "0!!!!!!!!!!!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0!!!!!!!!!!!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "0!!!!!!!!!!!1="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "0!!!!!!!!!!!1="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "1111111&&&&&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1111111&&&&&="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "1111111&&&&&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1111111&&&&&="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&1=11&&!!0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&1=11&&!!0|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&1=10&&!!0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&1=10&&!!0|"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "1!!!!!!0&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!!!!!!0&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "1!!!!!!0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!!!!!!0|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "1!!!!!!0|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "1!!!!!!0|!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Formula "111=="
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "111=="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "10|1&1|0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "101|1&&1|0|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=>!0=0|!1^1&11=>!0=0|!!01|1&&1|0|01|1&&1|0|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=>!0=0|!1^1&11=>!0=0|!!01|1&&1|0|01|1&&1|0|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Formula "01^1&11=>!0=0|!1^1&11=>!0=0|!!01|1&&1|0|01|1&&1|0|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--function "01^1&11=>!0=0|!1^1&11=>!0=0|!!01|1&&1|0|01|1&&1|0|!"
 expected>>>
 false
 <<<expected

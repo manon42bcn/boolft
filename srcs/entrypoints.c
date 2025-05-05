@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   entrypoints.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/05 09:39:49 by mporras-          #+#    #+#             */
+/*   Updated: 2025/05/05 11:19:20 by mporras-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "readySetBool.h"
 
 void	eval_function_entrypoint(int argc, char *argv[]) {
@@ -5,14 +17,7 @@ void	eval_function_entrypoint(int argc, char *argv[]) {
 		ft_putstr_fd("Function eval needs 2 arguments: --function funcString", STDERR_FILENO);
 		exit (1);
 	}
-	char *toeval = ft_strtrim_clean(argv[2], "\"");
-	if (!toeval) {
-		ft_putstr_fd("Trim: Alloc error\n", STDERR_FILENO);
-		exit(1);
-	}
-	// printf("%s\n", BOOL_TO_STRING(eval_formula(toeval)));
-	printf("%d\n", eval_formula(toeval));
-	free(toeval);
+	 printf("%s\n", BOOL_TO_STRING(eval_formula(argv[2])));
 }
 
 void	gray_code_entrypoint(int argc, char *argv[]) {

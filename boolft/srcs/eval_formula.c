@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 17:23:14 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/02 18:54:35 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:46:04 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,15 +199,11 @@ int	eval_formula(char* formula) {
 				return (not_solvable(&tail, ALLOC_ERROR));
 		} else {
 			t_stack* partial = operate(formula[i], &tail);
-			if (!partial) {
-				printf("Este error...\n");
+			if (!partial)
 				return (not_solvable(&tail, NOT_SOLVABLE));
-			}
-
 		}
 	}
-	if (!tail || tail->pos != 1) {
-		printf("Otro? error...\n");
+	if (!tail || count_stack(&tail) != 1) {
 		return (not_solvable(&tail, NOT_SOLVABLE));
 	}
 	int result = tail->value;

@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 17:23:14 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/02 18:36:33 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/05 10:44:28 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,7 @@ t_stack*	operate(char c, t_stack **tail) {
 		&or_operator, &xor_operator,
 		&conditional_operator, &biconditional_operator};
 	int indx = get_index_operator(c);
-	if (indx == UNRECOGNIZED_SYMBOL) {
-		printf("TODO remove\n");
+	if (indx == UNRECOGNIZED_SYMBOL)
 		return (NULL);
-	}
 	return (operators[indx](tail));
 }
