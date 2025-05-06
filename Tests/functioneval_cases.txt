@@ -23,7 +23,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "15="
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -32,7 +32,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "-11="
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -41,7 +41,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "!"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -50,7 +50,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function ">"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -59,7 +59,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "|"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -68,7 +68,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -77,7 +77,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "^"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -86,7 +86,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "&"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -95,7 +95,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "     "
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -104,7 +104,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "10&="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -113,7 +113,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "&11="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -122,7 +122,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "101|&!1|="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -131,7 +131,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "0="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -140,7 +140,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "1!="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -149,7 +149,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "10=*"
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -158,7 +158,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "1!5="
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -167,7 +167,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "1.1="
 expected>>>
-ERROR
+Unrecognized Symbol
 <<<expected
 <<<case
 
@@ -176,7 +176,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "11=1!"
 expected>>>
-ERROR
+Not Solvable. Too many operands.
 <<<expected
 <<<case
 
@@ -185,7 +185,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "10&=    !"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -194,7 +194,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "1^1="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -203,7 +203,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "11=00="
 expected>>>
-ERROR
+Not Solvable. Too many operands.
 <<<expected
 <<<case
 
@@ -212,7 +212,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "101|&!1|=a"
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -221,7 +221,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "0!="
 expected>>>
-ERROR
+Not solvable. Too few operands to resolve.
 <<<expected
 <<<case
 
@@ -230,7 +230,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "111!="
 expected>>>
-ERROR
+Not Solvable. Too many operands.
 <<<expected
 <<<case
 
@@ -293,7 +293,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "10>"
 expected>>>
-false
+true
 <<<expected
 <<<case
 
@@ -311,7 +311,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "01>"
 expected>>>
-true
+false
 <<<expected
 <<<case
 

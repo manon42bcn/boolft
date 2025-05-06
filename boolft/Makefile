@@ -1,17 +1,16 @@
-SRCS		=	adder.c \
-				bool_operators.c \
-				eval_formula.c \
-				gray_code.c \
-				multiplier.c \
-				print_truth_table.c
+SRCS		=	adder.cpp \
+				multiplier.cpp \
+				gray_code.cpp \
+				eval_formula.cpp \
+				print_truth_table.cpp
 SRCS_DIR	=	srcs
-OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.cpp=.o))
 OBJS_SUBS	= 	obj/
-CC			=	@gcc
+CC			=	@c++
 RM			=	@rm -rf
-CFLAGS 		=	-Wall -Wextra -Werror -Iinc
+CFLAGS 		=	-std=c++20 -Wall -Wextra -Werror -Iinc
 NAME		=	libboolft.a
-HEADER		=	inc/boolft.h
+HEADER		=	inc/boolft.hpp
 OBJS_DIR	=	obj
 
 all: $(NAME) $(HEADER)
@@ -20,7 +19,7 @@ $(NAME): $(OBJS_SUBS) $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(NAME) compiled"
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADER)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp $(HEADER)
 	$(CC) -Iinc $(CFLAGS) -g -c $< -o $@
 
 $(OBJS_SUBS):

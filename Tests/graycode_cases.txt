@@ -1,16 +1,16 @@
 FEATURE>>>GRAYCODE CASES
 case>>>Empty Arguments
 bin>>>./BoolTests
-input>>>--graycode
+input>>>--gray-code
 fd>>>2
 expected>>>
-Gray code needs 2 arguments: --graycode nNatural
+Gray code needs 2 arguments: --gray-code nNatural
 <<<expected
 <<<case
 
 case>>>Case 1719255576
 bin>>>./BoolTests
-input>>>--graycode 1719255576
+input>>>--gray-code 1719255576
 expected>>>
 1430594324
 <<<expected
@@ -18,7 +18,7 @@ expected>>>
 
 case>>>Case 2060285170
 bin>>>./BoolTests
-input>>>--graycode 2060285170
+input>>>--gray-code 2060285170
 expected>>>
 1202441867
 <<<expected
@@ -26,7 +26,7 @@ expected>>>
 
 case>>>Case 2139204905
 bin>>>./BoolTests
-input>>>--graycode 2139204905
+input>>>--gray-code 2139204905
 expected>>>
 1078033341
 <<<expected
@@ -34,7 +34,7 @@ expected>>>
 
 case>>>Case 315557180
 bin>>>./BoolTests
-input>>>--graycode 315557180
+input>>>--gray-code 315557180
 expected>>>
 464029602
 <<<expected
@@ -42,7 +42,7 @@ expected>>>
 
 case>>>Case 1378378862
 bin>>>./BoolTests
-input>>>--graycode 1378378862
+input>>>--gray-code 1378378862
 expected>>>
 2067551833
 <<<expected
@@ -50,7 +50,7 @@ expected>>>
 
 case>>>Case 121635335
 bin>>>./BoolTests
-input>>>--graycode 121635335
+input>>>--gray-code 121635335
 expected>>>
 81789700
 <<<expected
@@ -58,7 +58,7 @@ expected>>>
 
 case>>>Case 1174600182
 bin>>>./BoolTests
-input>>>--graycode 1174600182
+input>>>--gray-code 1174600182
 expected>>>
 1694729485
 <<<expected
@@ -66,7 +66,7 @@ expected>>>
 
 case>>>Case 1773988315
 bin>>>./BoolTests
-input>>>--graycode 1773988315
+input>>>--gray-code 1773988315
 expected>>>
 1566743862
 <<<expected
@@ -74,7 +74,7 @@ expected>>>
 
 case>>>Case 1350387868
 bin>>>./BoolTests
-input>>>--graycode 1350387868
+input>>>--gray-code 1350387868
 expected>>>
 2017717458
 <<<expected
@@ -82,7 +82,7 @@ expected>>>
 
 case>>>Case 30740993
 bin>>>./BoolTests
-input>>>--graycode 30740993
+input>>>--gray-code 30740993
 expected>>>
 20945665
 <<<expected
@@ -90,7 +90,7 @@ expected>>>
 
 case>>>Case 686873928
 bin>>>./BoolTests
-input>>>--graycode 686873928
+input>>>--gray-code 686873928
 expected>>>
 1015591916
 <<<expected
@@ -98,7 +98,7 @@ expected>>>
 
 case>>>Case 254311391
 bin>>>./BoolTests
-input>>>--graycode 254311391
+input>>>--gray-code 254311391
 expected>>>
 146556464
 <<<expected
@@ -106,7 +106,7 @@ expected>>>
 
 case>>>Case 1798257439
 bin>>>./BoolTests
-input>>>--graycode 1798257439
+input>>>--gray-code 1798257439
 expected>>>
 1589159568
 <<<expected
@@ -114,7 +114,7 @@ expected>>>
 
 case>>>Case 940642984
 bin>>>./BoolTests
-input>>>--graycode 940642984
+input>>>--gray-code 940642984
 expected>>>
 605658108
 <<<expected
@@ -122,7 +122,7 @@ expected>>>
 
 case>>>Case 979668883
 bin>>>./BoolTests
-input>>>--graycode 979668883
+input>>>--gray-code 979668883
 expected>>>
 659998810
 <<<expected
@@ -130,7 +130,7 @@ expected>>>
 
 case>>>Case 1092910977
 bin>>>./BoolTests
-input>>>--graycode 1092910977
+input>>>--gray-code 1092910977
 expected>>>
 1639333953
 <<<expected
@@ -138,7 +138,7 @@ expected>>>
 
 case>>>Case 777779384
 bin>>>./BoolTests
-input>>>--graycode 777779384
+input>>>--gray-code 777779384
 expected>>>
 964035812
 <<<expected
@@ -146,7 +146,7 @@ expected>>>
 
 case>>>Case 980154803
 bin>>>./BoolTests
-input>>>--graycode 980154803
+input>>>--gray-code 980154803
 expected>>>
 660473194
 <<<expected
@@ -154,7 +154,7 @@ expected>>>
 
 case>>>Case 988145580
 bin>>>./BoolTests
-input>>>--graycode 988145580
+input>>>--gray-code 988145580
 expected>>>
 664212602
 <<<expected
@@ -162,7 +162,7 @@ expected>>>
 
 case>>>Case 584406540
 bin>>>./BoolTests
-input>>>--graycode 584406540
+input>>>--gray-code 584406540
 expected>>>
 868220170
 <<<expected
@@ -170,7 +170,7 @@ expected>>>
 
 case>>>Case 966397802
 bin>>>./BoolTests
-input>>>--graycode 966397802
+input>>>--gray-code 966397802
 expected>>>
 626460895
 <<<expected
@@ -178,7 +178,7 @@ expected>>>
 
 case>>>Case 1601380183
 bin>>>./BoolTests
-input>>>--graycode 1601380183
+input>>>--gray-code 1601380183
 expected>>>
 1892323580
 <<<expected
@@ -186,7 +186,7 @@ expected>>>
 
 case>>>Case 869720426
 bin>>>./BoolTests
-input>>>--graycode 869720426
+input>>>--gray-code 869720426
 expected>>>
 708678111
 <<<expected
@@ -194,7 +194,7 @@ expected>>>
 
 case>>>Case 2089642595
 bin>>>./BoolTests
-input>>>--graycode 2089642595
+input>>>--gray-code 2089642595
 expected>>>
 1120657234
 <<<expected
@@ -202,7 +202,7 @@ expected>>>
 
 case>>>Case 396198044
 bin>>>./BoolTests
-input>>>--graycode 396198044
+input>>>--gray-code 396198044
 expected>>>
 475218130
 <<<expected
@@ -210,7 +210,7 @@ expected>>>
 
 case>>>Case 1226225727
 bin>>>./BoolTests
-input>>>--graycode 1226225727
+input>>>--gray-code 1226225727
 expected>>>
 1839064096
 <<<expected
@@ -218,7 +218,7 @@ expected>>>
 
 case>>>Case 1094942738
 bin>>>./BoolTests
-input>>>--graycode 1094942738
+input>>>--gray-code 1094942738
 expected>>>
 1642217499
 <<<expected
@@ -226,7 +226,7 @@ expected>>>
 
 case>>>Case 711385253
 bin>>>./BoolTests
-input>>>--graycode 711385253
+input>>>--gray-code 711385253
 expected>>>
 1062572279
 <<<expected
@@ -234,7 +234,7 @@ expected>>>
 
 case>>>Case 277841516
 bin>>>./BoolTests
-input>>>--graycode 277841516
+input>>>--gray-code 277841516
 expected>>>
 415778138
 <<<expected
@@ -242,7 +242,7 @@ expected>>>
 
 case>>>Case 417096951
 bin>>>./BoolTests
-input>>>--graycode 417096951
+input>>>--gray-code 417096951
 expected>>>
 347231884
 <<<expected
@@ -250,7 +250,7 @@ expected>>>
 
 case>>>Case 1439432493
 bin>>>./BoolTests
-input>>>--graycode 1439432493
+input>>>--gray-code 1439432493
 expected>>>
 2133721275
 <<<expected
@@ -258,7 +258,7 @@ expected>>>
 
 case>>>Case -1163359406
 bin>>>./BoolTests
-input>>>--graycode -1163359406
+input>>>--gray-code -1163359406
 expected>>>
 1744621307
 <<<expected
@@ -266,7 +266,7 @@ expected>>>
 
 case>>>Case 1563297986
 bin>>>./BoolTests
-input>>>--graycode 1563297986
+input>>>--gray-code 1563297986
 expected>>>
 1941507235
 <<<expected
@@ -274,7 +274,7 @@ expected>>>
 
 case>>>Case -171790543
 bin>>>./BoolTests
-input>>>--graycode -171790543
+input>>>--gray-code -171790543
 expected>>>
 254015657
 <<<expected
@@ -282,7 +282,7 @@ expected>>>
 
 case>>>Case 1573523845
 bin>>>./BoolTests
-input>>>--graycode 1573523845
+input>>>--gray-code 1573523845
 expected>>>
 1932466503
 <<<expected
@@ -290,7 +290,7 @@ expected>>>
 
 case>>>Case 1149190757
 bin>>>./BoolTests
-input>>>--graycode 1149190757
+input>>>--gray-code 1149190757
 expected>>>
 1715528535
 <<<expected
@@ -298,7 +298,7 @@ expected>>>
 
 case>>>Case 517232855
 bin>>>./BoolTests
-input>>>--graycode 517232855
+input>>>--gray-code 517232855
 expected>>>
 297694396
 <<<expected
@@ -306,7 +306,7 @@ expected>>>
 
 case>>>Case -1974857315
 bin>>>./BoolTests
-input>>>--graycode -1974857315
+input>>>--gray-code -1974857315
 expected>>>
 1332681043
 <<<expected
@@ -314,7 +314,7 @@ expected>>>
 
 case>>>Case 675640400
 bin>>>./BoolTests
-input>>>--graycode 675640400
+input>>>--gray-code 675640400
 expected>>>
 1013436024
 <<<expected
@@ -322,7 +322,7 @@ expected>>>
 
 case>>>Case -1996791200
 bin>>>./BoolTests
-input>>>--graycode -1996791200
+input>>>--gray-code -1996791200
 expected>>>
 1283904336
 <<<expected
@@ -330,7 +330,7 @@ expected>>>
 
 case>>>Case 2026349717
 bin>>>./BoolTests
-input>>>--graycode 2026349717
+input>>>--gray-code 2026349717
 expected>>>
 1151629023
 <<<expected
@@ -338,7 +338,7 @@ expected>>>
 
 case>>>Case -579871014
 bin>>>./BoolTests
-input>>>--graycode -579871014
+input>>>--gray-code -579871014
 expected>>>
 869806519
 <<<expected
@@ -346,7 +346,7 @@ expected>>>
 
 case>>>Case -1313182344
 bin>>>./BoolTests
-input>>>--graycode -1313182344
+input>>>--gray-code -1313182344
 expected>>>
 1768381380
 <<<expected
@@ -354,7 +354,7 @@ expected>>>
 
 case>>>Case -1464950294
 bin>>>./BoolTests
-input>>>--graycode -1464950294
+input>>>--gray-code -1464950294
 expected>>>
 2096754975
 <<<expected
@@ -362,7 +362,7 @@ expected>>>
 
 case>>>Case -1945412184
 bin>>>./BoolTests
-input>>>--graycode -1945412184
+input>>>--gray-code -1945412184
 expected>>>
 1242493820
 <<<expected
@@ -370,7 +370,7 @@ expected>>>
 
 case>>>Case -877541353
 bin>>>./BoolTests
-input>>>--graycode -877541353
+input>>>--gray-code -877541353
 expected>>>
 778644508
 <<<expected
@@ -378,7 +378,7 @@ expected>>>
 
 case>>>Case -2104268237
 bin>>>./BoolTests
-input>>>--graycode -2104268237
+input>>>--gray-code -2104268237
 expected>>>
 1138417450
 <<<expected
@@ -386,7 +386,7 @@ expected>>>
 
 case>>>Case -45361536
 bin>>>./BoolTests
-input>>>--graycode -45361536
+input>>>--gray-code -45361536
 expected>>>
 65945024
 <<<expected
@@ -394,7 +394,7 @@ expected>>>
 
 case>>>Case -872625406
 bin>>>./BoolTests
-input>>>--graycode -872625406
+input>>>--gray-code -872625406
 expected>>>
 771927683
 <<<expected
@@ -402,7 +402,7 @@ expected>>>
 
 case>>>Case -1487507405
 bin>>>./BoolTests
-input>>>--graycode -1487507405
+input>>>--gray-code -1487507405
 expected>>>
 1962756138
 <<<expected
@@ -410,7 +410,7 @@ expected>>>
 
 case>>>Case -391935197
 bin>>>./BoolTests
-input>>>--graycode -391935197
+input>>>--gray-code -391935197
 expected>>>
 485641906
 <<<expected
@@ -418,7 +418,7 @@ expected>>>
 
 case>>>Case -2117027269
 bin>>>./BoolTests
-input>>>--graycode -2117027269
+input>>>--gray-code -2117027269
 expected>>>
 1094248230
 <<<expected
@@ -426,7 +426,7 @@ expected>>>
 
 case>>>Case 1738386977
 bin>>>./BoolTests
-input>>>--graycode 1738386977
+input>>>--gray-code 1738386977
 expected>>>
 1414756657
 <<<expected
@@ -434,7 +434,7 @@ expected>>>
 
 case>>>Case 1931999840
 bin>>>./BoolTests
-input>>>--graycode 1931999840
+input>>>--gray-code 1931999840
 expected>>>
 1253312336
 <<<expected
@@ -442,7 +442,7 @@ expected>>>
 
 case>>>Case 1593139654
 bin>>>./BoolTests
-input>>>--graycode 1593139654
+input>>>--gray-code 1593139654
 expected>>>
 1905250597
 <<<expected
@@ -450,7 +450,7 @@ expected>>>
 
 case>>>Case -1374111201
 bin>>>./BoolTests
-input>>>--graycode -1374111201
+input>>>--gray-code -1374111201
 expected>>>
 2031413008
 <<<expected
@@ -458,7 +458,7 @@ expected>>>
 
 case>>>Case 480487914
 bin>>>./BoolTests
-input>>>--graycode 480487914
+input>>>--gray-code 480487914
 expected>>>
 317881631
 <<<expected
@@ -466,7 +466,7 @@ expected>>>
 
 case>>>Case ZERO
 bin>>>./BoolTests
-input>>>--graycode 0
+input>>>--gray-code 0
 expected>>>
 0
 <<<expected
@@ -474,7 +474,7 @@ expected>>>
 
 case>>>Case 2147483647
 bin>>>./BoolTests
-input>>>--graycode 2147483647
+input>>>--gray-code 2147483647
 expected>>>
 1073741824
 <<<expected

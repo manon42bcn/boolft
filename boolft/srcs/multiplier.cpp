@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiplier.c                                       :+:      :+:    :+:   */
+/*   multiplier.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 17:23:14 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/02 18:53:00 by mporras-         ###   ########.fr       */
+/*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
+/*   Updated: 2025/05/06 12:03:13 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "boolft.h"
+#include "boolft.hpp"
 
 /**
  * @brief Multiplies two unsigned integers using bitwise operations.

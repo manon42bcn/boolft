@@ -4,21 +4,19 @@ SRC_DIR			= 	srcs
 OBJ_DIR			= 	objs
 OBJ_SUBS		= 	objs
 LIBS_DIR		=	boolft
-LIBS_HEADERS	=	$(LIBS_DIR)/inc/boolft.h
+LIBS_HEADERS	=	$(LIBS_DIR)/inc/boolft.hpp
 LIBS_LIBS		=	$(LIBS_DIR)/libboolft.a
-SRCS_FILES		= 	main.c \
-					utils.c \
-					entrypoints.c \
-					ft_strtrim.c
-HEAD_FILES		=	inc/readySetBool.h
+SRCS_FILES		= 	main.cpp \
+					entrypoints.cpp
+HEAD_FILES		=	inc/readySetBool.hpp
 SRCS 			=	$(addprefix $(SRC_DIR)/,$(SRCS_FILES))
-OBJS			=	$(addprefix $(OBJ_DIR)/,$(SRCS_FILES:.c=.o))
-CFLAGS			=	-Wall -Wextra -Werror
+OBJS			=	$(addprefix $(OBJ_DIR)/,$(SRCS_FILES:.cpp=.o))
+CFLAGS			=	-std=c++20 -Wall -Wextra -Werror
 LIBRARIES		=	$(LIBS_LIBS)
 INCLUDES		=	-I./boolft -Iinc
 LIB_LINKS		=	-L./$(LIBS_DIR) -lboolft
 RM				=	rm -rf
-CC				=	gcc
+CC				=	c++
 MAKE 			=	make --no-print-directory
 
 all: library $(OBJ_SUBS) $(NAME)
@@ -33,7 +31,7 @@ library:
 	@echo "$(YELLOW)Building BOOLFT$(DEF_COLOR)" ; echo
 	@$(MAKE) -C $(LIBS_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEAD_FILES) $(LIBS_HEADERS)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEAD_FILES) $(LIBS_HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -g -c $< -o $@
 	@echo "$(patsubst $(SRCS_DIR)/%,%, $<)"
 

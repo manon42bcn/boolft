@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adder.c                                            :+:      :+:    :+:   */
+/*   adder.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 17:28:47 by mporras-          #+#    #+#             */
-/*   Updated: 2025/04/30 17:35:57 by mporras-         ###   ########.fr       */
+/*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
+/*   Updated: 2025/05/06 17:50:50 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "boolft.h"
+#include "boolft.hpp"
 
 /**
  * @brief Bitwise add function.
@@ -61,5 +61,5 @@ unsigned int	adder(unsigned int a, unsigned int b) {
 		a = a ^ b;
 		b = carry << 1;
 	}
-	return (a);
+	return a;
 }
