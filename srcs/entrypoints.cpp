@@ -6,11 +6,19 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:49:58 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/06 23:46:05 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
+
+void	sat_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "SAT needs 2 arguments: --sat funcString" << std::endl;
+		exit(1);
+	}
+	std::cout << BOOL_TO_STRING(sat(argv[2])) << std::endl;
+}
 
 void	truth_table_entrypoint(int argc, char *argv[]) {
 	if (argc != 3) {

@@ -20,13 +20,7 @@ void	nnf_entrypoint(int argc, char *argv[]) {
 	negation_normal_form(argv[2]);
 }
 
-void	sat_entrypoint(int argc, char *argv[]) {
-	if (argc != 3) {
-		std::cerr << "SAT needs 2 arguments: --sat funcString" << std::endl;
-		exit(1);
-	}
-	std::cout << BOOL_TO_STRING(sat(argv[2])) << std::endl;
-}
+
 
 void	entrypoint(int argc, char *argv[]) {
 	static std::map<std::string, t_entry> entrypoint;
