@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:50:16 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:34:03 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <map>
 #include <sstream>
 #include <cstdlib>
-#include "../boolft/inc/boolft.h"
+#include "../boolft/inc/boolft.hpp"
 
 typedef void (*t_entry)(int argc, char* argv[]);
 // ----- Entrypoints

@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:41:36 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/06 22:14:55 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  *
  * @param vars A map associating each variable (as a character) to its current boolean value.
  */
-void	print_header(std::map<char, bool>& vars) {
+inline void	print_header(std::map<char, bool>& vars) {
 	std::string sep;
 	for (auto it = vars.begin(); it != vars.end(); it++) {
 		std::cout << "|  " << it->first << "  ";
@@ -49,7 +49,7 @@ void	print_header(std::map<char, bool>& vars) {
  * @param case_idx The current case index (used to determine if this is the first row, for header printing).
  * @throws BoolFTException propagated from eval_formula(char *formula).
  */
-void	print_line(std::map<char, bool> vars, std::string& fnc, int case_idx) {
+inline void	print_line(std::map<char, bool> vars, std::string& fnc, int case_idx) {
 	bool rst = eval_formula((char *)fnc.c_str());
 	if (case_idx == 0)
 		print_header(vars);
@@ -84,7 +84,7 @@ void	print_line(std::map<char, bool> vars, std::string& fnc, int case_idx) {
  * @param fnc A reference to the string representation of the logical function,
  * 			  which is updated to reflect the new variable assignments.
  */
-void	update_case(std::map<char, bool>& vars, int *idx, std::string& fnc) {
+inline void	update_case(std::map<char, bool>& vars, int *idx, std::string& fnc) {
 	idx[CASE_IDX] = idx[CASE_IDX] + 1;
 	int i = 0;
 	for (auto it = vars.rbegin();  it != vars.rend(); it++) {
@@ -115,7 +115,7 @@ void	update_case(std::map<char, bool>& vars, int *idx, std::string& fnc) {
  * @param vars A reference to the map of variables and their current assignments.
  * @param function The logical function in Reverse Polish Notation, as a C-style string.
  */
-void print_table(std::map<char, bool>& vars, char* function) {
+inline void print_table(std::map<char, bool>& vars, char* function) {
 	int	cases_info[2] = {-1, (1 << vars.size()) - 1};
 		while (cases_info[CASE_IDX] < cases_info[TOTAL_CASES]) {
 		std::string fnc(function);

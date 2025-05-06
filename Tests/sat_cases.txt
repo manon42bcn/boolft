@@ -1,0 +1,543 @@
+FEATURE>>>TRUTH TABLE CASES
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat
+expected>>>
+SAT needs 2 arguments: --sat funcString
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat 1! 1!
+expected>>>
+SAT needs 2 arguments: --sat funcString
+<<<expected
+<<<case
+
+case>>>Error Case "AB@="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB@="
+expected>>>
+Unrecognized Symbol
+<<<expected
+<<<case
+
+case>>>Error Case "A5="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A5="
+expected>>>
+Unrecognized Symbol
+<<<expected
+<<<case
+
+case>>>Error Case "-AA="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "-AA="
+expected>>>
+Unrecognized Symbol
+<<<expected
+<<<case
+
+case>>>Error Case "!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "!"
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case ">"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat ">"
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "|"
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "="
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "^"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "^"
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "&"
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "     "
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "     "
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "AB&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB&="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "&AA="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "&AA="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "AA=="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA=="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "ABA|&!A|="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "ABA|&!A|="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "B="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "B="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "A!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A!="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "AB=*"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB=*"
+expected>>>
+Unrecognized Symbol
+<<<expected
+<<<case
+
+case>>>Error Case "A!5="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A!5="
+expected>>>
+Unrecognized Symbol
+<<<expected
+<<<case
+
+case>>>Error Case "11="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "11="
+expected>>>
+No vars were found.
+<<<expected
+<<<case
+
+case>>>Error Case "AA=A!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA=A!"
+expected>>>
+Not Solvable. Too many operands.
+<<<expected
+<<<case
+
+case>>>Error Case "AB&=    !"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB&=    !"
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "A^A="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A^A="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "ABA|&!A|=a"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "ABA|&!A|=a"
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "B!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "B!="
+expected>>>
+Not solvable. Too few operands to resolve.
+<<<expected
+<<<case
+
+case>>>Error Case "AAA!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AAA!="
+expected>>>
+Not Solvable. Too many operands.
+<<<expected
+<<<case
+
+case>>>Case "AB|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AB&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB&"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AA!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AA^""
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA^"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "A!A&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A!A&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "A!A="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A!A="
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AA>!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA>!"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB&AB&!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB&AB&!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB=AB=!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB=AB=!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB^AB^^"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^AB^^"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "ABC&&ABC&&!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "ABC&&ABC&&!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "ABC&^ABC&^!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "ABC&^ABC&^!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB^C>AB^C>!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^C>AB^C>!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "A!!!!!!!!!!!A="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "A!!!!!!!!!!!A="
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB=C>D=AB=C>D=!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB=C>D=AB=C>D=!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB^CD^=AB^CD^=!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^CD^=AB^CD^=!&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "AB^!AB^&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^!AB^&"
+expected>>>
+false
+<<<expected
+<<<case
+
+case>>>Case "K!!!!!!!!!!!L="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "K!!!!!!!!!!!L="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "ABCDEFGHIJK&&&&&&&&&="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "ABCDEFGHIJK&&&&&&&&&="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AC^B&CB=>!C=A|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AC^B&CB=>!C=A|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AC^B&DB=>!F=A|"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AC^B&DB=>!F=A|"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AB^C&D="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^C&D="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "W!!Z!!^W&ZZ=>!Z=W|!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "W!!Z!!^W&ZZ=>!Z=W|!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "W!!Z!!^W&ZZ=>!Z=W|!!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "W!!Z!!^W&ZZ=>!Z=W|!!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "FG^H&I="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "FG^H&I="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "FG^H&I=!"
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "FG^H&I=!"
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "F!G^H&I="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "F!G^H&I="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "F!G!^H!&I!="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "F!G!^H!&I!="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AA=B="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA=B="
+expected>>>
+true
+<<<expected
+<<<case
+
+case>>>Case "AA!=B="
+bin>>>./BoolTests
+fd>>>3
+input>>>--sat "AA!=B="
+expected>>>
+true
+<<<expected
+<<<case
+
+<<<eof

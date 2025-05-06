@@ -257,6 +257,34 @@ expected>>>
 <<<expected
 <<<case
 
+case>>>Formula "AB&AB&!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--truth-table "AB&AB&!&"
+expected>>>
+|  A  |  B  |  =  |
+| --- | --- | --- |
+|  0  |  0  |  0  |
+|  0  |  1  |  0  |
+|  1  |  0  |  0  |
+|  1  |  1  |  0  |
+<<<expected
+<<<case
+
+case>>>Formula "AB=AB=!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--truth-table "AB=AB=!&"
+expected>>>
+|  A  |  B  |  =  |
+| --- | --- | --- |
+|  0  |  0  |  0  |
+|  0  |  1  |  0  |
+|  1  |  0  |  0  |
+|  1  |  1  |  0  |
+<<<expected
+<<<case
+
 case>>>Formula "A"
 bin>>>./BoolTests
 fd>>>3
@@ -266,6 +294,60 @@ expected>>>
 | --- | --- |
 |  0  |  0  |
 |  1  |  1  |
+<<<expected
+<<<case
+
+case>>>Formula "ABC&^ABC&^!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--truth-table "ABC&^ABC&^!&"
+expected>>>
+|  A  |  B  |  C  |  =  |
+| --- | --- | --- | --- |
+|  0  |  0  |  0  |  0  |
+|  0  |  0  |  1  |  0  |
+|  0  |  1  |  0  |  0  |
+|  0  |  1  |  1  |  0  |
+|  1  |  0  |  0  |  0  |
+|  1  |  0  |  1  |  0  |
+|  1  |  1  |  0  |  0  |
+|  1  |  1  |  1  |  0  |
+<<<expected
+<<<case
+
+case>>>Formula "ABC&^ABC&^!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--truth-table "ABC&^ABC&^!&"
+expected>>>
+|  A  |  B  |  C  |  =  |
+| --- | --- | --- | --- |
+|  0  |  0  |  0  |  0  |
+|  0  |  0  |  1  |  0  |
+|  0  |  1  |  0  |  0  |
+|  0  |  1  |  1  |  0  |
+|  1  |  0  |  0  |  0  |
+|  1  |  0  |  1  |  0  |
+|  1  |  1  |  0  |  0  |
+|  1  |  1  |  1  |  0  |
+<<<expected
+<<<case
+
+case>>>Formula "AB^C>AB^C>!&"
+bin>>>./BoolTests
+fd>>>3
+input>>>--truth-table "AB^C>AB^C>!&"
+expected>>>
+|  A  |  B  |  C  |  =  |
+| --- | --- | --- | --- |
+|  0  |  0  |  0  |  0  |
+|  0  |  0  |  1  |  0  |
+|  0  |  1  |  0  |  0  |
+|  0  |  1  |  1  |  0  |
+|  1  |  0  |  0  |  0  |
+|  1  |  0  |  1  |  0  |
+|  1  |  1  |  0  |  0  |
+|  1  |  1  |  1  |  0  |
 <<<expected
 <<<case
 

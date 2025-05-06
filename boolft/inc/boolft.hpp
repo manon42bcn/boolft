@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 16:22:41 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/06 22:09:04 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <stack>
 #include <map>
+#include <vector>
 #include <sstream>
 #include <cstdlib>
 #include <algorithm>
@@ -42,11 +43,17 @@ public:
 #define CASE_IDX			0
 #define TOTAL_CASES			1
 
+// --- Multiple functions utilities
+bool 			is_operator (char c);
+
+// --- Exercises functions
 unsigned int	adder(unsigned int a, unsigned int b);
 unsigned int	multiplier(unsigned int a, unsigned int b);
 int				gray_code(int n);
 bool			eval_formula(char* formula);
 void			print_truth_table(char *function);
+std::string		negation_normal_form(char *formula);
+bool			sat(char *function);
 //
 //#define TRUE				1
 //#define FALSE				0

@@ -2,7 +2,9 @@ SRCS		=	adder.cpp \
 				multiplier.cpp \
 				gray_code.cpp \
 				eval_formula.cpp \
-				print_truth_table.cpp
+				print_truth_table.cpp \
+				nnf.cpp \
+				sat.cpp
 SRCS_DIR	=	srcs
 OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.cpp=.o))
 OBJS_SUBS	= 	obj/

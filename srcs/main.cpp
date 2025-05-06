@@ -6,11 +6,27 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:50:28 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/06 22:13:30 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
+
+void	nnf_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "NNF needs 2 arguments: --nnf funcString" << std::endl;
+		exit(1);
+	}
+	negation_normal_form(argv[2]);
+}
+
+void	sat_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "SAT needs 2 arguments: --sat funcString" << std::endl;
+		exit(1);
+	}
+	std::cout << BOOL_TO_STRING(sat(argv[2])) << std::endl;
+}
 
 void	entrypoint(int argc, char *argv[]) {
 	static std::map<std::string, t_entry> entrypoint;
@@ -21,6 +37,8 @@ void	entrypoint(int argc, char *argv[]) {
 		entrypoint["--gray-code"] = &gray_code_entrypoint;
 		entrypoint["--function"] = &eval_function_entrypoint;
 		entrypoint["--truth-table"] = &truth_table_entrypoint;
+		entrypoint["--nnf"] = &nnf_entrypoint;
+		entrypoint["--sat"] = &sat_entrypoint;
 	}
 	auto it = entrypoint.find(flag);
 	if (it != entrypoint.end()) {
