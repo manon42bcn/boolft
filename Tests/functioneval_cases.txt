@@ -293,7 +293,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "10>"
 expected>>>
-true
+false
 <<<expected
 <<<case
 
@@ -311,7 +311,7 @@ bin>>>./BoolTests
 fd>>>3
 input>>>--function "01>"
 expected>>>
-false
+true
 <<<expected
 <<<case
 

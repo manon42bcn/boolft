@@ -1,4 +1,4 @@
-FEATURE>>>TRUTH TABLE CASES
+FEATURE>>>SAT CASES
 
 case>>>Args Error Case
 bin>>>./BoolTests

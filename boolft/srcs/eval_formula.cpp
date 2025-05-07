@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:48:14 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:35:29 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	solve_rpn(std::stack<bool>& func, char opr) {
 				func.push(a != b);
 				break;
 			case '>':
-				func.push(!(a && !b));
+				func.push(!b || a);
 				break;
 			case '=':
 				func.push(a == b);

@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 22:13:30 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/07 11:44:58 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,21 @@ void	nnf_entrypoint(int argc, char *argv[]) {
 		std::cerr << "NNF needs 2 arguments: --nnf funcString" << std::endl;
 		exit(1);
 	}
-	negation_normal_form(argv[2]);
+	std::string rst = negation_normal_form(argv[2]);
+	std::string orig(argv[2]);
+	std::cout << "original: " << + "\"" + orig + "\"" << std::endl;
+	print_truth_table(argv[2]);
+	std::cout << "converted: " << + "\"" + rst + "\"" << std::endl;
+	print_truth_table((char *)rst.c_str());
 }
 
-
+void	nnf_only_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "NNF only needs 2 arguments: --nnf funcString" << std::endl;
+		exit(1);
+	}
+	std::cout << negation_normal_form(argv[2]) << std::endl;
+}
 
 void	entrypoint(int argc, char *argv[]) {
 	static std::map<std::string, t_entry> entrypoint;
@@ -32,6 +43,7 @@ void	entrypoint(int argc, char *argv[]) {
 		entrypoint["--function"] = &eval_function_entrypoint;
 		entrypoint["--truth-table"] = &truth_table_entrypoint;
 		entrypoint["--nnf"] = &nnf_entrypoint;
+		entrypoint["--nnf-only"] = &nnf_only_entrypoint;
 		entrypoint["--sat"] = &sat_entrypoint;
 	}
 	auto it = entrypoint.find(flag);
