@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 10:20:30 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/08 12:14:00 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void			print_truth_table(char *function);
 std::string		negation_normal_form(char *formula);
 bool			sat(char *function);
 t_pwr_set		powerset(std::vector<int> set);
+t_set			eval_set(char* formula, std::vector<t_set> sets);
 //
 //#define TRUE				1
 //#define FALSE				0

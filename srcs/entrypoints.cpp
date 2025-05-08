@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 11:52:48 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/08 21:54:23 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	powerset_size_entrypoint(int argc, char *argv[]) {
 		std::cerr << "Powerset size needs more than arguments: --powerset-size n0 n1.." << std::endl;
 		exit(1);
 	}
-	(void)argv;
 	size_t token_pos;
 	std::vector<int> set;
 	for (int i = 2; i < argc; i++) {
