@@ -4,7 +4,9 @@ SRCS		=	adder.cpp \
 				eval_formula.cpp \
 				print_truth_table.cpp \
 				nnf.cpp \
-				sat.cpp
+				ccf.cpp \
+				sat.cpp \
+				powerset.cpp
 SRCS_DIR	=	srcs
 OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.cpp=.o))
 OBJS_SUBS	= 	obj/

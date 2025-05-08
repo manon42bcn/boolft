@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 22:09:04 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/08 10:20:30 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <stack>
 #include <map>
+#include <set>
 #include <vector>
 #include <sstream>
 #include <cstdlib>
@@ -43,6 +44,9 @@ public:
 #define CASE_IDX			0
 #define TOTAL_CASES			1
 
+using t_set = std::vector<int>;
+using t_pwr_set = std::vector<t_set>;
+
 // --- Multiple functions utilities
 bool 			is_operator (char c);
 
@@ -54,6 +58,7 @@ bool			eval_formula(char* formula);
 void			print_truth_table(char *function);
 std::string		negation_normal_form(char *formula);
 bool			sat(char *function);
+t_pwr_set		powerset(std::vector<int> set);
 //
 //#define TRUE				1
 //#define FALSE				0

@@ -260,3 +260,4 @@ std::string negation_normal_form(char *formula) {
 	std::string result = fnc.back(); fnc.pop_back();
 	return result;
 }
+
