@@ -6,57 +6,33 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 22:18:12 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/09 01:22:10 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
 
-void	eval_set_entrypoint(int argc, char* argv[]) {
-	if (argc < 6) {
+void	cnf_entrypoint(int argc, char *argv[]) {
+	if (argc < 1) {
 		std::cerr << "Eval sets needs more 6 than arguments: --eval-set A n0 n1.. B ... e" << std::endl;
 		exit(1);
 	}
-	std::vector<std::vector<int>> all_sets;
-	std::vector<int> set;
-	set.clear();
-	size_t token_pos;
-	for (int i = 3; i < argc; i++) {
-		if (argv[i][0] == 'e') {
-			if (!set.empty()) {
-				all_sets.push_back(set);
-			}
-			break;
-		}
-		if (argv[i][0] >= 'A' && argv[i][0] <= 'Z') {
-			if (!set.empty()) {
-				all_sets.push_back(set);
-			}
-			set.clear();
-			continue;
-		}
-		try {
-			int v = std::stoi(argv[i], &token_pos);
-			if (std::find(set.begin(), set.end(), v) != set.end()) {
-				std::cerr << "Set duplicated element." << std::endl;
-				exit(1);
-			}
-			set.push_back(v);
-		} catch (std::exception& e) {
-			std::ostringstream detail;
-			detail << "Error parsing argument: " << e.what();
-			std::cerr << detail.str() << std::endl;
-			exit(1);
-		}
+	std::string nnf = negation_normal_form(argv[2]);
+	std::string cnf = conjunctive_normal_form(argv[2]);
+	std::cout << "original: \"" << argv[2] << "\"" << std::endl;
+	print_truth_table(argv[2]);
+	std::cout << "NNF: \"" << nnf << "\"" << std::endl;
+	print_truth_table((char *)nnf.c_str());
+	std::cout << "CNF: \"" << cnf << "\"" << std::endl;
+	print_truth_table((char *)cnf.c_str());
+}
+
+void	cnf_only_entrypoint(int argc, char *argv[]) {
+	if (argc < 1) {
+		std::cerr << "Eval sets needs more 6 than arguments: --eval-set A n0 n1.. B ... e" << std::endl;
+		exit(1);
 	}
-	t_set rst = eval_set(argv[2], all_sets);
-	std::cout << "[" ;
-	std::string sep = "";
-	for (int elem : rst) {
-		std::cout << sep << elem;
-		sep = ",";
-	}
-	std::cout << "]" << std::endl;
+	std::cout << conjunctive_normal_form(argv[2]) << std::endl;
 }
 
 void	entrypoint(int argc, char *argv[]) {
@@ -74,6 +50,8 @@ void	entrypoint(int argc, char *argv[]) {
 		entrypoint["--powerset"] = &powerset_entrypoint;
 		entrypoint["--powerset-size"] = &powerset_size_entrypoint;
 		entrypoint["--eval-set"] = &eval_set_entrypoint;
+		entrypoint["--cnf"] = &cnf_entrypoint;
+		entrypoint["--cnf-only"] = &cnf_only_entrypoint;
 	}
 	auto it = entrypoint.find(flag);
 	if (it != entrypoint.end()) {

@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 11:53:06 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/08 23:56:27 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ void	nnf_entrypoint(int argc, char *argv[]);
 void	nnf_only_entrypoint(int argc, char *argv[]);
 void	powerset_entrypoint(int argc, char *argv[]);
 void	powerset_size_entrypoint(int argc, char *argv[]);
-
+void	eval_set_entrypoint(int argc, char* argv[]);

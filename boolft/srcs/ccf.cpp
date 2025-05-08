@@ -6,128 +6,172 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:23:54 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/07 18:03:26 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/09 01:53:31 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-///* ************************************************************************** */
-///*                                                                            */
-///*                                                        :::      ::::::::   */
-///*   ccf.cpp                                            :+:      :+:    :+:   */
-///*                                                    +:+ +:+         +:+     */
-///*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
-///*                                                +#+#+#+#+#+   +#+           */
-///*   Created: 2025/05/07 17:23:54 by mporras-          #+#    #+#             */
-///*   Updated: 2025/05/07 17:24:13 by mporras-         ###   ########.fr       */
-///*                                                                            */
-///* ************************************************************************** */
-//
-//#include "boolft.hpp"
-//#include <string>
-//#include <vector>
-//#include <memory>
-//#include <stdexcept>
-//#include <cctype>
-//
-//// --- 1) Estructura de nodo AST ---
-//struct Node {
-//	char op;  // 'A'..'Z' para variable, '!' unario, '&'|'|' binarios
-//	std::shared_ptr<Node> left, right;
-//	Node(char c)             : op(c), left(nullptr),  right(nullptr) {} // var
-//	Node(char c, Ptr l)      : op(c), left(l),         right(nullptr) {} // unario
-//	Node(char c, Ptr l, Ptr r): op(c), left(l),        right(r)   {}     // binario
-//};
-//using Ptr = std::shared_ptr<Node>;
-//
-//// --- 2) Parsear RPN (sólo !, &, |) a AST ---
-//Ptr parse_nnf_rpn(const std::string& rpn) {
-//	std::vector<Ptr> st;
-//	for (char c : rpn) {
-//		if (std::isupper(c)) {
-//			st.push_back(std::make_shared<Node>(c));
-//		}
-//		else if (c == '!') {
-//			if (st.empty()) throw std::runtime_error("Unexpected '!'");
-//			Ptr a = st.back(); st.pop_back();
-//			st.push_back(std::make_shared<Node>('!', a));
-//		}
-//		else if (c=='&' || c=='|') {
-//			if (st.size()<2) throw std::runtime_error("Not enough operands for binary");
-//			Ptr b = st.back(); st.pop_back();
-//			Ptr a = st.back(); st.pop_back();
-//			st.push_back(std::make_shared<Node>(c, a, b));
-//		}
-//		else {
-//			throw std::runtime_error(std::string("Invalid token in NNF RPN: ") + c);
-//		}
-//	}
-//	if (st.size()!=1) throw std::runtime_error("Invalid NNF RPN");
-//	return st[0];
-//}
-//
-//// --- 3) Distribuir OR sobre AND ---
-//Ptr distribute_or(const Ptr& root) {
-//	if (!root) return nullptr;
-//	// Postorden
-//	if (root->left)  root->left  = distribute_or(root->left);
-//	if (root->right) root->right = distribute_or(root->right);
-//
-//	if (root->op == '|') {
-//		// (X & Y) | Z  =>  (X|Z) & (Y|Z)
-//		if (root->left->op == '&') {
-//			Ptr X = root->left->left, Y = root->left->right, Z = root->right;
-//			Ptr a = std::make_shared<Node>('|', X, Z);
-//			Ptr b = std::make_shared<Node>('|', Y, Z);
-//			return std::make_shared<Node>('&',
-//										  distribute_or(a),
-//										  distribute_or(b));
-//		}
-//		// X | (Y & Z)  =>  (X|Y) & (X|Z)
-//		if (root->right->op == '&') {
-//			Ptr X = root->left, Y = root->right->left, Z = root->right->right;
-//			Ptr a = std::make_shared<Node>('|', X, Y);
-//			Ptr b = std::make_shared<Node>('|', X, Z);
-//			return std::make_shared<Node>('&',
-//										  distribute_or(a),
-//										  distribute_or(b));
-//		}
-//	}
-//	return root;
-//}
-//
-//// --- 4) Iterar hasta estabilidad ---
-//Ptr to_cnf_ast(Ptr root) {
-//	Ptr prev;
-//	do {
-//		prev = root;
-//		root = distribute_or(root);
-//	} while (root != prev);
-//	return root;
-//}
-//
-//// --- 5) Volver a RPN con postorden ---
-//void to_rpn(const Ptr& root, std::string &out) {
-//	if (!root) return;
-//	to_rpn(root->left, out);
-//	to_rpn(root->right, out);
-//	out.push_back(root->op);
-//}
-//
-//// --- Función final que encadena todo ---
-//// Recibe la fórmula original en RPN (con >,=,^,…),
-//// primero la normaliza (NNF) y luego la convierte a CNF.
-//std::string full_rpn_to_cnf(char *formula) {
-//	// 1) NNF: sólo !, &, |
-//	std::string nnf = negation_normal_form(formula);
-//
-//	// 2) AST
-//	Ptr ast = parse_nnf_rpn(nnf);
-//
-//	// 3) Distribución y estabilidad
-//	Ptr cnf_ast = to_cnf_ast(ast);
-//
-//	// 4) RPN de salida
-//	std::string cnf_rpn;
-//	to_rpn(cnf_ast, cnf_rpn);
-//	return cnf_rpn;
-//}
+#include "boolft.hpp"
+
+#include <string>
+#include <sstream>
+#include <stack>
+#include <vector>
+#include <cctype>
+
+// --- Tu AST básico ---
+enum Type { VAR, AND, OR, NOT };
+
+struct Node {
+	Type type;
+	std::string var;    // sólo si type == VAR
+	Node* left;         // para NOT, left apunta al literal
+	Node* right;        // para NOT, right == nullptr
+	Node(Type t, const std::string& v="", Node* l=nullptr, Node* r=nullptr)
+			: type(t), var(v), left(l), right(r) {}
+};
+
+void collect(Node* node, Type t, std::vector<Node*>& out) {
+	if (!node)
+		return;
+	if (node->type == t) {
+		collect(node->left,  t, out);
+		collect(node->right, t, out);
+	} else {
+		out.push_back(node);
+	}
+}
+
+Node* flatten(Node* node) {
+	if (!node || (node->type != AND && node->type != OR))
+		return node;
+	std::vector<Node*> elems;
+	collect(node, node->type, elems);
+	if (elems.empty())
+		return node;
+	// reconstruir lista izquierda-derecha
+	Node* res = elems[0];
+	for (size_t i = 1; i < elems.size(); ++i) {
+		res = new Node(node->type, "", res, elems[i]);
+	}
+	return res;
+}
+
+// Aplica flatten recursivo
+Node* normalizeCNF(Node* root) {
+	if (!root) return nullptr;
+	if (root->type == AND || root->type == OR) {
+		root->left  = normalizeCNF(root->left);
+		root->right = normalizeCNF(root->right);
+		root = flatten(root);
+	}
+	return root;
+}
+
+Node* distribute(Node* a, Node* b) {
+	if (b->type == AND) {
+		// X ∨ (Y∧Z)
+		return new Node(AND, "",
+						distribute(a, b->left),
+						distribute(a, b->right)
+		);
+	}
+	if (a->type == AND) {
+		// (X∧Y) ∨ Z
+		return new Node(AND, "",
+						distribute(a->left, b),
+						distribute(a->right, b)
+		);
+	}
+	// Caso base: ni a ni b son AND
+	return new Node(OR, "", a, b);
+}
+
+Node* toCNF(Node* node) {
+	if (!node || node->type == VAR || node->type == NOT)
+		return node;
+	// ① Recursión **antes** de nada
+	node->left  = toCNF(node->left);
+	node->right = toCNF(node->right);
+
+	if (node->type == OR) {
+		// ② Aquí sí debes llamar a distribute
+		return distribute(node->left, node->right);
+	} else {
+		// AND: reconstruye explícitamente
+		return new Node(AND, "", node->left, node->right);
+	}
+}
+
+// ------------------------------------------------------------------
+// 1) Parseo de un RPN (NNF) a AST
+// ------------------------------------------------------------------
+Node* parseRPN(const std::string& rpn) {
+	std::stack<Node*> st;
+	for (char c : rpn) {
+		if (c == '&' || c == '|') {
+			// operador binario
+			if (st.size() < 2)
+				throw std::runtime_error("RPN malformed: operador binario sin suficientes operandos");
+			Node* right = st.top(); st.pop();
+			Node* left  = st.top(); st.pop();
+			st.push(new Node(c == '&' ? AND : OR, "", left, right));
+		}
+		else if (c == '!') {
+			// operador unario (se asume que NNF sólo aplica ! a variables)
+			Node* lit = st.top(); st.pop();
+			st.push(new Node(NOT, "", lit, nullptr));
+		}
+		else {
+			// literal / variable
+			std::string op(1, c);
+			st.push(new Node(VAR, op));
+		}
+	}
+	return st.empty() ? nullptr : st.top();
+}
+
+void toRPN(Node* node, std::vector<std::string>& out) {
+	if (!node)
+		return;
+	if (node->type==VAR) {
+		out.push_back(node->var);
+	} else if (node->type==NOT) {
+		toRPN(node->left, out);
+		out.push_back("!");
+	} else {
+		toRPN(node->left,  out);
+		toRPN(node->right, out);
+		out.push_back(node->type==AND ? "&" : "|");
+	}
+}
+
+// ------------------------------------------------------------------
+// 2) Función principal: de RPN-entrada → RPN-CNF
+// ------------------------------------------------------------------
+std::string conjunctive_normal_form(char* formula) {
+	// 2.1 Obtenemos la NNF en RPN
+	std::string nnf_rpn = negation_normal_form(formula);
+
+	// 2.2 Parseamos esa NNF-RPN a un AST
+	try {
+		Node* nnf_root = parseRPN(nnf_rpn);
+
+		// 2.3 Convertimos ese AST NNF → AST CNF
+		Node* cnf_root = toCNF(nnf_root);
+		cnf_root = normalizeCNF(cnf_root);
+
+		// 2.4 Recorremos post-order para emitir RPN de la CNF
+		std::vector<std::string> cnf_tokens;
+		toRPN(cnf_root, cnf_tokens);
+
+		// 2.5 Concatenamos en un único string separado por espacios
+		std::ostringstream oss;
+		for (size_t i = 0; i < cnf_tokens.size(); ++i) {
+			if (i) oss << "";
+			oss << cnf_tokens[i];
+		}
+		return oss.str();
+	} catch (std::exception& e) {
+		throw BoolFtException("The CNF grow too much.");
+	}
+}
