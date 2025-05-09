@@ -7,7 +7,9 @@ SRCS		=	adder.cpp \
 				ccf.cpp \
 				sat.cpp \
 				powerset.cpp \
-				eval_set.cpp
+				eval_set.cpp \
+				map.cpp \
+				reverse_map.cpp
 SRCS_DIR	=	srcs
 OBJS 		=	$(addprefix $(OBJS_DIR)/,$(SRCS:.cpp=.o))
 OBJS_SUBS	= 	obj/

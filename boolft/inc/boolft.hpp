@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 23:58:09 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/09 11:02:39 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ public:
 
 using t_set = std::vector<int>;
 using t_pwr_set = std::vector<t_set>;
+
+enum e_type { VAR, AND, OR, NOT };
+struct s_cnf_node {
+	e_type type;
+	std::string var;
+	s_cnf_node* left;
+	s_cnf_node* right;
+	s_cnf_node(e_type t, const std::string& v="", s_cnf_node* l=nullptr, s_cnf_node* r=nullptr)
+			: type(t), var(v), left(l), right(r) {}
+};
 
 // --- Multiple functions utilities
 bool 			is_operator (char c);
