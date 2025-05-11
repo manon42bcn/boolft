@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 02:13:18 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/09 02:16:42 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/11 22:53:17 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,13 @@ static uint32_t mortonInterleave(uint32_t x, uint32_t y) {
 
 // Prototipo: mapea (x,y) ∈ [0,2^16−1]^2  → t ∈ [0,1]
 // Comportamiento indefinido si x o y ≥ 2^16, pero mostramos un mensaje de error.
-double f(uint32_t x, uint32_t y) {
+double map(uint32_t x, uint32_t y) {
 	const uint32_t MAX = (1u << 16) - 1;
 	if (x > MAX || y > MAX) {
 		std::cerr << "Error: coordenadas fuera de rango [0," << MAX << "]\n";
-		// comportamiento indefinido: devolvemos NaN
 		return std::numeric_limits<double>::quiet_NaN();
 	}
 	uint32_t code = mortonInterleave(x, y);
-	// normalizamos a [0,1]:
-	//   el valor máximo posible es 2^32−1 = 4294967295
 	return double(code) / double(0xFFFFFFFFu);
 }
 

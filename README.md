@@ -1,57 +1,18 @@
-# Comprehensive README: Spatial and Discrete Operations Library
+# Ready, set, Bool!
 
-This README presents an educational overview of four main functional groups implemented in this library, enriched with ASCII diagrams to illustrate core concepts:
 
-1. **Space-Filling Curves** (Morton/Z-order encoding and decoding)
+
+1. **Bit, Booleans and Touring Machine**
 2. **Bitwise Arithmetic and Gray Code**
 3. **Logical Expression Evaluation in Reverse Polish Notation (RPN) and Truth Tables**
 4. **Finite Set Operations** (power set generation and set-based logic)
+5. **Space-Filling Curves** (Morton/Z-order encoding and decoding)
 
 Each section explains the motivations, step-by-step processes, and typical use cases, complemented by visual aids.
 
 ---
 
-## 1. Space-Filling Curves: Morton (Z-order)
 
-**Purpose:** Transform 2D coordinates into a single dimension while preserving locality.
-
-### 1.1 Concept Diagram
-
-A 4×4 grid traversed in Z-order:
-
-```
-  y=3  [10] [11] [14] [15]
-  y=2  [ 8] [ 9] [12] [13]
-  y=1  [ 2] [ 3] [ 6] [ 7]
-  y=0  [ 0] [ 1] [ 4] [ 5]
-        x=0   1    2    3
-```
-
-The path follows:
-
-```
-  start→(0,0)->(1,0)->(0,1)->(1,1)---
-                    |                
-             (2,0)->(3,0)->(2,1)->(3,1)
-                    |                
-      (0,2)->(1,2)->(0,3)->(1,3)--- 
-                    |                
-      (2,2)->(3,2)->(2,3)->(3,3) end
-```
-
-### 1.2 Bit Interleaving Diagram
-
-For 2-bit x and y:
-
-```
-  x = x1 x0    y = y1 y0
-            ↓ interleave
-  Morton = x1 y1 x0 y0
-```
-
-*Example:* x=2 (10₂), y=1 (01₂) → Morton=1 0 0 1₂ = 9.
-
----
 
 ## 2. Bitwise Arithmetic and Gray Code
 
@@ -135,7 +96,7 @@ Formulas:
 
 ### 3.1 RPN Evaluation Diagram
 
-Expression: `A B AND C OR` (meaning `(A ∧ B) ∨ C`)
+Expression: `AB&|` (meaning `(A ∧ B) ∨ C`)
 
 ```
 Tokens: A  B  AND  C  OR
@@ -143,7 +104,7 @@ Stack:         []
 Read A → push A    [A]
 Read B → push B    [A, B]
 Read AND → pop B, A; push (A∧B) → [(A∧B)]
-Read C → push C    [(A∧B), C]
+Read C → push C  [(A∧B), C]
 Read OR → pop C, (A∧B); push ((A∧B)∨C) → [Result]
 ```
 
@@ -196,6 +157,48 @@ Given set `S = {a, b, c}`, n=3:
 
 ---
 
+## 5. Space-Filling Curves: Morton (Z-order)
+
+**Purpose:** Transform 2D coordinates into a single dimension while preserving locality.
+
+### 5.1 Concept Diagram
+
+A 4×4 grid traversed in Z-order:
+
+```
+  y=3  [10] [11] [14] [15]
+  y=2  [ 8] [ 9] [12] [13]
+  y=1  [ 2] [ 3] [ 6] [ 7]
+  y=0  [ 0] [ 1] [ 4] [ 5]
+        x=0   1    2    3
+```
+
+The path follows:
+
+```
+  start→(0,0)->(1,0)->(0,1)->(1,1)---
+                    |                
+             (2,0)->(3,0)->(2,1)->(3,1)
+                    |                
+      (0,2)->(1,2)->(0,3)->(1,3)--- 
+                    |                
+      (2,2)->(3,2)->(2,3)->(3,3) end
+```
+
+### 5.2 Bit Interleaving Diagram
+
+For 2-bit x and y:
+
+```
+  x = x1 x0    y = y1 y0
+            ↓ interleave
+  Morton = x1 y1 x0 y0
+```
+
+*Example:* x=2 (10₂), y=1 (01₂) → Morton=1 0 0 1₂ = 9.
+
+---
+
 ## 5. Practical Notes
 
 * ASCII diagrams aid intuition before diving into code.
@@ -211,5 +214,3 @@ Given set `S = {a, b, c}`, n=3:
 * Online tools for RPN calculators and set visualization.
 
 ---
-
-*This document is intended as a didactic reference for discrete algorithms and spatial mappings, balancing theory with visual intuition.*

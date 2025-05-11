@@ -18,6 +18,7 @@ LIB_LINKS		=	-L./$(LIBS_DIR) -lboolft
 RM				=	rm -rf
 CC				=	c++
 MAKE 			=	make --no-print-directory
+MEM_CHECK		= 	-g -fsanitize=address,undefined
 
 all: library $(OBJ_SUBS) $(NAME)
 

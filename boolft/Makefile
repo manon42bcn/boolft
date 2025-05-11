@@ -4,7 +4,7 @@ SRCS		=	adder.cpp \
 				eval_formula.cpp \
 				print_truth_table.cpp \
 				nnf.cpp \
-				ccf.cpp \
+				cnf.cpp \
 				sat.cpp \
 				powerset.cpp \
 				eval_set.cpp \

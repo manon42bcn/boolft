@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/09 11:02:39 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/10 22:53:50 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ std::string		conjunctive_normal_form(char* formula);
 bool			sat(char *function);
 t_pwr_set		powerset(std::vector<int> set);
 t_set			eval_set(char* formula, std::vector<t_set> sets);
+double			map(uint32_t x, uint32_t y);
+void			reverse_map(double t, uint32_t &x, uint32_t &y);
 //
 //#define TRUE				1
 //#define FALSE				0

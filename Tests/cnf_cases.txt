@@ -1,5 +1,67 @@
 FEATURE>>>CNF CASES
 
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf
+expected>>>
+CCF needs 2 arguments: --cnf funcString
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf A! A!
+expected>>>
+CCF needs 2 arguments: --cnf funcString
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf-only
+expected>>>
+CCF only needs 2 arguments: --cnf funcString
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf-only A! A!
+expected>>>
+CCF only needs 2 arguments: --cnf funcString
+<<<expected
+<<<case
+
+case>>>Error Case "AB>*"
+bin>>>./BoolTests
+fd>>>3
+input>>>--nnf "AB>*"
+expected>>>
+Unrecognized symbol.
+<<<expected
+<<<case
+
+case>>>Overflow Error
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf-only "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
+expected>>>
+Error Building CNF function: CNF Normalization grew too much.
+<<<expected
+<<<case
+
+case>>>Overflow Error
+bin>>>./BoolTests
+fd>>>3
+input>>>--cnf-only "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB=B&&B|A|AB=B&&B|A|!!"
+expected>>>
+Error Building CNF function: CNF Normalization grew too much.
+<<<expected
+<<<case
 
 case>>> Case "AB|!A|B|A|B|A|B|"
 bin>>>./BoolTests
@@ -460,34 +522,6 @@ CNF: "A!B|C!|D|AB!|C!|D|&"
 |  1  |  1  |  0  |  1  |  1  |
 |  1  |  1  |  1  |  0  |  1  |
 |  1  |  1  |  1  |  1  |  1  |
-<<<expected
-<<<case
-
-case>>> Case "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
-bin>>>./BoolTests
-input>>>--cnf "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
-expected>>>
-original: "AB^B&BB=>!A=A|!B^B&BB=>!A=A|!!AB|B&&B|A|AB|B&&B|A|!!"
-|  A  |  B  |  =  |
-| --- | --- | --- |
-|  0  |  0  |  0  |
-|  0  |  1  |  1  |
-|  1  |  0  |  1  |
-|  1  |  1  |  1  |
-NNF: "A!B|AB!|&B!|BB&B!B!&||A!|AB!&A!B&|B&B!B!|BB|&&A|&A!&B!&AB!&A!B&|B&B!B!|BB|&&A&A!B|AB!|&B!|BB&B!B!&||A!&|A|B&|B&B!B!|BB|&&A&AB!&A!B&|B&B!B!|BB|&&A&A!B|AB!|&B!|BB&B!B!&||A!&|A|B|A!B|AB!|&B!|BB&B!B!&||A!|AB!&A!B&|B&B!B!|BB|&&A|&A!&B!|&B!|BB&B!B!&||A!&|A|AB|B&&B|A|AB|B&&B|A|"
-|  A  |  B  |  =  |
-| --- | --- | --- |
-|  0  |  0  |  0  |
-|  0  |  1  |  1  |
-|  1  |  0  |  1  |
-|  1  |  1  |  1  |
-CNF: ""
-|  A  |  B  |  =  |
-| --- | --- | --- |
-|  0  |  0  |  0  |
-|  0  |  1  |  1  |
-|  1  |  0  |  1  |
-|  1  |  1  |  1  |
 <<<expected
 <<<case
 

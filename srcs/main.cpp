@@ -6,15 +6,41 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/09 01:22:10 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/11 23:00:53 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
 
+void	reverse_map_entrypoint(int argc, char *argv[]) {
+	if (argc != 2) {
+		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
+		exit(1);
+	}
+	(void)argv;
+	uint32_t x = 0, y = 0;
+	double db = 0.652833;
+	reverse_map(db, x, y);
+	std::cout << " x - y " << x << " - " << y << std::endl;
+}
+
+void	map_entrypoint(int argc, char *argv[]) {
+	if (argc != 2) {
+		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
+		exit(1);
+	}
+	(void)argv;
+	uint32_t x = 12345;
+	uint32_t y = 54321;
+	double db = map(x, y);
+	std::cout << map(x, y) << std::endl;
+	reverse_map(db, x, y);
+	std::cout << " x - y " << x << " - " << y << std::endl;
+}
+
 void	cnf_entrypoint(int argc, char *argv[]) {
-	if (argc < 1) {
-		std::cerr << "Eval sets needs more 6 than arguments: --eval-set A n0 n1.. B ... e" << std::endl;
+	if (argc != 3) {
+		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
 		exit(1);
 	}
 	std::string nnf = negation_normal_form(argv[2]);
@@ -28,8 +54,8 @@ void	cnf_entrypoint(int argc, char *argv[]) {
 }
 
 void	cnf_only_entrypoint(int argc, char *argv[]) {
-	if (argc < 1) {
-		std::cerr << "Eval sets needs more 6 than arguments: --eval-set A n0 n1.. B ... e" << std::endl;
+	if (argc != 3) {
+		std::cerr << "CCF only needs 2 arguments: --cnf funcString" << std::endl;
 		exit(1);
 	}
 	std::cout << conjunctive_normal_form(argv[2]) << std::endl;
@@ -52,6 +78,8 @@ void	entrypoint(int argc, char *argv[]) {
 		entrypoint["--eval-set"] = &eval_set_entrypoint;
 		entrypoint["--cnf"] = &cnf_entrypoint;
 		entrypoint["--cnf-only"] = &cnf_only_entrypoint;
+		entrypoint["--map"] = &map_entrypoint;
+		entrypoint["--reverse-map"] = &reverse_map_entrypoint;
 	}
 	auto it = entrypoint.find(flag);
 	if (it != entrypoint.end()) {
