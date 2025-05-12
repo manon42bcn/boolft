@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/12 20:23:50 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:38:00 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void	sat_entrypoint(int argc, char *argv[]) {
 		std::cerr << "SAT needs 2 arguments: --sat funcString" << std::endl;
 		exit(1);
 	}
-	std::cout << BOOL_TO_STRING(sat(argv[2])) << std::endl;
+	std::cout << BOOL_TO_STRING((int)sat(argv[2])) << std::endl;
 }
 
 void	truth_table_entrypoint(int argc, char *argv[]) {
@@ -289,7 +289,7 @@ void	eval_function_entrypoint(int argc, char *argv[]) {
 		std::cerr << "Function eval needs 2 arguments: --function funcString" << std::endl;
 		exit(1);
 	}
-	std::cout << BOOL_TO_STRING(eval_formula(argv[2])) << std::endl;
+	std::cout << BOOL_TO_STRING((int)eval_formula(argv[2])) << std::endl;
 }
 
 void	gray_code_entrypoint(int argc, char *argv[]) {

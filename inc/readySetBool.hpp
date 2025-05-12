@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/12 20:03:47 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:37:17 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <charconv>
+#include <limits>
 #include "../boolft/inc/boolft.hpp"
 
 typedef void (*t_entry)(int argc, char* argv[]);
