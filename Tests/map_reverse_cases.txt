@@ -1,0 +1,463 @@
+FEATURE>>>REVERSE MAP CASES
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--reverse-map
+expected>>>
+Reverse Map test entrypoint needs 2 arguments: --reverse-map mappedDouble
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--reverse-map 0.5 0.5
+expected>>>
+Reverse Map test entrypoint needs 2 arguments: --reverse-map mappedDouble
+<<<expected
+<<<case
+
+case>>> Case "0.44676040868432271"
+bin>>>./BoolTests
+input>>>--reverse-map 0.44676040868432271
+expected>>>
+Input 0.44676040868432271 : X = 52888 Y = 21468
+<<<expected
+<<<case
+
+case>>> Case "0.64225695530005189"
+bin>>>./BoolTests
+input>>>--reverse-map 0.64225695530005189
+expected>>>
+Input 0.64225695530005189 : X = 10448 Y = 51167
+<<<expected
+<<<case
+
+case>>> Case "0.71818292041266873"
+bin>>>./BoolTests
+input>>>--reverse-map 0.71818292041266873
+expected>>>
+Input 0.71818292041266873 : X = 31997 Y = 56207
+<<<expected
+<<<case
+
+case>>> Case "0.54405986576901277"
+bin>>>./BoolTests
+input>>>--reverse-map 0.54405986576901277
+expected>>>
+Input 0.54405986576901277 : X = 6936 Y = 45453
+<<<expected
+<<<case
+
+case>>> Case "0.92584651474045743"
+bin>>>./BoolTests
+input>>>--reverse-map 0.92584651474045743
+expected>>>
+Input 0.92584651474045743 : X = 45743 Y = 57372
+<<<expected
+<<<case
+
+case>>> Case "0.6699364082119279"
+bin>>>./BoolTests
+input>>>--reverse-map 0.6699364082119279
+expected>>>
+Input 0.6699364082119279 : X = 4317 Y = 63705
+<<<expected
+<<<case
+
+case>>> Case "0.79090743949425113"
+bin>>>./BoolTests
+input>>>--reverse-map 0.79090743949425113
+expected>>>
+Input 0.79090743949425113 : X = 35980 Y = 46829
+<<<expected
+<<<case
+
+case>>> Case "0.58814897215649231"
+bin>>>./BoolTests
+input>>>--reverse-map 0.58814897215649231
+expected>>>
+Input 0.58814897215649231 : X = 25772 Y = 39154
+<<<expected
+<<<case
+
+case>>> Case "0.8654446112610038"
+bin>>>./BoolTests
+input>>>--reverse-map 0.8654446112610038
+expected>>>
+Input 0.8654446112610038 : X = 62387 Y = 43670
+<<<expected
+<<<case
+
+case>>> Case "0.74544089560989313"
+bin>>>./BoolTests
+input>>>--reverse-map 0.74544089560989313
+expected>>>
+Input 0.74544089560989313 : X = 28521 Y = 63583
+<<<expected
+<<<case
+
+case>>> Case "0.21220589131401058"
+bin>>>./BoolTests
+input>>>--reverse-map 0.21220589131401058
+expected>>>
+Input 0.21220589131401058 : X = 27909 Y = 20801
+<<<expected
+<<<case
+
+case>>> Case "0.69440339149311259"
+bin>>>./BoolTests
+input>>>--reverse-map 0.69440339149311259
+expected>>>
+Input 0.69440339149311259 : X = 23188 Y = 51324
+<<<expected
+<<<case
+
+case>>> Case "0.62285705321069273"
+bin>>>./BoolTests
+input>>>--reverse-map 0.62285705321069273
+expected>>>
+Input 0.62285705321069273 : X = 32061 Y = 46512
+<<<expected
+<<<case
+
+case>>> Case "0.57587296901640317"
+bin>>>./BoolTests
+input>>>--reverse-map 0.57587296901640317
+expected>>>
+Input 0.57587296901640317 : X = 23188 Y = 38500
+<<<expected
+<<<case
+
+case>>> Case "0.69910060048548051"
+bin>>>./BoolTests
+input>>>--reverse-map 0.69910060048548051
+expected>>>
+Input 0.69910060048548051 : X = 19611 Y = 56841
+<<<expected
+<<<case
+
+case>>> Case "0.64244330619518719"
+bin>>>./BoolTests
+input>>>--reverse-map 0.64244330619518719
+expected>>>
+Input 0.64244330619518719 : X = 12039 Y = 50546
+<<<expected
+<<<case
+
+case>>> Case "0.54782290373645326"
+bin>>>./BoolTests
+input>>>--reverse-map 0.54782290373645326
+expected>>>
+Input 0.54782290373645326 : X = 9843 Y = 42807
+<<<expected
+<<<case
+
+case>>> Case "0.026277820585825909"
+bin>>>./BoolTests
+input>>>--reverse-map 0.026277820585825909
+expected>>>
+Input 0.026277820585825909 : X = 9250 Y = 8014
+<<<expected
+<<<case
+
+case>>> Case "0.59479209864390825"
+bin>>>./BoolTests
+input>>>--reverse-map 0.59479209864390825
+expected>>>
+Input 0.59479209864390825 : X = 19089 Y = 41017
+<<<expected
+<<<case
+
+case>>> Case "0.7899633594299581"
+bin>>>./BoolTests
+input>>>--reverse-map 0.7899633594299581
+expected>>>
+Input 0.7899633594299581 : X = 34073 Y = 46894
+<<<expected
+<<<case
+
+case>>> Case "0.62366587753027347"
+bin>>>./BoolTests
+input>>>--reverse-map 0.62366587753027347
+expected>>>
+Input 0.62366587753027347 : X = 28753 Y = 48773
+<<<expected
+<<<case
+
+case>>> Case "0.36242283889148919"
+bin>>>./BoolTests
+input>>>--reverse-map 0.36242283889148919
+expected>>>
+Input 0.36242283889148919 : X = 60264 Y = 10736
+<<<expected
+<<<case
+
+case>>> Case "0.7668815517720956"
+bin>>>./BoolTests
+input>>>--reverse-map 0.7668815517720956
+expected>>>
+Input 0.7668815517720956 : X = 44252 Y = 33060
+<<<expected
+<<<case
+
+case>>> Case "0.5254538342183116"
+bin>>>./BoolTests
+input>>>--reverse-map 0.5254538342183116
+expected>>>
+Input 0.5254538342183116 : X = 8749 Y = 38982
+<<<expected
+<<<case
+
+case>>> Case "0.52698536276048635"
+bin>>>./BoolTests
+input>>>--reverse-map 0.52698536276048635
+expected>>>
+Input 0.52698536276048635 : X = 10264 Y = 40593
+<<<expected
+<<<case
+
+case>>> Case "0.9829573505518393"
+bin>>>./BoolTests
+input>>>--reverse-map 0.9829573505518393
+expected>>>
+Input 0.9829573505518393 : X = 53625 Y = 64794
+<<<expected
+<<<case
+
+case>>> Case "0.162531636693173"
+bin>>>./BoolTests
+input>>>--reverse-map 0.162531636693173
+expected>>>
+Input 0.162531636693173 : X = 5416 Y = 27620
+<<<expected
+<<<case
+
+case>>> Case "0.5002469412284547"
+bin>>>./BoolTests
+input>>>--reverse-map 0.5002469412284547
+expected>>>
+Input 0.5002469412284547 : X = 1070 Y = 32894
+<<<expected
+<<<case
+
+case>>> Case "0.091129569823651946"
+bin>>>./BoolTests
+input>>>--reverse-map 0.091129569823651946
+expected>>>
+Input 0.091129569823651946 : X = 32428 Y = 4103
+<<<expected
+<<<case
+
+case>>> Case "0.9961423028717149"
+bin>>>./BoolTests
+input>>>--reverse-map 0.9961423028717149
+expected>>>
+Input 0.9961423028717149 : X = 61734 Y = 61816
+<<<expected
+<<<case
+
+case>>> Case "0.87183017723072087"
+bin>>>./BoolTests
+input>>>--reverse-map 0.87183017723072087
+expected>>>
+Input 0.87183017723072087 : X = 62612 Y = 46101
+<<<expected
+<<<case
+
+case>>> Case "0.037373309963702528"
+bin>>>./BoolTests
+input>>>--reverse-map 0.037373309963702528
+expected>>>
+Input 0.037373309963702528 : X = 5540 Y = 10274
+<<<expected
+<<<case
+
+case>>> Case "0.569008621752497"
+bin>>>./BoolTests
+input>>>--reverse-map 0.569008621752497
+expected>>>
+Input 0.569008621752497 : X = 20515 Y = 36778
+<<<expected
+<<<case
+
+case>>> Case "0.87160785982189881"
+bin>>>./BoolTests
+input>>>--reverse-map 0.87160785982189881
+expected>>>
+Input 0.87160785982189881 : X = 61790 Y = 46272
+<<<expected
+<<<case
+
+case>>> Case "0.08185749921990966"
+bin>>>./BoolTests
+input>>>--reverse-map 0.08185749921990966
+expected>>>
+Input 0.08185749921990966 : X = 28268 Y = 3245
+<<<expected
+<<<case
+
+case>>> Case "0.20862908573090777"
+bin>>>./BoolTests
+input>>>--reverse-map 0.20862908573090777
+expected>>>
+Input 0.20862908573090777 : X = 30838 Y = 18134
+<<<expected
+<<<case
+
+case>>> Case "0.27078695811116765"
+bin>>>./BoolTests
+input>>>--reverse-map 0.27078695811116765
+expected>>>
+Input 0.27078695811116765 : X = 48281 Y = 306
+<<<expected
+<<<case
+
+case>>> Case "0.95241640367368618"
+bin>>>./BoolTests
+input>>>--reverse-map 0.95241640367368618
+expected>>>
+Input 0.95241640367368618 : X = 56629 Y = 55486
+<<<expected
+<<<case
+
+case>>> Case "0.78808204917891"
+bin>>>./BoolTests
+input>>>--reverse-map 0.78808204917891
+expected>>>
+Input 0.78808204917891 : X = 38761 Y = 45049
+<<<expected
+<<<case
+
+case>>> Case "0.88056138341328161"
+bin>>>./BoolTests
+input>>>--reverse-map 0.88056138341328161
+expected>>>
+Input 0.88056138341328161 : X = 39619 Y = 50793
+<<<expected
+<<<case
+
+case>>> Case "0.30634525728094048"
+bin>>>./BoolTests
+input>>>--reverse-map 0.30634525728094048
+expected>>>
+Input 0.30634525728094048 : X = 43555 Y = 14026
+<<<expected
+<<<case
+
+case>>> Case "0.79002181947930294"
+bin>>>./BoolTests
+input>>>--reverse-map 0.79002181947930294
+expected>>>
+Input 0.79002181947930294 : X = 34535 Y = 47036
+<<<expected
+<<<case
+
+case>>> Case "0.54088175192961507"
+bin>>>./BoolTests
+input>>>--reverse-map 0.54088175192961507
+expected>>>
+Input 0.54088175192961507 : X = 3933 Y = 46447
+<<<expected
+<<<case
+
+case>>> Case "0.79171391641528199"
+bin>>>./BoolTests
+input>>>--reverse-map 0.79171391641528199
+expected>>>
+Input 0.79171391641528199 : X = 33688 Y = 48789
+<<<expected
+<<<case
+
+case>>> Case "0.041503063179902523"
+bin>>>./BoolTests
+input>>>--reverse-map 0.041503063179902523
+expected>>>
+Input 0.041503063179902523 : X = 2013 Y = 15307
+<<<expected
+<<<case
+
+case>>> Case "0.20513047748364752"
+bin>>>./BoolTests
+input>>>--reverse-map 0.20513047748364752
+expected>>>
+Input 0.20513047748364752 : X = 25006 Y = 18800
+<<<expected
+<<<case
+
+case>>> Case "0.82510156040664329"
+bin>>>./BoolTests
+input>>>--reverse-map 0.82510156040664329
+expected>>>
+Input 0.82510156040664329 : X = 54741 Y = 38578
+<<<expected
+<<<case
+
+case>>> Case "0.92860679606176144"
+bin>>>./BoolTests
+input>>>--reverse-map 0.92860679606176144
+expected>>>
+Input 0.92860679606176144 : X = 46377 Y = 61035
+<<<expected
+<<<case
+
+case>>> Case "0.6032288341324844"
+bin>>>./BoolTests
+input>>>--reverse-map 0.6032288341324844
+expected>>>
+Input 0.6032288341324844 : X = 19308 Y = 46661
+<<<expected
+<<<case
+
+case>>> Case "0.2669107523436916"
+bin>>>./BoolTests
+input>>>--reverse-map 0.2669107523436916
+expected>>>
+Input 0.2669107523436916 : X = 44700 Y = 18
+<<<expected
+<<<case
+
+case>>> Case "0.84752193089749706"
+bin>>>./BoolTests
+input>>>--reverse-map 0.84752193089749706
+expected>>>
+Input 0.84752193089749706 : X = 53071 Y = 44375
+<<<expected
+<<<case
+
+case>>> Case "0.11433337189125209"
+bin>>>./BoolTests
+input>>>--reverse-map 0.11433337189125209
+expected>>>
+Input 0.11433337189125209 : X = 31443 Y = 8414
+<<<expected
+<<<case
+
+case>>> Case "0.73027297079802322"
+bin>>>./BoolTests
+input>>>--reverse-map 0.73027297079802322
+expected>>>
+Input 0.73027297079802322 : X = 19742 Y = 64883
+<<<expected
+<<<case
+
+case>>> Case "0.16063997851699591"
+bin>>>./BoolTests
+input>>>--reverse-map 0.16063997851699591
+expected>>>
+Input 0.16063997851699591 : X = 5974 Y = 25563
+<<<expected
+<<<case
+
+case>>> Case "0.55703909405438212"
+bin>>>./BoolTests
+input>>>--reverse-map 0.55703909405438212
+expected>>>
+Input 0.55703909405438212 : X = 9333 Y = 47909
+<<<expected
+<<<case
+
+
+
+<<<eof

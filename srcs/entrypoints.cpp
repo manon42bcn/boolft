@@ -6,11 +6,36 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/08 23:56:19 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:42:50 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
+
+
+
+void	cnf_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
+		exit(1);
+	}
+	std::string nnf = negation_normal_form(argv[2]);
+	std::string cnf = conjunctive_normal_form(argv[2]);
+	std::cout << "original: \"" << argv[2] << "\"" << std::endl;
+	print_truth_table(argv[2]);
+	std::cout << "NNF: \"" << nnf << "\"" << std::endl;
+	print_truth_table((char *)nnf.c_str());
+	std::cout << "CNF: \"" << cnf << "\"" << std::endl;
+	print_truth_table((char *)cnf.c_str());
+}
+
+void	cnf_only_entrypoint(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "CCF only needs 2 arguments: --cnf funcString" << std::endl;
+		exit(1);
+	}
+	std::cout << conjunctive_normal_form(argv[2]) << std::endl;
+}
 
 void	eval_set_entrypoint(int argc, char* argv[]) {
 	if (argc < 6) {

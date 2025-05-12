@@ -1,0 +1,488 @@
+FEATURE>>>MAP AND REVERSE CASES
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--map-and-reverse
+expected>>>
+Map and reverse test entrypoint needs 3 arguments: --map-and-reverse strX strY
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--map-and-reverse 1 2 3
+expected>>>
+Map and reverse test entrypoint needs 3 arguments: --map-and-reverse strX strY
+<<<expected
+<<<case
+
+case>>> Args parse error
+bin>>>./BoolTests
+fd>>>3
+input>>>--map-and-reverse one two
+expected>>>
+Invalid Argument to parse to uint32_t.
+<<<expected
+<<<case
+
+case>>>Args out of range
+bin>>>./BoolTests
+fd>>>3
+input>>>--map-and-reverse 123456789 123456789
+expected>>>
+Error. Coordinates out of range: [0, 65535]
+<<<expected
+<<<case
+
+case>>>Args out of range
+bin>>>./BoolTests
+fd>>>3
+input>>>--map-and-reverse -1 -2
+expected>>>
+Invalid Argument to parse to uint32_t.
+<<<expected
+<<<case
+
+case>>> Case "0 - 0"
+bin>>>./BoolTests
+input>>>--map-and-reverse 0 0
+expected>>>
+Input X = 0 Y = 0 Mapped: 0 X' = 0 Y' = 0 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "12823 - 14240"
+bin>>>./BoolTests
+input>>>--map-and-reverse 12823 14240
+expected>>>
+Input X = 12823 Y = 14240 Mapped: 0.059303825036460492 X' = 12823 Y' = 14240 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "59163 - 36637"
+bin>>>./BoolTests
+input>>>--map-and-reverse 59163 36637
+expected>>>
+Input X = 59163 Y = 36637 Mapped: 0.83103966150224196 X' = 59163 Y' = 36637 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "42533 - 10371"
+bin>>>./BoolTests
+input>>>--map-and-reverse 42533 10371
+expected>>>
+Input X = 42533 Y = 10371 Mapped: 0.29914117495043696 X' = 42533 Y' = 10371 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "10616 - 47497"
+bin>>>./BoolTests
+input>>>--map-and-reverse 10616 47497
+expected>>>
+Input X = 10616 Y = 47497 Mapped: 0.55767189025824704 X' = 10616 Y' = 47497 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "38825 - 64211"
+bin>>>./BoolTests
+input>>>--map-and-reverse 38825 64211
+expected>>>
+Input X = 38825 Y = 64211 Mapped: 0.92037810662770136 X' = 38825 Y' = 64211 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "31283 - 392"
+bin>>>./BoolTests
+input>>>--map-and-reverse 31283 392
+expected>>>
+Input X = 31283 Y = 392 Mapped: 0.083107323637955671 X' = 31283 Y' = 392 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "20643 - 878"
+bin>>>./BoolTests
+input>>>--map-and-reverse 20643 878
+expected>>>
+Input X = 20643 Y = 878 Mapped: 0.066565315487460544 X' = 20643 Y' = 878 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "28272 - 2861"
+bin>>>./BoolTests
+input>>>--map-and-reverse 28272 2861
+expected>>>
+Input X = 28272 Y = 2861 Mapped: 0.081514217444116771 X' = 28272 Y' = 2861 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "60927 - 11987"
+bin>>>./BoolTests
+input>>>--map-and-reverse 60927 11987
+expected>>>
+Input X = 60927 Y = 11987 Mapped: 0.36318918302729475 X' = 60927 Y' = 11987 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "23919 - 1023"
+bin>>>./BoolTests
+input>>>--map-and-reverse 23919 1023
+expected>>>
+Input X = 23919 Y = 1023 Mapped: 0.067806184074796313 X' = 23919 Y' = 1023 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "62894 - 27806"
+bin>>>./BoolTests
+input>>>--map-and-reverse 62894 27806
+expected>>>
+Input X = 62894 Y = 27806 Mapped: 0.49099391617136867 X' = 62894 Y' = 27806 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "7528 - 4455"
+bin>>>./BoolTests
+input>>>--map-and-reverse 7528 4455
+expected>>>
+Input X = 7528 Y = 4455 Mapped: 0.012988830453946448 X' = 7528 Y' = 4455 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "39100 - 31753"
+bin>>>./BoolTests
+input>>>--map-and-reverse 39100 31753
+expected>>>
+Input X = 39100 Y = 31753 Mapped: 0.42139088046303735 X' = 39100 Y' = 31753 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "14711 - 60578"
+bin>>>./BoolTests
+input>>>--map-and-reverse 14711 60578
+expected>>>
+Input X = 14711 Y = 60578 Mapped: 0.67922384237852507 X' = 14711 Y' = 60578 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "26627 - 63138"
+bin>>>./BoolTests
+input>>>--map-and-reverse 26627 63138
+expected>>>
+Input X = 26627 Y = 63138 Mapped: 0.74378252349416318 X' = 26627 Y' = 63138 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "49891 - 9117"
+bin>>>./BoolTests
+input>>>--map-and-reverse 49891 9117
+expected>>>
+Input X = 49891 Y = 9117 Mapped: 0.34397641740366269 X' = 49891 Y' = 9117 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "27615 - 25596"
+bin>>>./BoolTests
+input>>>--map-and-reverse 27615 25596
+expected>>>
+Input X = 27615 Y = 25596 Mapped: 0.23559546220013766 X' = 27615 Y' = 25596 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "1999 - 60071"
+bin>>>./BoolTests
+input>>>--map-and-reverse 1999 60071
+expected>>>
+Input X = 1999 Y = 60071 Mapped: 0.65865853420893161 X' = 1999 Y' = 60071 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "55773 - 64798"
+bin>>>./BoolTests
+input>>>--map-and-reverse 55773 64798
+expected>>>
+Input X = 55773 Y = 64798 Mapped: 0.98393750050662487 X' = 55773 Y' = 64798 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "25621 - 20319"
+bin>>>./BoolTests
+input>>>--map-and-reverse 25621 20319
+expected>>>
+Input X = 25621 Y = 20319 Mapped: 0.20596526451547753 X' = 25621 Y' = 20319 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "3478 - 56970"
+bin>>>./BoolTests
+input>>>--map-and-reverse 3478 56970
+expected>>>
+Input X = 3478 Y = 56970 Mapped: 0.63662347864280999 X' = 3478 Y' = 56970 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "48383 - 44154"
+bin>>>./BoolTests
+input>>>--map-and-reverse 48383 44154
+expected>>>
+Input X = 48383 Y = 44154 Mapped: 0.80445098080775956 X' = 48383 Y' = 44154 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "22998 - 59560"
+bin>>>./BoolTests
+input>>>--map-and-reverse 22998 59560
+expected>>>
+Input X = 22998 Y = 59560 Mapped: 0.72561416512485921 X' = 22998 Y' = 59560 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "13539 - 8792"
+bin>>>./BoolTests
+input>>>--map-and-reverse 13539 8792
+expected>>>
+Input X = 13539 Y = 8792 Mapped: 0.051154525263969443 X' = 13539 Y' = 8792 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "44255 - 53586"
+bin>>>./BoolTests
+input>>>--map-and-reverse 44255 53586
+expected>>>
+Input X = 44255 Y = 53586 Mapped: 0.89969559710000069 X' = 44255 Y' = 53586 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "37839 - 16244"
+bin>>>./BoolTests
+input>>>--map-and-reverse 37839 16244
+expected>>>
+Input X = 37839 Y = 16244 Mapped: 0.29564633716262095 X' = 37839 Y' = 16244 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "48334 - 41089"
+bin>>>./BoolTests
+input>>>--map-and-reverse 48334 41089
+expected>>>
+Input X = 48334 Y = 41089 Mapped: 0.80201437110128215 X' = 48334 Y' = 41089 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "48104 - 31853"
+bin>>>./BoolTests
+input>>>--map-and-reverse 48104 31853
+expected>>>
+Input X = 48104 Y = 31853 Mapped: 0.43709545639275932 X' = 48104 Y' = 31853 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "56247 - 26980"
+bin>>>./BoolTests
+input>>>--map-and-reverse 56247 26980
+expected>>>
+Input X = 56247 Y = 26980 Mapped: 0.47569925838049948 X' = 56247 Y' = 26980 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "23050 - 55580"
+bin>>>./BoolTests
+input>>>--map-and-reverse 23050 55580
+expected>>>
+Input X = 23050 Y = 55580 Mapped: 0.70224016269255429 X' = 23050 Y' = 55580 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "21676 - 16984"
+bin>>>./BoolTests
+input>>>--map-and-reverse 21676 16984
+expected>>>
+Input X = 21676 Y = 16984 Mapped: 0.19177858908469289 X' = 21676 Y' = 16984 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "62605 - 40406"
+bin>>>./BoolTests
+input>>>--map-and-reverse 62605 40406
+expected>>>
+Input X = 62605 Y = 40406 Mapped: 0.84257331347152897 X' = 62605 Y' = 40406 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "61184 - 34741"
+bin>>>./BoolTests
+input>>>--map-and-reverse 61184 34741
+expected>>>
+Input X = 61184 Y = 34741 Mapped: 0.83007109976142435 X' = 61184 Y' = 34741 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "629 - 61549"
+bin>>>./BoolTests
+input>>>--map-and-reverse 629 61549
+expected>>>
+Input X = 629 Y = 61549 Mapped: 0.66412721287089571 X' = 629 Y' = 61549 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "12681 - 54130"
+bin>>>./BoolTests
+input>>>--map-and-reverse 12681 54130
+expected>>>
+Input X = 12681 Y = 54130 Mapped: 0.65251793192059682 X' = 12681 Y' = 54130 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "61056 - 21577"
+bin>>>./BoolTests
+input>>>--map-and-reverse 61056 21577
+expected>>>
+Input X = 61056 Y = 21577 Mapped: 0.46271327195286593 X' = 61056 Y' = 21577 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "2519 - 52698"
+bin>>>./BoolTests
+input>>>--map-and-reverse 2519 52698
+expected>>>
+Input X = 2519 Y = 52698 Mapped: 0.62847826574660792 X' = 2519 Y' = 52698 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "4825 - 55068"
+bin>>>./BoolTests
+input>>>--map-and-reverse 4825 55068
+expected>>>
+Input X = 4825 Y = 55068 Mapped: 0.63742565401769835 X' = 4825 Y' = 55068 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "15261 - 40192"
+bin>>>./BoolTests
+input>>>--map-and-reverse 15261 40192
+expected>>>
+Input X = 15261 Y = 40192 Mapped: 0.53087242355823339 X' = 15261 Y' = 40192 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "56873 - 40459"
+bin>>>./BoolTests
+input>>>--map-and-reverse 56873 40459
+expected>>>
+Input X = 56873 Y = 40459 Mapped: 0.82806425071974854 X' = 56873 Y' = 40459 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "49167 - 40945"
+bin>>>./BoolTests
+input>>>--map-and-reverse 49167 40945
+expected>>>
+Input X = 49167 Y = 40945 Mapped: 0.82291664737810299 X' = 49167 Y' = 40945 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "18397 - 14410"
+bin>>>./BoolTests
+input>>>--map-and-reverse 18397 14410
+expected>>>
+Input X = 18397 Y = 14410 Mapped: 0.10384284544359959 X' = 18397 Y' = 14410 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "55169 - 32279"
+bin>>>./BoolTests
+input>>>--map-and-reverse 55169 32279
+expected>>>
+Input X = 55169 Y = 32279 Mapped: 0.48335660516362561 X' = 55169 Y' = 32279 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "44115 - 34591"
+bin>>>./BoolTests
+input>>>--map-and-reverse 44115 34591
+expected>>>
+Input X = 44115 Y = 34591 Mapped: 0.76748774567793299 X' = 44115 Y' = 34591 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "36530 - 65031"
+bin>>>./BoolTests
+input>>>--map-and-reverse 36530 65031
+expected>>>
+Input X = 36530 Y = 65031 Mapped: 0.91791183848816715 X' = 36530 Y' = 65031 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "27268 - 34728"
+bin>>>./BoolTests
+input>>>--map-and-reverse 27268 34728
+expected>>>
+Input X = 27268 Y = 34728 Mapped: 0.57981542138844155 X' = 27268 Y' = 34728 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "6360 - 31614"
+bin>>>./BoolTests
+input>>>--map-and-reverse 6360 31614
+expected>>>
+Input X = 6360 Y = 31614 Mapped: 0.17105841081846934 X' = 6360 Y' = 31614 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "57258 - 61605"
+bin>>>./BoolTests
+input>>>--map-and-reverse 57258 61605
+expected>>>
+Input X = 57258 Y = 61605 Mapped: 0.98177793039516037 X' = 57258 Y' = 61605 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "37264 - 52913"
+bin>>>./BoolTests
+input>>>--map-and-reverse 37264 52913
+expected>>>
+Input X = 37264 Y = 52913 Mapped: 0.88149708576535268 X' = 37264 Y' = 52913 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "56996 - 25220"
+bin>>>./BoolTests
+input>>>--map-and-reverse 56996 25220
+expected>>>
+Input X = 56996 Y = 25220 Mapped: 0.4740717523903753 X' = 56996 Y' = 25220 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "41930 - 41124"
+bin>>>./BoolTests
+input>>>--map-and-reverse 41930 41124
+expected>>>
+Input X = 41930 Y = 41124 Mapped: 0.79696419201720603 X' = 41930 Y' = 41124 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "25593 - 20744"
+bin>>>./BoolTests
+input>>>--map-and-reverse 25593 20744
+expected>>>
+Input X = 25593 Y = 20744 Mapped: 0.21104942290369641 X' = 25593 Y' = 20744 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "34972 - 10934"
+bin>>>./BoolTests
+input>>>--map-and-reverse 34972 10934
+expected>>>
+Input X = 34972 Y = 10934 Mapped: 0.28431388556126364 X' = 34972 Y' = 10934 consistency: OK
+<<<expected
+<<<case
+
+case>>> Case "45808 - 8686"
+bin>>>./BoolTests
+input>>>--map-and-reverse 45808 8686
+expected>>>
+Input X = 45808 Y = 8686 Mapped: 0.30088792189510721 X' = 45808 Y' = 8686 consistency: OK
+<<<expected
+<<<case
+
+<<<eof

@@ -6,59 +6,83 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/11 23:00:53 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:02:47 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
 
+uint32_t parse_uint32_from_chars(const char* s) {
+	uint32_t val = 0;
+	auto first = s;
+	auto last  = s + std::strlen(s);
+	auto result = std::from_chars(first, last, val, 10);
+
+	if (result.ec == std::errc::invalid_argument) {
+		throw std::invalid_argument("Invalid Argument to parse to uint32_t.");
+	}
+	if (result.ec == std::errc::result_out_of_range) {
+		throw std::out_of_range("Out of range to parse uint32_t.");
+	}
+	return val;
+}
+
 void	reverse_map_entrypoint(int argc, char *argv[]) {
-	if (argc != 2) {
-		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
+	if (argc != 3) {
+		std::cerr << "Reverse Map test entrypoint needs 2 arguments: --reverse-map mappedDouble" << std::endl;
 		exit(1);
 	}
 	(void)argv;
 	uint32_t x = 0, y = 0;
-	double db = 0.652833;
-	reverse_map(db, x, y);
-	std::cout << " x - y " << x << " - " << y << std::endl;
+
+	errno = 0;
+	char* endptr = nullptr;
+	double mapped = std::strtod(argv[2], &endptr);
+	if (errno == ERANGE) {
+		throw std::out_of_range("Out of range double.");
+	}
+	if (endptr == argv[0]) {
+		throw std::invalid_argument("Invalid Argument to parse to double.");
+	}
+	reverse_map(mapped, x, y);
+	std::cout << "Input " << std::setprecision(std::numeric_limits<double>::max_digits10) <<  mapped
+	          << " : X = " << x << " Y = " << y << std::endl;
 }
 
 void	map_entrypoint(int argc, char *argv[]) {
-	if (argc != 2) {
-		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
+	if (argc != 4) {
+		std::cerr << "Map test entrypoint needs 3 arguments: --map strX strY" << std::endl;
 		exit(1);
 	}
 	(void)argv;
-	uint32_t x = 12345;
-	uint32_t y = 54321;
+	uint32_t x = parse_uint32_from_chars(argv[2]);
+	uint32_t y = parse_uint32_from_chars(argv[3]);
 	double db = map(x, y);
-	std::cout << map(x, y) << std::endl;
-	reverse_map(db, x, y);
-	std::cout << " x - y " << x << " - " << y << std::endl;
+	std::cout << "Input X = " << x << " Y = " << y << " Mapped: " << std::setprecision(std::numeric_limits<double>::max_digits10) << db << std::endl;
+
 }
 
-void	cnf_entrypoint(int argc, char *argv[]) {
-	if (argc != 3) {
-		std::cerr << "CCF needs 2 arguments: --cnf funcString" << std::endl;
-		exit(1);
-	}
-	std::string nnf = negation_normal_form(argv[2]);
-	std::string cnf = conjunctive_normal_form(argv[2]);
-	std::cout << "original: \"" << argv[2] << "\"" << std::endl;
-	print_truth_table(argv[2]);
-	std::cout << "NNF: \"" << nnf << "\"" << std::endl;
-	print_truth_table((char *)nnf.c_str());
-	std::cout << "CNF: \"" << cnf << "\"" << std::endl;
-	print_truth_table((char *)cnf.c_str());
-}
 
-void	cnf_only_entrypoint(int argc, char *argv[]) {
-	if (argc != 3) {
-		std::cerr << "CCF only needs 2 arguments: --cnf funcString" << std::endl;
+void	map_and_reverse_entrypoint(int argc, char *argv[]) {
+	if (argc != 4) {
+		std::cerr << "Map and reverse test entrypoint needs 3 arguments: --map-and-reverse strX strY" << std::endl;
 		exit(1);
 	}
-	std::cout << conjunctive_normal_form(argv[2]) << std::endl;
+	(void)argv;
+	uint32_t x = parse_uint32_from_chars(argv[2]);
+	uint32_t y = parse_uint32_from_chars(argv[3]);
+	double db = map(x, y);
+	uint32_t x_p = 0, y_p = 0;
+	reverse_map(db, x_p, y_p);
+	std::string eval;
+	if (x == x_p && y == y_p)
+		eval = "OK";
+	else
+		eval = "KO";
+	std::cout << "Input X = " << x << " Y = " << y << " Mapped: "
+	          << std::setprecision(std::numeric_limits<double>::max_digits10) << db
+			  << " X' = " << x_p << " Y' = " << y_p << " consistency: "
+			  << eval << std::endl;
 }
 
 void	entrypoint(int argc, char *argv[]) {
@@ -80,6 +104,7 @@ void	entrypoint(int argc, char *argv[]) {
 		entrypoint["--cnf-only"] = &cnf_only_entrypoint;
 		entrypoint["--map"] = &map_entrypoint;
 		entrypoint["--reverse-map"] = &reverse_map_entrypoint;
+		entrypoint["--map-and-reverse"] = &map_and_reverse_entrypoint;
 	}
 	auto it = entrypoint.find(flag);
 	if (it != entrypoint.end()) {

@@ -1,0 +1,489 @@
+FEATURE>>>MAP CASES
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--map
+expected>>>
+Map test entrypoint needs 3 arguments: --map strX strY
+<<<expected
+<<<case
+
+case>>>Args Error Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--map 1 2 3
+expected>>>
+Map test entrypoint needs 3 arguments: --map strX strY
+<<<expected
+<<<case
+
+case>>> Args parse error
+bin>>>./BoolTests
+fd>>>3
+input>>>--map one two
+expected>>>
+Invalid Argument to parse to uint32_t.
+<<<expected
+<<<case
+
+case>>>Args out of range
+bin>>>./BoolTests
+fd>>>3
+input>>>--map 123456789 123456789
+expected>>>
+Error. Coordinates out of range: [0, 65535]
+<<<expected
+<<<case
+
+case>>>Args out of range
+bin>>>./BoolTests
+fd>>>3
+input>>>--map -1 -2
+expected>>>
+Invalid Argument to parse to uint32_t.
+<<<expected
+<<<case
+
+case>>> Case "0 - 0"
+bin>>>./BoolTests
+input>>>--map 0 0
+expected>>>
+Input X = 0 Y = 0 Mapped: 0
+<<<expected
+<<<case
+
+
+case>>> Case "52888 - 21468"
+bin>>>./BoolTests
+input>>>--map 52888 21468
+expected>>>
+Input X = 52888 Y = 21468 Mapped: 0.44676040868432271
+<<<expected
+<<<case
+
+case>>> Case "10448 - 51167"
+bin>>>./BoolTests
+input>>>--map 10448 51167
+expected>>>
+Input X = 10448 Y = 51167 Mapped: 0.64225695530005189
+<<<expected
+<<<case
+
+case>>> Case "31997 - 56207"
+bin>>>./BoolTests
+input>>>--map 31997 56207
+expected>>>
+Input X = 31997 Y = 56207 Mapped: 0.71818292041266873
+<<<expected
+<<<case
+
+case>>> Case "6936 - 45453"
+bin>>>./BoolTests
+input>>>--map 6936 45453
+expected>>>
+Input X = 6936 Y = 45453 Mapped: 0.54405986576901277
+<<<expected
+<<<case
+
+case>>> Case "45743 - 57372"
+bin>>>./BoolTests
+input>>>--map 45743 57372
+expected>>>
+Input X = 45743 Y = 57372 Mapped: 0.92584651474045743
+<<<expected
+<<<case
+
+case>>> Case "4317 - 63705"
+bin>>>./BoolTests
+input>>>--map 4317 63705
+expected>>>
+Input X = 4317 Y = 63705 Mapped: 0.6699364082119279
+<<<expected
+<<<case
+
+case>>> Case "35980 - 46829"
+bin>>>./BoolTests
+input>>>--map 35980 46829
+expected>>>
+Input X = 35980 Y = 46829 Mapped: 0.79090743949425113
+<<<expected
+<<<case
+
+case>>> Case "25772 - 39154"
+bin>>>./BoolTests
+input>>>--map 25772 39154
+expected>>>
+Input X = 25772 Y = 39154 Mapped: 0.58814897215649231
+<<<expected
+<<<case
+
+case>>> Case "62387 - 43670"
+bin>>>./BoolTests
+input>>>--map 62387 43670
+expected>>>
+Input X = 62387 Y = 43670 Mapped: 0.8654446112610038
+<<<expected
+<<<case
+
+case>>> Case "28521 - 63583"
+bin>>>./BoolTests
+input>>>--map 28521 63583
+expected>>>
+Input X = 28521 Y = 63583 Mapped: 0.74544089560989313
+<<<expected
+<<<case
+
+case>>> Case "27909 - 20801"
+bin>>>./BoolTests
+input>>>--map 27909 20801
+expected>>>
+Input X = 27909 Y = 20801 Mapped: 0.21220589131401058
+<<<expected
+<<<case
+
+case>>> Case "23188 - 51324"
+bin>>>./BoolTests
+input>>>--map 23188 51324
+expected>>>
+Input X = 23188 Y = 51324 Mapped: 0.69440339149311259
+<<<expected
+<<<case
+
+case>>> Case "32061 - 46512"
+bin>>>./BoolTests
+input>>>--map 32061 46512
+expected>>>
+Input X = 32061 Y = 46512 Mapped: 0.62285705321069273
+<<<expected
+<<<case
+
+case>>> Case "23188 - 38500"
+bin>>>./BoolTests
+input>>>--map 23188 38500
+expected>>>
+Input X = 23188 Y = 38500 Mapped: 0.57587296901640317
+<<<expected
+<<<case
+
+case>>> Case "19611 - 56841"
+bin>>>./BoolTests
+input>>>--map 19611 56841
+expected>>>
+Input X = 19611 Y = 56841 Mapped: 0.69910060048548051
+<<<expected
+<<<case
+
+case>>> Case "12039 - 50546"
+bin>>>./BoolTests
+input>>>--map 12039 50546
+expected>>>
+Input X = 12039 Y = 50546 Mapped: 0.64244330619518719
+<<<expected
+<<<case
+
+case>>> Case "9843 - 42807"
+bin>>>./BoolTests
+input>>>--map 9843 42807
+expected>>>
+Input X = 9843 Y = 42807 Mapped: 0.54782290373645326
+<<<expected
+<<<case
+
+case>>> Case "9250 - 8014"
+bin>>>./BoolTests
+input>>>--map 9250 8014
+expected>>>
+Input X = 9250 Y = 8014 Mapped: 0.026277820585825905
+<<<expected
+<<<case
+
+case>>> Case "19089 - 41017"
+bin>>>./BoolTests
+input>>>--map 19089 41017
+expected>>>
+Input X = 19089 Y = 41017 Mapped: 0.59479209864390825
+<<<expected
+<<<case
+
+case>>> Case "34073 - 46894"
+bin>>>./BoolTests
+input>>>--map 34073 46894
+expected>>>
+Input X = 34073 Y = 46894 Mapped: 0.7899633594299581
+<<<expected
+<<<case
+
+case>>> Case "28753 - 48773"
+bin>>>./BoolTests
+input>>>--map 28753 48773
+expected>>>
+Input X = 28753 Y = 48773 Mapped: 0.62366587753027347
+<<<expected
+<<<case
+
+case>>> Case "60264 - 10736"
+bin>>>./BoolTests
+input>>>--map 60264 10736
+expected>>>
+Input X = 60264 Y = 10736 Mapped: 0.36242283889148919
+<<<expected
+<<<case
+
+case>>> Case "44252 - 33060"
+bin>>>./BoolTests
+input>>>--map 44252 33060
+expected>>>
+Input X = 44252 Y = 33060 Mapped: 0.7668815517720956
+<<<expected
+<<<case
+
+case>>> Case "8749 - 38982"
+bin>>>./BoolTests
+input>>>--map 8749 38982
+expected>>>
+Input X = 8749 Y = 38982 Mapped: 0.5254538342183116
+<<<expected
+<<<case
+
+case>>> Case "10264 - 40593"
+bin>>>./BoolTests
+input>>>--map 10264 40593
+expected>>>
+Input X = 10264 Y = 40593 Mapped: 0.52698536276048635
+<<<expected
+<<<case
+
+case>>> Case "53625 - 64794"
+bin>>>./BoolTests
+input>>>--map 53625 64794
+expected>>>
+Input X = 53625 Y = 64794 Mapped: 0.9829573505518393
+<<<expected
+<<<case
+
+case>>> Case "5416 - 27620"
+bin>>>./BoolTests
+input>>>--map 5416 27620
+expected>>>
+Input X = 5416 Y = 27620 Mapped: 0.162531636693173
+<<<expected
+<<<case
+
+case>>> Case "1070 - 32894"
+bin>>>./BoolTests
+input>>>--map 1070 32894
+expected>>>
+Input X = 1070 Y = 32894 Mapped: 0.5002469412284547
+<<<expected
+<<<case
+
+case>>> Case "61734 - 61816"
+bin>>>./BoolTests
+input>>>--map 61734 61816
+expected>>>
+Input X = 61734 Y = 61816 Mapped: 0.9961423028717149
+<<<expected
+<<<case
+
+case>>> Case "62612 - 46101"
+bin>>>./BoolTests
+input>>>--map 62612 46101
+expected>>>
+Input X = 62612 Y = 46101 Mapped: 0.87183017723072087
+<<<expected
+<<<case
+
+case>>> Case "5540 - 10274"
+bin>>>./BoolTests
+input>>>--map 5540 10274
+expected>>>
+Input X = 5540 Y = 10274 Mapped: 0.037373309963702528
+<<<expected
+<<<case
+
+case>>> Case "20515 - 36778"
+bin>>>./BoolTests
+input>>>--map 20515 36778
+expected>>>
+Input X = 20515 Y = 36778 Mapped: 0.569008621752497
+<<<expected
+<<<case
+
+case>>> Case "61790 - 46272"
+bin>>>./BoolTests
+input>>>--map 61790 46272
+expected>>>
+Input X = 61790 Y = 46272 Mapped: 0.87160785982189881
+<<<expected
+<<<case
+
+case>>> Case "28268 - 3245"
+bin>>>./BoolTests
+input>>>--map 28268 3245
+expected>>>
+Input X = 28268 Y = 3245 Mapped: 0.08185749921990966
+<<<expected
+<<<case
+
+case>>> Case "30838 - 18134"
+bin>>>./BoolTests
+input>>>--map 30838 18134
+expected>>>
+Input X = 30838 Y = 18134 Mapped: 0.20862908573090777
+<<<expected
+<<<case
+
+case>>> Case "48281 - 306"
+bin>>>./BoolTests
+input>>>--map 48281 306
+expected>>>
+Input X = 48281 Y = 306 Mapped: 0.27078695811116765
+<<<expected
+<<<case
+
+case>>> Case "56629 - 55486"
+bin>>>./BoolTests
+input>>>--map 56629 55486
+expected>>>
+Input X = 56629 Y = 55486 Mapped: 0.95241640367368618
+<<<expected
+<<<case
+
+case>>> Case "38761 - 45049"
+bin>>>./BoolTests
+input>>>--map 38761 45049
+expected>>>
+Input X = 38761 Y = 45049 Mapped: 0.78808204917891
+<<<expected
+<<<case
+
+case>>> Case "39619 - 50793"
+bin>>>./BoolTests
+input>>>--map 39619 50793
+expected>>>
+Input X = 39619 Y = 50793 Mapped: 0.88056138341328161
+<<<expected
+<<<case
+
+case>>> Case "43555 - 14026"
+bin>>>./BoolTests
+input>>>--map 43555 14026
+expected>>>
+Input X = 43555 Y = 14026 Mapped: 0.30634525728094048
+<<<expected
+<<<case
+
+case>>> Case "34535 - 47036"
+bin>>>./BoolTests
+input>>>--map 34535 47036
+expected>>>
+Input X = 34535 Y = 47036 Mapped: 0.79002181947930294
+<<<expected
+<<<case
+
+case>>> Case "3933 - 46447"
+bin>>>./BoolTests
+input>>>--map 3933 46447
+expected>>>
+Input X = 3933 Y = 46447 Mapped: 0.54088175192961507
+<<<expected
+<<<case
+
+case>>> Case "33688 - 48789"
+bin>>>./BoolTests
+input>>>--map 33688 48789
+expected>>>
+Input X = 33688 Y = 48789 Mapped: 0.79171391641528199
+<<<expected
+<<<case
+
+case>>> Case "2013 - 15307"
+bin>>>./BoolTests
+input>>>--map 2013 15307
+expected>>>
+Input X = 2013 Y = 15307 Mapped: 0.041503063179902516
+<<<expected
+<<<case
+
+case>>> Case "25006 - 18800"
+bin>>>./BoolTests
+input>>>--map 25006 18800
+expected>>>
+Input X = 25006 Y = 18800 Mapped: 0.20513047748364752
+<<<expected
+<<<case
+
+case>>> Case "54741 - 38578"
+bin>>>./BoolTests
+input>>>--map 54741 38578
+expected>>>
+Input X = 54741 Y = 38578 Mapped: 0.82510156040664329
+<<<expected
+<<<case
+
+case>>> Case "46377 - 61035"
+bin>>>./BoolTests
+input>>>--map 46377 61035
+expected>>>
+Input X = 46377 Y = 61035 Mapped: 0.92860679606176144
+<<<expected
+<<<case
+
+case>>> Case "19308 - 46661"
+bin>>>./BoolTests
+input>>>--map 19308 46661
+expected>>>
+Input X = 19308 Y = 46661 Mapped: 0.6032288341324844
+<<<expected
+<<<case
+
+case>>> Case "44700 - 18"
+bin>>>./BoolTests
+input>>>--map 44700 18
+expected>>>
+Input X = 44700 Y = 18 Mapped: 0.2669107523436916
+<<<expected
+<<<case
+
+case>>> Case "53071 - 44375"
+bin>>>./BoolTests
+input>>>--map 53071 44375
+expected>>>
+Input X = 53071 Y = 44375 Mapped: 0.84752193089749706
+<<<expected
+<<<case
+
+case>>> Case "31443 - 8414"
+bin>>>./BoolTests
+input>>>--map 31443 8414
+expected>>>
+Input X = 31443 Y = 8414 Mapped: 0.11433337189125209
+<<<expected
+<<<case
+
+case>>> Case "19742 - 64883"
+bin>>>./BoolTests
+input>>>--map 19742 64883
+expected>>>
+Input X = 19742 Y = 64883 Mapped: 0.73027297079802322
+<<<expected
+<<<case
+
+case>>> Case "5974 - 25563"
+bin>>>./BoolTests
+input>>>--map 5974 25563
+expected>>>
+Input X = 5974 Y = 25563 Mapped: 0.16063997851699591
+<<<expected
+<<<case
+
+case>>> Case "9333 - 47909"
+bin>>>./BoolTests
+input>>>--map 9333 47909
+expected>>>
+Input X = 9333 Y = 47909 Mapped: 0.55703909405438212
+<<<expected
+<<<case
+
+<<<eof

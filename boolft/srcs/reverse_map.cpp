@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 02:15:31 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/10 22:57:49 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:48:52 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ static void mortonDecode(uint32_t code, uint32_t &x, uint32_t &y) {
 // Comportamiento indefinido si t no está en [0,1], pero avisamos por stderr.
 void reverse_map(double t, uint32_t &x, uint32_t &y) {
 	if (!(t >= 0.0 && t <= 1.0)) {
-		std::cerr << "Error: valor fuera de rango [0,1]\n";
-		x = y = std::numeric_limits<uint32_t>::max();
-		return;
+		throw BoolFtException("Error Value out of range [0,1].");
 	}
 	// Reconstruimos el código de 32 bits
 	uint32_t code = uint32_t(std::round(t * 0xFFFFFFFFu));
