@@ -6,10 +6,9 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 02:15:31 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/12 21:42:35 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 21:55:45 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "boolft.hpp"
 #include <cstdint>

@@ -18,11 +18,36 @@ Reverse Map test entrypoint needs 2 arguments: --reverse-map mappedDouble
 <<<expected
 <<<case
 
+case>>>Args Out of range Case
+bin>>>./BoolTests
+fd>>>3
+input>>>--reverse-map -0.5
+expected>>>
+Error Value out of range [0,1].
+<<<expected
+<<<case
+
+case>>> Case "0.00000000000000000"
+bin>>>./BoolTests
+input>>>--reverse-map 0.00000000000000000
+expected>>>
+Input 0 : X = 0 Y = 0
+<<<expected
+<<<case
+
 case>>> Case "0.44676040868432271"
 bin>>>./BoolTests
 input>>>--reverse-map 0.44676040868432271
 expected>>>
 Input 0.44676040868432271 : X = 52888 Y = 21468
+<<<expected
+<<<case
+
+case>>> Case "0.1"
+bin>>>./BoolTests
+input>>>--reverse-map 0.1
+expected>>>
+Input 0.10000000000000001 : X = 21844 Y = 10923
 <<<expected
 <<<case
 

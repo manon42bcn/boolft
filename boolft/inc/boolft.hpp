@@ -6,10 +6,9 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/12 11:21:58 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 21:51:48 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #pragma once
 #include <iostream>
@@ -24,6 +23,37 @@
 #include <iostream>
 #include <cstring>
 
+#define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
+#define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
+#define CASE_IDX			0
+#define TOTAL_CASES			1
+
+using t_set = std::vector<int>;
+using t_pwr_set = std::vector<t_set>;
+
+/**
+ * @class BoolFtException
+ * @brief Custom exception class for handling errors within BoolFT project
+ *
+ * This exception class provides a standard way to handle errors by allowing custom messages.
+ * It inherits from `std::exception` and overrides the `what()` method to return a message.
+ *
+ * @details
+ * - Can be initialized with either `std::string` or `const char*` for message flexibility.
+ * - The destructor is `noexcept`, ensuring that it does not throw exceptions during destruction.
+ *
+ * ### Public Methods
+ * - `BoolFtException(const std::string& message)`: Constructor that accepts a custom error message.
+ * - `BoolFtException(const char* message)`: Constructor for C-string error messages.
+ * - `const char* what() const throw()`: Returns the error message.
+ *
+ * @note Use this exception throughout the project to ensure consistent error handling.
+ *
+ * @example
+ * ```
+ * throw BoolFtException("An unexpected error occurred.");
+ * ```
+ */
 class BoolFtException : public std::exception {
 private:
 	std::string _message;
@@ -39,34 +69,68 @@ public:
 	}
 };
 
-
-
-#define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
-#define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
-#define CASE_IDX			0
-#define TOTAL_CASES			1
-
-using t_set = std::vector<int>;
-using t_pwr_set = std::vector<t_set>;
-
+/**
+ * @brief Enumeration of possible node types in a CNF expression tree.
+ *
+ * @details
+ * This enum defines the kinds of nodes that can appear in the binary tree
+ * representation of a logical formula during CNF conversion:
+ *   - VAR : A leaf node representing a propositional variable.
+ *   - AND : A binary conjunction operator node (logical ∧).
+ *   - OR  : A binary disjunction operator node (logical ∨).
+ *   - NOT : A unary negation operator node (logical ¬).
+ */
 enum e_type { VAR, AND, OR, NOT };
+
+/**
+ * @brief Node structure for a CNF expression tree.
+ *
+ * @details
+ * Each `s_cnf_node` instance represents either an operator (AND, OR, NOT)
+ * or a variable in the expression.  Operator nodes have pointers to their
+ * child(ren), while variable nodes store the variable name in `var`.
+ *
+ * The tree structure facilitates recursive transformations during CNF
+ * conversion (e.g., distribution, flattening) and serialization to RPN.
+ */
 struct s_cnf_node {
 	e_type type;
 	std::string var;
 	s_cnf_node* left;
 	s_cnf_node* right;
+	/**
+     * @brief Constructs a new CNF tree node.
+     *
+     * @param[in] t  The node type (VAR, AND, OR, NOT).
+     * @param[in] v  The variable name for VAR nodes; ignored for operators.
+     * @param[in] l  Pointer to the left child node (or operand for NOT).
+     * @param[in] r  Pointer to the right child node (nullptr for VAR and NOT).
+     */
 	s_cnf_node(e_type t, const std::string& v="", s_cnf_node* l=nullptr, s_cnf_node* r=nullptr)
 			: type(t), var(v), left(l), right(r) {}
 };
 
+/**
+ * @brief Manages allocation and automatic cleanup of CNF expression tree nodes.
+ *
+ * @details
+ * The CNF_Stack class acts as a simple memory arena for `s_cnf_node` objects.
+ * Each time `new_node()` is called, the newly created node pointer is stored
+ * in the internal `built` vector. On destruction, all allocated nodes are
+ * deleted to prevent memory leaks. Additionally, `total_nodes` tracks the
+ * number of nodes created, which can be useful for diagnostics or optimizations.
+ */
 class CNF_Stack {
 	private:
 		std::vector<s_cnf_node*>	built;
 		int 						total_nodes;
 	public:
-		CNF_Stack() {};
+		CNF_Stack() {
+			total_nodes = 0;
+		};
 		~CNF_Stack();
-		s_cnf_node* new_node(e_type t, const std::string& v="", s_cnf_node* l=nullptr, s_cnf_node* r=nullptr);
+		s_cnf_node* new_node(e_type t, const std::string& v="",
+							 s_cnf_node* l=nullptr, s_cnf_node* r=nullptr);
 };
 
 // --- Multiple functions utilities
@@ -85,67 +149,3 @@ t_pwr_set		powerset(std::vector<int> set);
 t_set			eval_set(char* formula, std::vector<t_set> sets);
 double			map(uint32_t x, uint32_t y);
 void			reverse_map(double t, uint32_t &x, uint32_t &y);
-//
-//#define TRUE				1
-//#define FALSE				0
-//#define CASE_IDX			0
-//#define TOTAL_CASES			1
-//#define UNRECOGNIZED_SYMBOL	-1
-//#define NOT_SOLVABLE		-2
-//#define ALLOC_ERROR			-3
-//#define BUF_SIZE			1024
-//
-//#define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
-//#define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
-//#define SWITCH_BOOL(x) ((x) ? FALSE : TRUE)
-//
-//typedef int eval;
-//typedef unsigned char t_bool;
-//
-//typedef enum e_node_mode {
-//	LOGIC_VALUE = 0,
-//	LOGIC_SYMBOL = 1
-//} t_node_mode;
-//
-//typedef struct s_node {
-//	char			symbol;
-//	eval			eval;
-//	t_node_mode		mode;
-//	struct s_node*	left;
-//	struct s_node*	right;
-//} t_node;
-//
-//typedef struct s_stack {
-//	struct s_stack*	prev;
-//	struct s_stack*	next;
-//	size_t 			len;
-//	t_bool			value;
-//	int				pos;
-//	char			operand;
-//	char			exp[BUF_SIZE];
-//} t_stack;
-//
-//typedef struct s_var {
-//	char	var;
-//	int		idx;
-//	t_bool	value;
-//} t_var;
-//
-//typedef t_bool (*t_op)();
-//
-//
-//typedef t_stack* (*t_operator)(t_stack**);
-//
-//unsigned int	adder(unsigned int a, unsigned int b);
-//unsigned int	multiplier(unsigned int a, unsigned int b);
-//int				gray_code(int gray);
-//int				eval_formula(char* formula);
-//void			print_truth_table(char *function);
-//// Stack prototypes
-//t_stack*		insert_element(t_bool value, t_stack** parent);
-//t_bool			pop_element(t_stack** tail);
-//int				get_index_operator(char c);
-//void			clear_stack(t_stack** tail);
-//int				count_stack(t_stack** tail);
-//int				not_solvable(t_stack** tail, int error);
-//t_stack*		operate(char c, t_stack **tail);

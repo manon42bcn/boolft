@@ -42,8 +42,10 @@ Building LIBRARIES
 Building BOOLFT
 
 libboolft.a compiled
-gcc -Wall -Wextra -Werror -I./boolft -Iinc -g -c srcs/main.c -o objs/main.o
-srcs/main.c
+c++ -std=c++20 -Wall -Wextra -Werror -I./boolft -Iinc -g -c srcs/main.cpp -o objs/main.o
+srcs/main.cpp
+c++ -std=c++20 -Wall -Wextra -Werror -I./boolft -Iinc -g -c srcs/entrypoints.cpp -o objs/entrypoints.o
+srcs/entrypoints.cpp
 Executable BoolTests compiled
 <<<expected
 <<<case
