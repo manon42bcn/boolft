@@ -7,12 +7,24 @@
 3. **Logical Expression Evaluation in Reverse Polish Notation (RPN) and Truth Tables**
 4. **Finite Set Operations** (power set generation and set-based logic)
 5. **Space-Filling Curves** (Morton/Z-order encoding and decoding)
-
-Each section explains the motivations, step-by-step processes, and typical use cases, complemented by visual aids.
+6. **Recommended Videos** 
 
 ---
 
+## 1. Bit, Booleans and Touring Machine
 
+https://en.wikipedia.org/wiki/Turing_machine
+https://en.wikipedia.org/wiki/Bitwise_operation
+
+The Turing machine, introduced by Alan Turing in 1936, is a foundational model in the theory of computation. It describes an abstract device that manipulates symbols on an infinite tape according to a set of rules. Despite its simplicity, the Turing machine is capable of simulating the logic of any computer algorithm, making it a universal model for computation.
+
+At the heart of both the Turing machine and modern computers lies the manipulation of binary data-sequences of 0s and 1s. In practical terms, modern computers process this binary data using bitwise operations. Bitwise operations, such as AND, OR, XOR, NOT, and bit shifts, operate directly on the individual bits of binary numbers. These operations are fundamental to the functioning of digital circuits, data encoding, cryptography, and low-level system programming.
+
+The connection between the Turing machine and bitwise operations is rooted in their shared foundation: both work with symbols (or bits) and apply simple, well-defined rules to manipulate them. While the Turing machine operates at a highly abstract level-reading and writing symbols on a tape-modern computers implement these concepts in hardware, using logic gates and circuits to perform bitwise operations at incredible speeds.
+
+In essence, any bitwise operation that can be performed by a modern computer can, in theory, be simulated by a Turing machine. Conversely, the operations performed by a Turing machine can be implemented in hardware using bitwise logic. This interplay highlights the universality of the Turing machine model and demonstrates how the fundamental operations of computation-whether in theory or practice-are built upon the manipulation of bits.
+
+In summary, the Turing machine provides the theoretical framework for computation, while bitwise operations represent the practical tools used by modern computers to process information at the lowest level. Together, they illustrate the deep connection between computational theory and the physical realities of digital computing.
 
 ## 2. Bitwise Arithmetic and Gray Code
 
@@ -199,18 +211,13 @@ For 2-bit x and y:
 
 ---
 
-## 5. Practical Notes
+## 6. Recommended Videos
 
-* ASCII diagrams aid intuition before diving into code.
-* For production, visualize with plots or UI; ASCII is for quick reference.
-* Adapt these patterns to larger bit widths or n-dimensional data.
-
----
-
-## 6. Further Resources
-
-* "Hacker's Delight" by Henry S. Warren Jr.
-* Research articles on fractal curves and spatial indexing.
-* Online tools for RPN calculators and set visualization.
+* Touring Machine: https://www.youtube.com/watch?v=iaXLDz_UeYY (es)
+* What is a number: https://www.youtube.com/watch?v=H9pMUV4leQg (es)
+* Russell's Paradox: https://www.youtube.com/watch?v=ymGt7I4Yn3k (en)
+* Gödel's Incompleteness Theorem: https://www.youtube.com/watch?v=8MGbGsihe3k (es)
+* Sets: https://www.youtube.com/watch?v=EkFX9jUJPKk (en)
+* Bitwise Operators: https://www.youtube.com/watch?v=igIjGxF2J-w (en)
 
 ---

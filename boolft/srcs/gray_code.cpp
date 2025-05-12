@@ -6,11 +6,11 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/06 17:50:36 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:22:24 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "boolft.h"
+#include "boolft.hpp"
 
 /**
  * @brief Converts a binary number to its Gray code equivalent.
