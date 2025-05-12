@@ -6,7 +6,7 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:06:02 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/10 22:53:50 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:21:58 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ public:
 	}
 };
 
+
+
 #define BOOL_TO_STRING(x) ((x) < 0 ? "ERROR" : ((x) ? "true" : "false"))
 #define BOOL_TO_CHAR(x) ((x) ? '1' : '0')
 #define CASE_IDX			0
@@ -55,6 +57,16 @@ struct s_cnf_node {
 	s_cnf_node* right;
 	s_cnf_node(e_type t, const std::string& v="", s_cnf_node* l=nullptr, s_cnf_node* r=nullptr)
 			: type(t), var(v), left(l), right(r) {}
+};
+
+class CNF_Stack {
+	private:
+		std::vector<s_cnf_node*>	built;
+		int 						total_nodes;
+	public:
+		CNF_Stack() {};
+		~CNF_Stack();
+		s_cnf_node* new_node(e_type t, const std::string& v="", s_cnf_node* l=nullptr, s_cnf_node* r=nullptr);
 };
 
 // --- Multiple functions utilities

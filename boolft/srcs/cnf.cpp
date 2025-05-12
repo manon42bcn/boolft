@@ -6,38 +6,85 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:23:54 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/10 17:52:42 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:17:27 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "boolft.hpp"
 
-#include <string>
-#include <sstream>
-#include <stack>
-#include <vector>
-#include <cctype>
-
-int total_cnf = 0;
+/**
+ * @brief Destructor for CNF_Stack.
+ *
+ * @details Deletes all nodes allocated during CNF construction to prevent memory leaks.
+ */
+CNF_Stack::~CNF_Stack() {
+	for (auto it = built.begin(); it != built.end(); it++) {
+		delete *it;
+	}
+}
 
 /**
- * @brief Recursively collects nodes of a specific type from a CNF expression tree.
+ * @brief Allocates a new node in the CNF tree.
  *
- * This function traverses the given CNF expression tree rooted at @p node and collects all nodes
- * that do NOT match the specified @p type. When a node matches the given @p type, the function
- * continues to recursively traverse its left and right subtrees. When a node does not match the
- * type, it is added to the output vector @p out, and its subtree is not further explored.
+ * @details
+ * - Increments the internal node counter and throws if it exceeds a safe limit (15000).
+ * - Creates a new s_cnf_node of the given type @p t, with string value @p v
+ * 	 (used for variables),
+ *   and pointers to left (@p l) and right (@p r) child subtrees.
+ * - Tracks the newly built node so it can be cleaned up in the destructor.
  *
- * This behavior is useful for extracting the top-level nodes of a certain type (e.g., AND/OR)
- * from a logical expression tree, which is a common step in CNF (Conjunctive Normal Form)
- * transformations and analysis.
+ * @param t   The type of the node (e.g., AND, OR, VAR, NOT).
+ * @param v   The string payload for variable nodes; ignored for operator nodes.
+ * @param l   Pointer to the left child node (nullptr if leaf or unary).
+ * @param r   Pointer to the right child node (nullptr for unary or leaf).
+ * @return    Pointer to the freshly allocated s_cnf_node.
+ * @throws    BoolFtException if the total node count exceeds 15000 to avoid runaway growth.
+ */
+s_cnf_node* CNF_Stack::new_node(e_type t, const std::string &v, s_cnf_node *l, s_cnf_node *r) {
+	total_nodes++;
+	if (total_nodes > 15000)
+		throw BoolFtException("CNF Tree grew too much.");
+	s_cnf_node* node = new s_cnf_node(t, v, l, r);
+	if (!node)
+		throw BoolFtException("CNF Node Allocation Error.");
+	built.push_back(node);
+	return node;
+}
+
+/**
+ * @brief Gathers all subexpressions of a tree that do not match a specific operator type.
  *
- * @param[in]  node  Pointer to the root of the current (sub)tree to process. May be nullptr.
- * @param[in]  type  The node type to match for recursive traversal (e.g., AND, OR).
- * @param[out] out   Vector to store pointers to nodes that do not match @p type.
+ * @details
+ * This helper function performs a recursive traversal of the CNF expression tree
+ * rooted at `node`, collecting every node whose operator type differs from the
+ * specified `type`. It is primarily used by `flatten()` to extract the immediate
+ * children (or deeper descendants) of a common AND/OR group, so they can be reassembled
+ * into a flattened sequence.
  *
- * @note The function does not modify the tree structure; it only collects pointers to nodes.
- *       The output vector @p out is appended to; it is not cleared at the start of the function.
+ * The algorithm works as follows:
+ *   1. **Base Case**
+ *      If `node` is null, return immediately (nothing to collect).
+ *   2. **Matching Operator**
+ *      If `node->type` equals the target `type`, this means `node` is an
+ *      intermediate grouping node for that operator. Instead of collecting `node`
+ *      itself, recurse into both its `left` and `right` subtrees to gather their
+ *      constituents.
+ *   3. **Non-matching Operator**
+ *      If `node->type` differs from `type` (e.g., a variable, a NOT, or the other
+ *      binary operator), treat `node` as an atomic element of the flattened list
+ *      and append its pointer to `out`.
+ *
+ * After this traversal, `out` will contain pointers to all maximal subtrees that
+ * should become the direct children of a flattened AND or OR node.
+ *
+ * @param[in]  node
+ *   Pointer to the root of the (sub)expression tree to traverse. May be nullptr.
+ * @param[in]  type
+ *   The operator type (AND or OR) that identifies which nodes should be expanded
+ *   rather than collected.
+ * @param[out] out
+ *   Reference to a vector that will be populated with pointers to all collected
+ *   subtrees whose `type` differs from the specified operator.
  */
 void collect_nodes(s_cnf_node* node, e_type type, std::vector<s_cnf_node*>& out) {
 	if (!node)
@@ -51,27 +98,38 @@ void collect_nodes(s_cnf_node* node, e_type type, std::vector<s_cnf_node*>& out)
 }
 
 /**
- * @brief Flattens nested logical operators of the same type in a CNF expression tree.
+ * @brief Flattens nested conjunctions or disjunctions into a single binary tree.
  *
- * This function restructures the given CNF expression tree rooted at @p node by merging
- * consecutive nodes of the same logical operator type (AND or OR) into a flat, right-associative
- * binary tree. The flattening process simplifies the tree structure, making it easier to
- * manipulate and analyze in subsequent CNF transformations.
+ * @details
+ * For a subtree rooted at an AND or OR node, this function:
+ *   1. Gathers all descendant nodes of the same operator type into a flat list
+ *      by calling `collect_nodes(node, node->type, elems)`.
+ *      - `collect_nodes` traverses the tree and appends each leaf or subexpression
+ *        whose parent operator matches `node->type` into `elems`.
+ *   2. Rebuilds a right-branching binary tree from the collected elements:
+ *      - Starts with the first element in `elems` as the interim result.
+ *      - Iteratively creates new operator nodes combining the current result with
+ *        the next element, preserving the original operator type (AND or OR).
+ *   3. Returns the newly constructed flattened tree, which has no nested nodes
+ *      of the same type.
  *
- * For example, a tree representing (A AND (B AND C)) will be flattened to ((A AND B) AND C).
- * This is achieved by collecting all direct sub-nodes of the same operator type using
- * @ref collect_nodes, and then reconstructing the tree as a chain of binary nodes.
+ * If the input `node` is null, or not an AND/OR node, it is returned unchanged.
  *
- * @param[in] node Pointer to the root of the (sub)tree to flatten. May be nullptr.
- * @return Pointer to the root of the flattened tree. Returns nullptr if @p node is nullptr.
- *         If @p node is not an AND or OR node, returns @p node unchanged.
+ * @param[in]      node   Pointer to the root of the (sub)expression tree to flatten.
+ * @param[in,out]  built  Reference to a `CNF_Stack` used to allocate any new nodes
+ *                        during the rebuild process.
  *
- * @note The function allocates new nodes for the flattened tree structure, except for the
- *       first element in the flattened list. The caller is responsible for managing memory
- *       and deleting any nodes created by this function.
+ * @return
+ *   - A pointer to the root of the flattened subtree if `node` was an AND/OR node
+ *     with two or more like-typed children.
+ *   - The original `node` if it was null, a leaf (VAR or NOT), or had no like-typed
+ *     descendants to flatten.
  *
+ * @throws BoolFtException
+ *   Propagates any allocation error thrown by `built.new_node()` when creating
+ *   the rebuilt operator nodes.
  */
-s_cnf_node* flatten(s_cnf_node* node) {
+s_cnf_node* flatten(s_cnf_node* node, CNF_Stack& built) {
 	if (!node)
 		return nullptr;
 	if (node->type != AND && node->type != OR)
@@ -82,155 +140,178 @@ s_cnf_node* flatten(s_cnf_node* node) {
 		return node;
 	s_cnf_node* res = elems[0];
 	for (size_t i = 1; i < elems.size(); ++i) {
-		res = new s_cnf_node(node->type, "", res, elems[i]);
+		res = built.new_node(node->type, "", res, elems[i]);
 	}
 	return res;
 }
 
 /**
- * @brief Recursively normalizes a CNF expression tree by flattening nested logical operators.
+ * @brief Recursively normalizes a CNF expression tree by flattening nested operators.
  *
- * This function traverses the given CNF expression tree rooted at @p root and recursively
- * normalizes all AND and OR nodes by flattening nested operators of the same type. The
- * normalization process ensures that the tree structure is as flat as possible, which
- * simplifies further processing and analysis in CNF transformations.
+ * @details
+ * This function enforces a canonical shape on a tree representing a CNF formula by:
+ *   - **Flattening**: Merging any nested `AND` or `OR` nodes of the same type into
+ *     a single node with multiple children, reducing deep binary chains.
+ *   - **Bottom-up Processing**: Ensuring both subtrees are normalized before flattening
+ *     the current node, so that all levels of the tree satisfy the normalization rules.
  *
- * The function also tracks the total number of CNF nodes processed using the global
- * variable @c total_cnf. If the number of processed nodes exceeds a predefined threshold
- * (1,000,000), the function throws a @c BoolFtException to prevent excessive memory
- * consumption or infinite recursion due to malformed input.
+ * The normalization proceeds as follows:
+ *   1. If the input `root` is null, return `nullptr`.
+ *   2. If the node is an `AND` or `OR`:
+ *      - Recursively call `normalize_cnf` on the left child.
+ *      - Recursively call `normalize_cnf` on the right child.
+ *      - Invoke `flatten()` to:
+ *          - Coalesce adjacent nodes of the same type into a single node.
+ *          - Remove duplicate literals or redundant subexpressions.
+ *   3. If the node is neither `AND` nor `OR` (i.e., a `VAR` or `NOT`), return it unchanged.
  *
- * @param[in] root Pointer to the root of the CNF expression tree to normalize. May be nullptr.
- * @return Pointer to the root of the normalized (flattened) CNF tree. Returns nullptr if @p root is nullptr.
+ * After execution, the tree rooted at the returned node will have:
+ *   - No nested `AND` within `AND`, or `OR` within `OR`.
+ *   - A consistent, flattened structure that simplifies further processing or serialization.
  *
- * @throws BoolFtException If the total number of CNF nodes processed exceeds 1,000,000,
- *         indicating a possible runaway recursion or excessively large expression.
+ * @param[in]      root
+ *   Pointer to the root of the subtree to normalize. May be `nullptr`.
+ * @param[in,out]  built
+ *   Reference to the `CNF_Stack` allocator used to create any new nodes during flattening.
  *
- * @note The function modifies the input tree in place by updating its left and right pointers.
- *       It also calls @ref flatten to further simplify AND/OR nodes after recursive normalization.
+ * @return
+ *   The pointer to the root of the normalized subtree, or `nullptr` if the input was null.
  *
- * @warning The function relies on the global variable @c total_cnf, which must be properly
- *          initialized and managed outside this function. If the input tree is malformed
- *          (e.g., cyclic), this function may result in infinite recursion or resource exhaustion.
+ * @throws BoolFtException
+ *   Propagates exceptions from `flatten()`, such as memory allocation failures or
+ *   errors due to malformed tree structures.
  */
-s_cnf_node* normalize_cnf(s_cnf_node* root) {
+s_cnf_node* normalize_cnf(s_cnf_node* root, CNF_Stack& built) {
 	if (!root) {
 		return nullptr;
 	}
-	total_cnf++;
-	if (total_cnf > 1000000) {
-		throw BoolFtException("CNF Normalization grew too much.");
-	}
 	if (root->type == AND || root->type == OR) {
-		root->left  = normalize_cnf(root->left);
-		root->right = normalize_cnf(root->right);
-		root = flatten(root);
+		root->left  = normalize_cnf(root->left, built);
+		root->right = normalize_cnf(root->right, built);
+		root = flatten(root, built);
 	}
 	return root;
 }
 
 /**
- * @brief Recursively distributes OR over AND to produce CNF-compliant subtrees.
+ * @brief Applies the distributive law to maintain Conjunctive Normal Form (CNF).
  *
- * This function applies the distributive law to two CNF expression subtrees, @p a and @p b,
- * ensuring that any OR operation is properly distributed over AND operations. This is a
- * fundamental step in transforming logical expressions into Conjunctive Normal Form (CNF).
+ * @details
+ * Given two subexpressions `a` and `b`, this function constructs a new subtree
+ * representing the disjunction `a ∨ b` while preserving CNF structure (a conjunction
+ * of disjunctions). It works by:
+ *   - If `b` is an AND node `(B₁ ∧ B₂)`, distributing `a` over each conjunct:
+ *       a ∨ (B₁ ∧ B₂) => (a ∨ B₁) ∧ (a ∨ B₂)
+ *   - Else if `a` is an AND node `(A₁ ∧ A₂)`, distributing each conjunct over `b`:
+ *       (A₁ ∧ A₂) ∨ b  => (A₁ ∨ b) ∧ (A₂ ∨ b)
+ *   - Otherwise, neither operand is an AND, so a simple OR node `a ∨ b` is created.
  *
- * The function works recursively:
- * - If @p b is an AND node, it distributes @p a over both children of @p b.
- * - If @p a is an AND node, it distributes both children of @p a over @p b.
- * - Otherwise, it creates a new OR node combining @p a and @p b.
+ * @param[in]     a
+ *   Pointer to the left operand subtree of the disjunction.
+ * @param[in]     b
+ *   Pointer to the right operand subtree of the disjunction.
+ * @param[in,out] built
+ *   Reference to a `CNF_Stack` used to allocate and manage all newly created nodes.
  *
- * This guarantees that all ORs are pushed down below ANDs, as required by CNF.
+ * @return
+ *   A pointer to the root of the newly constructed subtree, which will be:
+ *   - An AND node combining distributed OR subtrees when distribution occurs, or
+ *   - An OR node combining `a` and `b` directly if no distribution is necessary.
  *
- * @param[in] a Pointer to the first CNF subtree operand.
- * @param[in] b Pointer to the second CNF subtree operand.
- * @return Pointer to the root of the newly constructed CNF subtree.
- *
- * @note The function allocates new nodes for the resulting tree structure. The caller is
- *       responsible for managing and deleting these nodes to avoid memory leaks.
- *
- * @warning The function assumes that both input trees are valid and non-null. Passing
- *          nullptr as either argument will result in undefined behavior. The function
- *          does not perform cycle detection or input validation.
+ * @throws BoolFtException
+ *   Propagates any exception thrown by `built.new_node()` (e.g., allocation failures).
  */
-s_cnf_node* distribute(s_cnf_node* a, s_cnf_node* b) {
+s_cnf_node* distribute(s_cnf_node* a, s_cnf_node* b, CNF_Stack& built) {
 	if (b->type == AND)
-		return new s_cnf_node(AND, "", distribute(a, b->left), distribute(a, b->right));
+		return built.new_node(AND, "", distribute(a, b->left, built), distribute(a, b->right, built));
 	if (a->type == AND)
-		return new s_cnf_node(AND, "", distribute(a->left, b), distribute(a->right, b));
-	return new s_cnf_node(OR, "", a, b);
+		return built.new_node(AND, "", distribute(a->left, b,built), distribute(a->right, b, built));
+	return built.new_node(OR, "", a, b);
 }
 
 /**
- * @brief Recursively transforms a logical expression tree into Conjunctive Normal Form (CNF).
+ * @brief  Recursively transforms a logical expression tree into Conjunctive Normal Form (CNF).
  *
- * This function converts a logical expression tree rooted at @p node into its equivalent
- * Conjunctive Normal Form (CNF). It assumes that any necessary preprocessing steps
- * (such as eliminating implications and pushing negations inward) have already been performed.
+ * @details
+ * This function applies the CNF conversion by traversing the expression tree in a
+ * post-order fashion and applying the distributive law where necessary:
+ *   - **Base Cases**
+ *     If the node is null, a variable (VAR), or a negation (NOT), it already
+ *     satisfies CNF requirements and is returned unchanged.
+ *   - **Recursive Descent**
+ *     Both the left and right subtrees are first converted to CNF by recursive calls.
+ *   - **Disjunction Handling (OR)**
+ *     After children are in CNF, any disjunction node is replaced by the result of
+ *     `distribute(left, right, built)`, which applies the distributive law:
+ *     A | (B & C) => (A | B) & (A | C) (and its symmetric form),
+ *     ensuring the overall structure remains a conjunction of disjunctions.
+ *   - **Conjunction Handling (AND)**
+ *     If the node is a conjunction, a new AND node is allocated combining the CNF-converted
+ *     children. Nested ANDs are flattened later in `normalize_cnf()`.
  *
- * The function operates recursively:
- * - If @p node is a variable or a negation, it is returned as-is.
- * - Otherwise, it recursively transforms the left and right subtrees.
- * - For OR nodes, it applies the distributive law using @ref distribute to ensure that
- *   ORs are pushed below ANDs, as required by CNF.
- * - For AND nodes, it reconstructs the AND node with its (possibly transformed) children.
+ * @param[in,out] node
+ *   Pointer to the root of the expression (sub)tree to convert.  Its children may be
+ *   replaced or reused during conversion.
+ * @param[in]     built
+ *   Reference to a CNF_Stack factory that allocates all new `s_cnf_node` instances
+ *   needed during distribution and node creation.
  *
- * @param[in] node Pointer to the root of the logical expression tree to transform. May be nullptr.
- * @return Pointer to the root of the CNF-transformed tree. Returns nullptr if @p node is nullptr.
+ * @return
+ *   Pointer to the root of the CNF-converted subtree.  This may be the original node
+ *   (for VAR or NOT), the result of distribution (for OR), or a newly created AND node.
  *
- * @note The function allocates new nodes for AND operations resulting from the transformation.
- *       The caller is responsible for managing and deleting these nodes to avoid memory leaks.
- *
- * @warning The function assumes the input tree is well-formed and that negations are only
- *          applied directly to variables (i.e., the tree is in Negation Normal Form, NNF).
- *          Passing malformed or cyclic trees may result in infinite recursion or undefined behavior.
+ * @throws BoolFtException
+ *   Propagates any exception raised by `distribute()` when applying the distributive law,
+ *   such as stack errors or malformed subtree structures.
  */
-s_cnf_node* to_cnf(s_cnf_node* node) {
+s_cnf_node* to_cnf(s_cnf_node* node, CNF_Stack& built) {
 	if (!node || node->type == VAR || node->type == NOT)
 		return node;
-	node->left  = to_cnf(node->left);
-	node->right = to_cnf(node->right);
+	node->left  = to_cnf(node->left, built);
+	node->right = to_cnf(node->right, built);
 
 	if (node->type == OR) {
-		return distribute(node->left, node->right);
+		return distribute(node->left, node->right, built);
 	} else {
-		return new s_cnf_node(AND, "", node->left, node->right);
+		return built.new_node(AND, "", node->left, node->right);
 	}
 }
 
 /**
- * @brief Constructs a logical expression tree in Negation Normal Form (NNF) from an RPN string.
+ * @brief Builds an expression tree from a Negation Normal Form (NNF) formula in RPN.
  *
- * This function parses a logical expression given in Reverse Polish Notation (RPN) and builds
- * its corresponding expression tree in Negation Normal Form (NNF). The RPN string should use
- * the following characters:
- * - '&' for AND
- * - '|' for OR
- * - '!' for NOT
- * - Any other character is treated as a variable (operand)
+ * @details
+ * Parses the input string of tokens in Reverse Polish Notation (postfix) and constructs
+ * a corresponding binary tree of `s_cnf_node` nodes. A temporary `std::stack` is used
+ * to hold intermediate subtrees:
+ *   - For each binary operator (`&` or `|`), two subtrees are popped (right then left),
+ *     and a new internal node is created with those as children.
+ *   - For the unary negation operator (`!`), a single subtree is popped and wrapped
+ *     in a NOT node.
+ *   - For any other character, a leaf variable node is created.
+ * The `CNF_Stack& built` factory is used to allocate each new node and manage its lifetime.
  *
- * The function uses a stack to process the RPN string:
- * - For each binary operator ('&', '|'), it pops two operands from the stack, constructs the
- *   corresponding node, and pushes it back onto the stack.
- * - For the unary operator ('!'), it pops one operand, constructs a NOT node, and pushes it back.
- * - For operands (variables), it creates a variable node and pushes it onto the stack.
+ * @param[in]  rpn    A string containing the NNF formula in postfix notation.
+ *                    Supported token characters:
+ *                      - `&` for conjunction (AND)
+ *                      - `|` for disjunction (OR)
+ *                      - `!` for negation (NOT)
+ *                      - any other character is treated as a variable name
+ * @param[in,out] built
+ *                    Reference to a `CNF_Stack` object used to allocate and keep track
+ *                    of all created `s_cnf_node` instances.
  *
- * If the RPN string is malformed (e.g., insufficient operands for an operator), the function
- * throws a @c BoolFtException.
+ * @return
+ *   Pointer to the root of the constructed expression tree. If the input was empty,
+ *   returns `nullptr`.
  *
- * @param[in] rpn The RPN string representing the logical expression in NNF.
- * @return Pointer to the root of the constructed expression tree. Returns nullptr if the input is empty.
- *
- * @throws BoolFtException If the RPN string is malformed (e.g., not enough operands for an operator).
- *
- * @note The function allocates new nodes for the tree. The caller is responsible for deleting
- *       the tree to avoid memory leaks.
- *
- * @warning The function assumes that the input string is a valid RPN expression in NNF.
- *          Invalid or malformed input will result in exceptions or undefined behavior.
+ * @throws BoolFtException
+ *   Thrown if the RPN sequence is malformed:
+ *     - A binary operator is encountered when fewer than two operands are on the stack.
+ *     - A negation operator is encountered when the stack is empty.
+ *   Propagates exception from built factory.
  */
-s_cnf_node* nnf_to_tree(const std::string& rpn) {
+s_cnf_node* nnf_to_tree(const std::string& rpn, CNF_Stack& built) {
 	std::stack<s_cnf_node*> st;
 	for (char c : rpn) {
 		if (c == '&' || c == '|') {
@@ -238,45 +319,40 @@ s_cnf_node* nnf_to_tree(const std::string& rpn) {
 				throw BoolFtException("Binary Operator Error.");
 			s_cnf_node* right = st.top(); st.pop();
 			s_cnf_node* left  = st.top(); st.pop();
-			st.push(new s_cnf_node(c == '&' ? AND : OR, "", left, right));
+			st.push(built.new_node(c == '&' ? AND : OR, "", left, right));
 		}
 		else if (c == '!') {
 			if (st.empty())
 				throw BoolFtException("Binary Operator Error.");
 			s_cnf_node* lit = st.top(); st.pop();
-			st.push(new s_cnf_node(NOT, "", lit, nullptr));
+			st.push(built.new_node(NOT, "", lit, nullptr));
 		}
 		else {
 			std::string op(1, c);
-			st.push(new s_cnf_node(VAR, op));
+			st.push(built.new_node(VAR, op));
 		}
 	}
 	return st.empty() ? nullptr : st.top();
 }
 
 /**
- * @brief Converts a logical expression tree into its Reverse Polish Notation (RPN) representation.
+ * @brief Serializes a CNF expression tree into Reverse Polish Notation (RPN).
  *
- * This function traverses a logical expression tree rooted at @p node and serializes it into
- * Reverse Polish Notation (RPN), also known as postfix notation. The resulting RPN tokens are
- * appended to the output vector @p out.
+ * @details
+ * This function performs a post-order traversal of the expression tree rooted at
+ * the given node and appends the appropriate token strings to the output vector:
+ *   - If the node is a variable, its name is appended directly.
+ *   - If the node is a negation, the child subtree is processed first,
+ *     then the "!" operator.
+ *   - If the node is a binary operator (AND or OR), the left subtree is processed,
+ *     then the right subtree, followed by "&" for AND or "|" for OR.
  *
- * The function processes the tree recursively:
- * - For variable nodes, it appends the variable name to @p out.
- * - For NOT nodes, it processes the child node and then appends the "!" operator.
- * - For AND/OR nodes, it processes the left and right subtrees, then appends "&" or "|" respectively.
+ * By following post-order, operators always appear after their operand(s), yielding
+ * a valid postfix (RPN) encoding of the logical expression.
  *
- * This serialization is useful for exporting, storing, or further processing logical expressions
- * in a compact and operator-precedence-free format.
- *
- * @param[in]  node Pointer to the root of the logical expression tree. May be nullptr.
- * @param[out] out  Vector to which the RPN tokens will be appended.
- *
- * @note The function does not clear @p out before appending tokens; it is the caller's responsibility
- *       to clear the vector if needed.
- *
- * @warning The function assumes that the input tree is well-formed. If the tree is malformed
- *          (e.g., contains cycles), this function may result in infinite recursion.
+ * @param[in]  node  Pointer to the root of the (sub)expression tree.
+ *                   May be nullptr, in which case nothing is done.
+ * @param[out] out   Reference to a vector of strings to which RPN tokens will be appended.
  */
 void tree_to_rpn(s_cnf_node* node, std::vector<std::string>& out) {
 	if (!node)
@@ -294,54 +370,54 @@ void tree_to_rpn(s_cnf_node* node, std::vector<std::string>& out) {
 }
 
 /**
- * @brief Converts a logical formula string into its Conjunctive Normal Form (CNF) in RPN.
+ * @brief Converts a propositional logic formula into Conjunctive Normal Form (CNF).
  *
- * This high-level function takes a logical formula as a C-string, converts it to Negation Normal Form (NNF),
- * builds an expression tree, transforms it into Conjunctive Normal Form (CNF), normalizes the CNF tree,
- * and finally serializes the result into a Reverse Polish Notation (RPN) string.
+ * @details
+ * This function serves as the high-level entry point for transforming a logical formula
+ * (given in infix notation) into its equivalent in Conjunctive Normal Form, represented
+ * in Reverse Polish Notation (RPN). The conversion proceeds through several well-defined
+ * stages:
+ *   1. **Negation Normal Form (NNF)**
+ *      Calls `negation_normal_form()` to push negations inward and eliminate implications,
+ *      producing an RPN string where negations only apply directly to variables.
+ *   2. **Parsing to Expression Tree**
+ *      Uses `nnf_to_tree()` along with a `CNF_Stack` to build a binary tree (`s_cnf_node`)
+ *      that structurally represents the NNF expression.
+ *   3. **CNF Transformation**
+ *      Applies distributive laws via `to_cnf()` on the NNF tree to restructure it into a
+ *      tree that satisfies the properties of CNF (i.e., a conjunction of disjunctions).
+ *   4. **Normalization**
+ *      Flattens nested conjunctions and disjunctions, removes duplicates, and canonicalizes
+ *      ordering by calling `normalize_cnf()`.
+ *   5. **Serialization to RPN**
+ *      Traverses the normalized CNF tree with `tree_to_rpn()` to produce the final RPN token
+ *      sequence, then concatenates tokens into a single `std::string`.
  *
- * The conversion process involves several steps:
- * 1. Converts the input formula to NNF in RPN form using @c negation_normal_form.
- * 2. Builds an NNF expression tree from the RPN string using @ref nnf_to_tree.
- * 3. Transforms the tree into CNF using @ref to_cnf.
- * 4. Normalizes the CNF tree structure using @ref normalize_cnf.
- * 5. Serializes the normalized CNF tree back to an RPN string using @ref tree_to_rpn.
+ * @param[in] formula
+ *   A null-terminated C-string containing the input logical formula in infix notation.
+ *   Supported operators include:
+ * 		- '!' (NOT, unary)
+ * 		- '&' (AND, binary)
+ * 		- '|' (OR, binary)
+ * 		- '>' (IMPLICATION)
+ * 		- '=' (EQUIVALENCE)
+ * 		- '^' (XOR)
  *
- * If any step fails (e.g., due to malformed input), the function throws a @c BoolFtException
- * with detailed error information.
+ * @return
+ *   A `std::string` representing the input formula transformed into its CNF equivalent,
+ *   encoded in Reverse Polish Notation (postfix) without spaces between tokens.
  *
- * @param[in] formula The input logical formula as a null-terminated C-string.
- * @return A std::string containing the CNF of the input formula, serialized in RPN.
- *
- * @throws BoolFtException If any error occurs during parsing, transformation, or serialization.
- *
- * @note The function assumes that @c negation_normal_form is available and returns
- *       a valid RPN string in NNF. The function manages memory for intermediate trees,
- *       but may leak memory if an exception is thrown after allocation and before cleanup.
- *
- * @warning The function does not validate the input formula for correctness beyond what is
- *          handled by downstream functions. Malformed or excessively complex formulas may
- *          result in exceptions or resource exhaustion.
+ * @throws BoolFtException
+ *   If any stage of the conversion fails (e.g., malformed input, stack underflow,
+ *   memory allocation error), a `BoolFtException` is thrown containing diagnostic details.
  */
-
-void	clear_tree(s_cnf_node* node) {
-	if (!node) return;
-	std::cout << "node after " << node->left << std::endl;
-	std::cout << "left " << node->left << std::endl;
-	clear_tree(node->left);
-	std::cout << "right " << node->right << std::endl;
-	clear_tree(node->right);
-	std::cout << "node " << node << std::endl;
-	delete node;
-	node = nullptr;
-}
-
 std::string conjunctive_normal_form(char* formula) {
 	std::string nnf_rpn = negation_normal_form(formula);
 	try {
-		s_cnf_node* nnf_root = nnf_to_tree(nnf_rpn);
-		s_cnf_node* cnf_root = to_cnf(nnf_root);
-		cnf_root = normalize_cnf(cnf_root);
+		CNF_Stack	cnfStack;
+		s_cnf_node* nnf_root = nnf_to_tree(nnf_rpn, cnfStack);
+		s_cnf_node* cnf_root = to_cnf(nnf_root, cnfStack);
+		cnf_root = normalize_cnf(cnf_root, cnfStack);
 		std::vector<std::string> cnf_tokens;
 		tree_to_rpn(cnf_root, cnf_tokens);
 		std::ostringstream oss;
@@ -349,10 +425,6 @@ std::string conjunctive_normal_form(char* formula) {
 			if (i) oss << "";
 			oss << cnf_tokens[i];
 		}
-		clear_tree(nnf_root);
-//		clear_tree(cnf_root);
-//		delete nnf_root;
-//		delete cnf_root;
 		return oss.str();
 	} catch (std::exception& e) {
 		std::ostringstream details;
