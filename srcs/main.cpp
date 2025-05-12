@@ -6,85 +6,44 @@
 /*   By: mporras- <manon42bcn@yahoo.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 09:53:33 by mporras-          #+#    #+#             */
-/*   Updated: 2025/05/12 16:02:47 by mporras-         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:07:46 by mporras-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "readySetBool.hpp"
 
-uint32_t parse_uint32_from_chars(const char* s) {
-	uint32_t val = 0;
-	auto first = s;
-	auto last  = s + std::strlen(s);
-	auto result = std::from_chars(first, last, val, 10);
-
-	if (result.ec == std::errc::invalid_argument) {
-		throw std::invalid_argument("Invalid Argument to parse to uint32_t.");
-	}
-	if (result.ec == std::errc::result_out_of_range) {
-		throw std::out_of_range("Out of range to parse uint32_t.");
-	}
-	return val;
-}
-
-void	reverse_map_entrypoint(int argc, char *argv[]) {
-	if (argc != 3) {
-		std::cerr << "Reverse Map test entrypoint needs 2 arguments: --reverse-map mappedDouble" << std::endl;
-		exit(1);
-	}
-	(void)argv;
-	uint32_t x = 0, y = 0;
-
-	errno = 0;
-	char* endptr = nullptr;
-	double mapped = std::strtod(argv[2], &endptr);
-	if (errno == ERANGE) {
-		throw std::out_of_range("Out of range double.");
-	}
-	if (endptr == argv[0]) {
-		throw std::invalid_argument("Invalid Argument to parse to double.");
-	}
-	reverse_map(mapped, x, y);
-	std::cout << "Input " << std::setprecision(std::numeric_limits<double>::max_digits10) <<  mapped
-	          << " : X = " << x << " Y = " << y << std::endl;
-}
-
-void	map_entrypoint(int argc, char *argv[]) {
-	if (argc != 4) {
-		std::cerr << "Map test entrypoint needs 3 arguments: --map strX strY" << std::endl;
-		exit(1);
-	}
-	(void)argv;
-	uint32_t x = parse_uint32_from_chars(argv[2]);
-	uint32_t y = parse_uint32_from_chars(argv[3]);
-	double db = map(x, y);
-	std::cout << "Input X = " << x << " Y = " << y << " Mapped: " << std::setprecision(std::numeric_limits<double>::max_digits10) << db << std::endl;
-
-}
-
-
-void	map_and_reverse_entrypoint(int argc, char *argv[]) {
-	if (argc != 4) {
-		std::cerr << "Map and reverse test entrypoint needs 3 arguments: --map-and-reverse strX strY" << std::endl;
-		exit(1);
-	}
-	(void)argv;
-	uint32_t x = parse_uint32_from_chars(argv[2]);
-	uint32_t y = parse_uint32_from_chars(argv[3]);
-	double db = map(x, y);
-	uint32_t x_p = 0, y_p = 0;
-	reverse_map(db, x_p, y_p);
-	std::string eval;
-	if (x == x_p && y == y_p)
-		eval = "OK";
-	else
-		eval = "KO";
-	std::cout << "Input X = " << x << " Y = " << y << " Mapped: "
-	          << std::setprecision(std::numeric_limits<double>::max_digits10) << db
-			  << " X' = " << x_p << " Y' = " << y_p << " consistency: "
-			  << eval << std::endl;
-}
-
+/**
+ * @brief Dispatches execution to the appropriate subcommand based on the first CLI flag.
+ *
+ * @details
+ * This function serves as the central dispatcher for all supported command-line
+ * operations. It maintains a static lookup table (`std::map<std::string, t_entry>`)
+ * mapping flag strings (e.g., `"--adder"`, `"--cnf-only"`) to their corresponding
+ * entrypoint handler functions (`t_entry`). On the first invocation, the map is
+ * populated with all available handlers. Subsequent calls reuse the initialized map
+ * to avoid re-registering handlers.
+ *
+ * Behavior:
+ *   1. Reads the flag from `argv[1]`.
+ *   2. If the static map is empty, populates it with all supported flag→handler pairs.
+ *   3. Looks up the flag in the map:
+ *      - If found, invokes the corresponding handler function, forwarding `argc` and `argv`.
+ *      - If not found, writes an error message to `std::cerr` and terminates the program
+ *        with exit code `1`.
+ *
+ * @param[in] argc
+ *   The number of command-line arguments, including the program name.
+ * @param[in] argv
+ *   Array of C-strings representing the command-line arguments:
+ *   - `argv[0]` is the program name.
+ *   - `argv[1]` is the flag selecting the operation.
+ *   - `argv[2]`...`argv[argc-1]` are additional parameters passed to the handler.
+ *
+ * @note
+ *   - Handlers are only registered on the first call to avoid reinitialization overhead.
+ *   - The program will terminate via `std::exit(1)` if an unsupported flag is provided.
+ *   - Handler functions are responsible for their own argument validation and error reporting.
+ */
 void	entrypoint(int argc, char *argv[]) {
 	static std::map<std::string, t_entry> entrypoint;
 	std::string flag(argv[1]);
@@ -115,6 +74,33 @@ void	entrypoint(int argc, char *argv[]) {
 	exit(1);
 }
 
+/**
+ * @brief Program entry point that dispatches to the actual application logic.
+ *
+ * @details
+ * The `main` function performs basic argument validation and error handling before
+ * invoking the core logic via `entrypoint()`. It ensures the program is invoked with
+ * at least one argument (in addition to the program name), prints an error message and
+ * exits if not, and wraps the call to `entrypoint` in a try-catch block to handle
+ * any exceptions gracefully.
+ *
+ * @param[in] argc
+ *   The number of command-line arguments, including the program name.
+ * @param[in] argv
+ *   Array of C-strings representing the command-line arguments.
+ *   - `argv[0]` is the program name.
+ *   - `argv[1]` through `argv[argc-1]` are the user-supplied arguments.
+ *
+ * @return
+ *   Returns `0` on successful execution of the program logic.
+ *   Returns `1` if:
+ *     - Not enough arguments were provided (`argc < 2`), or
+ *     - An exception of type `std::exception` (or a subclass) was thrown by `entrypoint()`.
+ *
+ * @throws
+ *   Does not throw exceptions itself. Catches all `std::exception` thrown by
+ *   `entrypoint()` and reports the error message to `std::cerr`.
+ */
 int main (int argc, char *argv[]) {
 	if (argc < 2) {
 		std::cerr << "Not enough arguments to run" << std::endl;
